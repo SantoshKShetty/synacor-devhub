@@ -19,7 +19,7 @@
     },
     "scripts": {
         "start": "webpack serve",
-        "build": ""
+        "build": "webpack build"
     },
     "browserslist": {
         "production": [
