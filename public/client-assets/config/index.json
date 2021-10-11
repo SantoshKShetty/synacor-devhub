@@ -1,0 +1,24 @@
+{
+    "routes": [
+        {
+            "path": "/", "descriptor": "home.json",
+            "screen": "Home", "layout": "SplitColumn"
+        },
+        {
+            "path": "/register", "descriptor": "register.json",
+            "screen": "Register", "layout": "SplitColumn"
+        },
+        {
+            "path": "/setup", "descriptor": "acc-setup.json", "preloadDesc": true,
+            "screen": "AccountSetup", "layout": "SplitColumn"
+        },
+        {
+            "path": "/login", "descriptor": "login.json",
+            "screen": "Login", "layout": "SingleColumn"
+        },
+        {
+            "path": "/dashboard",
+            "screen": "Dashboard", "layout": "Dashboard"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "palette": {
+        "custom": {
+            "splitColLayout": {
+                "leftCol": {
+                    "bgColor": "#CEE7FF"
+                }
+            }
+        }
+    }
+}

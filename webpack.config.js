@@ -10,7 +10,8 @@ module.exports = {
         // the output of the webpack build will be in /dist directory
         path: path.resolve(__dirname, 'build'),
         // the filename of the JS bundle will be bundle.js
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -25,8 +26,15 @@ module.exports = {
                     // attach the presets to the loader (most projects use .babelrc file instead)
                     presets: ["@babel/preset-env", "@babel/preset-react"]
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     // add a custom index.html as the template
     plugins: [
