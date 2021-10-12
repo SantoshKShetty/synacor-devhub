@@ -1,10 +1,26 @@
 {
     "info": {
-        "title": {},
-        "description": {}
+        "title": { "type": "text", "label": "Home Page" },
+        "description": { "type": "text", "label": "This is the place where we can showcase all different components that we build." }
     },
     "form": {
-        "controls": [],
-        "validations": []
+        "controls": [
+            { "type": "text", "label": "Header Tags", "children": [
+                { "type": "text", "label": "h1.Text" },
+                { "type": "text", "label": "h3.Text" },
+                { "type": "text", "label": "h6.Text" }
+            ] },
+            { "type": "text", "label": "Text fields", "children": [
+                { "type": "textfield", "subType": "email", "label": "Email" },
+                { "type": "textfield", "subType": "password", "label": "Password" }
+            ] },
+            { "type": "button", "label": "Buttons", "children": [
+                { "type": "button", "subType": "primary", "label": "Sign Up" },
+                { "type": "button", "subType": "secondary", "label": "Sign In" },
+                { "type": "button", "subType": "social-google", "label": "Sign Up with Google" },
+                { "type": "button", "subType": "social-microsoft", "label": "Sing Up with Microsoft" },
+                { "type": "button", "subType": "social-github", "label": "Sign up with Github" }
+            ] }
+        ]
     }
 }

@@ -19,10 +19,12 @@ const DescriptorLoader = ({ descriptor, children }) => {
     const [desc, setDesc] = React.useState({});
 
     React.useEffect(() => {
-        fetch(getConfigResource(descriptor))
-            .then(d => d.json())
-            .then(d => setDesc(d))
-            .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
+        if (descriptor) {
+            fetch(getConfigResource(descriptor))
+                .then(d => d.json())
+                .then(d => setDesc(d))
+                .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
+        }
     }, []);
 
     return React.cloneElement(
