@@ -55,9 +55,9 @@ const RightCol = () => (
 
 export default function RegistrationScreen() {
     return (
-        <SplitScreenLayout>
+        <SplitColumnLayout>
             <LeftCol />
             <RightCol />
-        </SplitScreenLayout>
+        </SplitColumnLayout>
     );
 };

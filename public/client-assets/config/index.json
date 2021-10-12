@@ -1,4 +1,7 @@
 {
+    "info": {
+        "logo": "logo.png"
+    },
     "routes": [
         {
             "path": "/", "descriptor": "home.json",
