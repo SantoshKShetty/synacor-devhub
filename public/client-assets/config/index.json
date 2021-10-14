@@ -1,6 +1,6 @@
 {
-    "info": {
-        "logo": "logo.png"
+    "genericInfo": {
+        "logo": { "src": "logo.png" }
     },
     "routes": [
         {

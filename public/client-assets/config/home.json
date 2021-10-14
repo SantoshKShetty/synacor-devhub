@@ -1,26 +1,31 @@
 {
-    "info": {
-        "title": { "type": "text", "label": "Home Page" },
-        "description": { "type": "text", "label": "This is the place where we can showcase all different components that we build." }
-    },
+    "screenInfo": [
+        { "type": "text", "label": "Home Page", "variant": "h2" },
+        { "type": "text", "label": "This is the place which showcases all different components that are built." }
+    ],
     "form": {
         "controls": [
-            { "type": "text", "label": "Header Tags", "children": [
-                { "type": "text", "label": "h1.Text" },
-                { "type": "text", "label": "h3.Text" },
-                { "type": "text", "label": "h6.Text" }
-            ] },
-            { "type": "text", "label": "Text fields", "children": [
+            { "type": "box", "children": [
+                { "type": "text", "label": "Header Tags", "variant": "h4" },
+                { "type": "divider" },
+                { "type": "text", "label": "h1.Text", "variant": "h1" },
+                { "type": "text", "label": "h3.Text", "variant": "h3" },
+                { "type": "text", "label": "h6.Text", "variant": "h6" }
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Text fields", "variant": "h4" },
+                { "type": "divider" },
                 { "type": "textfield", "subType": "email", "label": "Email" },
                 { "type": "textfield", "subType": "password", "label": "Password" }
-            ] },
-            { "type": "button", "label": "Buttons", "children": [
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Buttons", "variant": "h4" },
+                { "type": "divider" },
                 { "type": "button", "subType": "primary", "label": "Sign Up" },
-                { "type": "button", "subType": "secondary", "label": "Sign In" },
-                { "type": "button", "subType": "social-google", "label": "Sign Up with Google" },
-                { "type": "button", "subType": "social-microsoft", "label": "Sing Up with Microsoft" },
-                { "type": "button", "subType": "social-github", "label": "Sign up with Github" }
-            ] }
+                { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
+                { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
+                { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
+            ], "styles": { "mb": 10 }}
         ]
     }
 }

@@ -34,8 +34,7 @@ const DescriptorLoader = ({ descriptor, children }) => {
 }
 
 export default function Router() {
-    const config = useConfig();
-    const { info = {}, routes = [] } = config;
+    const { genericInfo = {}, routes = [] } = useConfig();
     const screenAndLayout = useScreenAndLayout();
 
     return composeComponents(
@@ -51,7 +50,7 @@ export default function Router() {
 
             const RouteComponent = (
                 <DescriptorLoader descriptor={descriptor}>
-                    <Screen info={info} Layout={Layout} />
+                    <Screen genericInfo={genericInfo} Layout={Layout} />
                 </DescriptorLoader>
             );
 

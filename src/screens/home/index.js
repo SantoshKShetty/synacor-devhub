@@ -1,23 +1,27 @@
 import React from "react";
-import Box from '../../components/box';
+import { generateComponent } from "../../utils/component";
 
-const InfoSection = () => (
-    <Box>
-        <h1>This is Left column...</h1>
-    </Box>
+const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
+    (data, i) => generateComponent({
+        ...data,
+        key: `intro-sec-component-${i}`
+    })
 );
 
-const FormSection = () => (
-    <Box>
-        <h1>This is Right column...</h1>
-    </Box>
+const FormSection = ({ form: { controls } }) => controls.map(
+    (data, i) => generateComponent({
+        ...data,
+        key: `form-sec-component-${i}`
+    })
 );
 
-export default function HomeScreen({ info, Layout, descriptor }) {
+export default function HomeScreen({ genericInfo, Layout, descriptor }) {
+    const { screenInfo, form } = descriptor;
+
     return (
-        <Layout info={info}>
-            <InfoSection />
-            <FormSection />
+        <Layout genericInfo={genericInfo}>
+            <InfoSection screenInfo={screenInfo} />
+            <FormSection form={form} />
         </Layout>
     );
 };
