@@ -14,13 +14,14 @@ const useStyles = makeStyles(
             }
         },
         leftCol: {
-            color: custom.splitColLayout.leftCol.txtColor,
+            color: custom.splitColLayout.leftCol.color,
             backgroundColor: custom.splitColLayout.leftCol.bgColor,
 
             [breakpoints.up('md')]: {
                 height: '100vh',
                 width: '45%',
                 minWidth: 500,
+                position: 'fixed',
                 paddingLeft: 110,
                 paddingRight: 80,
                 justifyContent: 'center'
@@ -28,7 +29,9 @@ const useStyles = makeStyles(
         },
         rightCol: {
             [breakpoints.up('md')]: {
-                marginLeft: 88
+                padding: '120px 0',
+                marginLeft: '50%',
+                flexGrow: 1
             }
         }
     })
