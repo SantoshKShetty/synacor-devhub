@@ -1,4 +1,7 @@
 {
+    "genericInfo": {
+        "logo": { "src": "logo.png" }
+    },
     "routes": [
         {
             "path": "/", "descriptor": "home.json",

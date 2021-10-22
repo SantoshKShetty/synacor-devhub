@@ -5,9 +5,36 @@ import { useConfig } from '../provider/config';
 import { useScreenAndLayout } from '../provider/screen-layout';
 import { composeComponents } from '../utils/component';
 import { exists } from '../utils/basics';
+import { getConfigResource } from '../utils/resource-path';
+
+/**
+ * Component `DescriptorLoader` is a thin wrapper that wraps around every screen component given for a route.
+ * This wrapper generalizes the idea of downloading screen specific config `descriptor` file.
+ 
+ * @param {string} descriptor - descriptor file name
+ * @param {Object} children - `Screen` component for that specific `url`.
+ * @returns - Wrapped component for `Screen` with downloaded `descriptor` passed as prop to `Screen`.
+ */
+const DescriptorLoader = ({ descriptor, children }) => {
+    const [desc, setDesc] = React.useState({});
+
+    React.useEffect(() => {
+        if (descriptor) {
+            fetch(getConfigResource(descriptor))
+                .then(d => d.json())
+                .then(d => setDesc(d))
+                .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
+        }
+    }, []);
+
+    return React.cloneElement(
+        React.Children.only(children),
+        { descriptor: desc }
+    );
+}
 
 export default function Router() {
-    const { routes = [] } = useConfig();
+    const { genericInfo = {}, routes = [] } = useConfig();
     const screenAndLayout = useScreenAndLayout();
 
     return composeComponents(
@@ -21,15 +48,10 @@ export default function Router() {
 
             if (!exists(Screen) || !exists(Layout)) return;
 
-            const RouteComponent = (
-                <Layout>
-                    <Screen descriptor={descriptor} />
-                </Layout>
-            );
-
             return composeComponents(
-                [Route, {key: `route-${key}`, path, exact: true }]
-            )(RouteComponent);
+                [Route, { key: `route-${key}`, path, exact: true }],
+                [DescriptorLoader, { descriptor }]
+            )(<Screen genericInfo={genericInfo} Layout={Layout} />);
         })
     );
 }

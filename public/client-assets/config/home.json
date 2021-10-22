@@ -1,0 +1,56 @@
+{
+    "screenInfo": [
+        { "type": "text", "label": "Home Page", "variant": "h2" },
+        { "type": "box" , "styles": { "mb": 2 }},
+        { "type": "text", "label": "This is the place which showcases all different components that are built." }
+    ],
+    "form": {
+        "controls": [
+            { "type": "box", "children": [
+                { "type": "text", "label": "Header Tags", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "text", "label": "h1.Text", "variant": "h1" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "text", "label": "h3.Text", "variant": "h3" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "text", "label": "h6.Text", "variant": "h6" }
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Text fields", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "textfield", "subType": "email", "label": "Email" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "textfield", "subType": "password", "label": "Password" }
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Buttons", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "button", "subType": "primary", "label": "Sign Up" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "List links", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "linklist", "children": [
+                    { "href": "/register", "label": "Register" },
+                    { "href": "/setup", "label": "AccountSetup" },
+                    { "href": "/login", "label": "Login" },
+                    { "href": "/dashboard", "label": "Dashboard" }
+                ]}
+            ], "styles": { "mb": 10 }}
+        ]
+    }
+}

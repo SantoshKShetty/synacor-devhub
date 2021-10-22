@@ -3,7 +3,19 @@
         "custom": {
             "splitColLayout": {
                 "leftCol": {
-                    "bgColor": "#CEE7FF"
+                    "bgColor": "#CEE7FF",
+                    "color": "#003C79"
+                }
+            },
+            "button": {
+                "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)",
+                "primaryCTA": {
+                    "bgColor": "#B134EB",
+                    "bgColorHover": "#852CAF",
+                    "color": "#FFFFFF"
+                },
+                "socialSign": {
+                    "color": "#666666"
                 }
             }
         }

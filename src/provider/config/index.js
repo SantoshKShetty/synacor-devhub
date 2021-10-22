@@ -9,7 +9,8 @@ export default function ConfigProvider(props) {
     React.useEffect(() => {
         fetch(getConfigResource())
             .then(r => r.json())
-            .then(data => setConfig(data));
+            .then(data => setConfig(data))
+            .catch(e => console.log(`Error downloading initial descriptor due to: ${e}`));
     }, []);
 
     return config ? <context.Provider {...props} value={config} /> : null;
