@@ -8,8 +8,8 @@ import { exists } from '../utils/basics';
 import { getConfigResource } from '../utils/resource-path';
 
 /**
- * Component DescriptorLoader is a common thin wrapper which wraps around every screen.
- * This wrapper generalizes the idea of downloading screen specific config `descriptor` file
+ * Component `DescriptorLoader` is a thin wrapper that wraps around every screen component given for a route.
+ * This wrapper generalizes the idea of downloading screen specific config `descriptor` file.
  
  * @param {string} descriptor - descriptor file name
  * @param {Object} children - `Screen` component for that specific `url`.
@@ -48,15 +48,10 @@ export default function Router() {
 
             if (!exists(Screen) || !exists(Layout)) return;
 
-            const RouteComponent = (
-                <DescriptorLoader descriptor={descriptor}>
-                    <Screen genericInfo={genericInfo} Layout={Layout} />
-                </DescriptorLoader>
-            );
-
             return composeComponents(
-                [Route, {key: `route-${key}`, path, exact: true }]
-            )(RouteComponent);
+                [Route, { key: `route-${key}`, path, exact: true }],
+                [DescriptorLoader, { descriptor }]
+            )(<Screen genericInfo={genericInfo} Layout={Layout} />);
         })
     );
 }

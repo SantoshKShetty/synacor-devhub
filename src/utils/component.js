@@ -11,6 +11,7 @@ import GithubSignBtn from '../components/button/social-signing/github';
 import GoogleSignBtn from '../components/button/social-signing/google';
 import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
 import Button from '../components/button';
+import LinkList from '../components/linklist';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -71,5 +72,7 @@ export function generateComponent(componentData) {
 			}
 		case 'divider':
 			return <Divider {...componentProps} />
+		case 'linklist':
+			return <LinkList {...componentProps} items={children} />
 	}
 }
