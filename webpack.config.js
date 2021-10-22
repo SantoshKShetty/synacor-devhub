@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     // the output bundle won't be optimized for production but suitable for development
@@ -40,6 +41,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'public', 'client-assets'),
+                    to: path.resolve(__dirname, 'build', 'client-assets')
+                }
+            ]
         })
     ]
 };
