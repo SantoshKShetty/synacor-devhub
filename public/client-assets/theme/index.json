@@ -3,7 +3,7 @@
         "custom": {
             "splitColLayout": {
                 "leftCol": {
-                    "bgColor": "#CEE7FF",
+                    "bgColor": "#EEEEEE",
                     "color": "#003C79"
                 }
             },

@@ -1,7 +1,6 @@
 import React from "react";
 import { generateComponent } from "../../utils/component";
 import Form from "../../components/form";
-import { makeStyles } from "../../provider/theme";
 
 const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
     (data, i) => generateComponent({
@@ -10,21 +9,9 @@ const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
     })
 );
 
-const styles = makeStyles(
-    ({ breakpoints }) => ({
-        form: {
-            [breakpoints.up('md')]: {
-                width: 340
-            }
-        }
-    })
-);
-
 const FormSection = ({ form: { controls } }) => {
-    const classes = styles();
-
     return (
-        <Form className={classes.form}>
+        <Form>
             {controls.map(
                 (data, i) => generateComponent({
                     ...data,

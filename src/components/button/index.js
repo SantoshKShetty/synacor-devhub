@@ -7,7 +7,7 @@ const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
         button: {
             fontSize: '1rem',
-            borderRadius: shape.borderRadius * 4,
+            borderRadius: shape.borderRadius * 2,
             padding: `${spacing(1.5)}px 0`,
             boxShadow: palette.custom.button.shadow
         }
