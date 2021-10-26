@@ -12,6 +12,7 @@ import GoogleSignBtn from '../components/button/social-signing/google';
 import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
 import Button from '../components/button';
 import LinkList from '../components/linklist';
+import ToggleButtonGroup from '../components/toggle-btn-group';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -27,7 +28,7 @@ export function composeComponents() {
 }
 
 export function generateComponent(componentData) {
-	const { type, subType, key, label, children, styles, ...props } = componentData;
+	const { type, subType, key, label, defaultValue, children, styles, ...props } = componentData;
 
 	const componentProps = {
 		key,
@@ -74,5 +75,7 @@ export function generateComponent(componentData) {
 			return <Divider {...componentProps} />
 		case 'linklist':
 			return <LinkList {...componentProps} items={children} />
+		case 'toggleBtnGroup':
+			return <ToggleButtonGroup {...componentProps} items={children} baseKey={key} defaultValue={defaultValue} />
 	}
 }
