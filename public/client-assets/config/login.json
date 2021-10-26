@@ -1,0 +1,26 @@
+{
+    "form": {
+        "controls": [
+            { "type": "box", "children": [
+                { "type": "text", "label": "Login Here", "variant": "h4" }
+            ]},
+            { "type": "box", "children": [
+                { "type": "textfield", "subType": "email", "label": "Email" }
+            ]},
+            { "type": "box", "children": [
+                { "type": "textfield", "subType": "password", "label": "Password" }
+            ]},
+            { "type": "box", "children": [
+                { "type": "button", "subType": "primary", "label": "Sign In" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "m": 2 }},
+                { "type": "button", "subType": "socialGoogle", "label": "Sign In using Google" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "subType": "socialMicrosoft", "label": "Sing In using Microsoft" },
+                { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "subType": "socialGithub", "label": "Sign In using Github" }
+            ], "styles": { "mb": 10 }}
+        ]
+    }
+}
