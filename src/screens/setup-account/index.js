@@ -1,5 +1,34 @@
 import React from "react";
+import { generateComponent } from "../../utils/component";
+import Form from "../../components/form";
 
-export default function SetupAccountScreen() {
-    return <h1>This is SetupAccount Screen...</h1>
+const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
+    (data, i) => generateComponent({
+        ...data,
+        key: `intro-sec-component-${i}`
+    })
+);
+
+const FormSection = ({ form: { controls } }) => {
+    return (
+        <Form>
+            {controls.map(
+                (data, i) => generateComponent({
+                    ...data,
+                    key: `form-sec-component-${i}`
+                })
+            )}
+        </Form>
+    );
+};
+
+export default function SetupAccountScreen({ genericInfo, Layout, descriptor }) {
+    const { screenInfo, form } = descriptor;
+
+    return (
+        <Layout genericInfo={genericInfo}>
+            <InfoSection screenInfo={screenInfo} />
+            <FormSection form={form} />
+        </Layout>
+    );
 };
