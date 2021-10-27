@@ -16,18 +16,16 @@ import { getConfigResource } from '../utils/resource-path';
  * @returns - Wrapped component for `Screen` with downloaded `descriptor` passed as prop to `Screen`.
  */
 const DescriptorLoader = ({ descriptor, children }) => {
-    const [desc, setDesc] = React.useState({});
+    const [desc, setDesc] = React.useState(null);
 
     React.useEffect(() => {
-        if (descriptor) {
-            fetch(getConfigResource(descriptor))
-                .then(d => d.json())
-                .then(d => setDesc(d))
-                .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
-        }
+        fetch(getConfigResource(descriptor))
+            .then(d => d.json())
+            .then(d => setDesc(d))
+            .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
     }, []);
 
-    return React.cloneElement(
+    return desc && React.cloneElement(
         React.Children.only(children),
         { descriptor: desc }
     );
