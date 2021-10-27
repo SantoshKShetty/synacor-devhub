@@ -11,7 +11,7 @@
                 { "type": "textfield", "subType": "password", "label": "Password" }
             ]},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Sign In" },
+                { "type": "button", "subType": "primary", "label": "Sign In", "routeTo": "/dashboard" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "m": 2 }},

@@ -25,7 +25,7 @@
                 { "type": "text", "label": "By clicking on any of the Sign Up options, ,I agree to the terms of service." }
             ]},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Sign Up" },
+                { "type": "button", "subType": "primary", "label": "Sign Up", "routeTo": "/setup" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "m": 2 }},
