@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Button from '../';
 import { makeStyles } from '../../../provider/theme';
 
@@ -16,8 +17,12 @@ const styles = makeStyles(
     })
 )
 
-export default function PrimaryCTABtn(props) {
+export default function PrimaryCTABtn({ routeTo, ...props }) {
     const classes = styles();
 
-    return <Button {...props} className={classes.primaryCta} />
+    // Temporary logic to move from flow to flow.
+    const history = useHistory();
+    const handleClick = () => history.push(routeTo);
+
+    return <Button {...props} className={classes.primaryCta} onClick={handleClick} />
 }
