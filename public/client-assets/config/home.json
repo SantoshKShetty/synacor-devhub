@@ -40,15 +40,15 @@
                 { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
             ], "styles": { "mb": 10 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "List links", "variant": "h4" },
+                { "type": "text", "label": "List of flows", "variant": "h4" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "mb": 2 }},
-                { "type": "linklist", "children": [
-                    { "href": "/register", "label": "Register" },
-                    { "href": "/setup", "label": "AccountSetup" },
-                    { "href": "/login", "label": "Login" },
-                    { "href": "/dashboard", "label": "Dashboard" }
+                { "type": "list", "children": [
+                    { "type": "link", "href": "/register", "label": "Register" },
+                    { "type": "link", "href": "/setup", "label": "AccountSetup" },
+                    { "type": "link", "href": "/login", "label": "Login" },
+                    { "type": "link", "href": "/dashboard", "label": "Dashboard" }
                 ]}
             ], "styles": { "mb": 10 }}
         ]
