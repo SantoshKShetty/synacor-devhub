@@ -11,8 +11,9 @@ import GithubSignBtn from '../components/button/social-signing/github';
 import GoogleSignBtn from '../components/button/social-signing/google';
 import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
 import Button from '../components/button';
-import LinkList from '../components/linklist';
 import ToggleButtonGroup from '../components/toggle-btn-group';
+import Link from '../components/link';
+import List from '../components/list';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -73,9 +74,11 @@ export function generateComponent(componentData) {
 			}
 		case 'divider':
 			return <Divider {...componentProps} />
-		case 'linklist':
-			return <LinkList {...componentProps} items={children} />
+		case 'list':
+			return <List {...componentProps} baseKey={key} items={children} />
+		case 'link':
+			return <Link {...componentProps} label={label} />
 		case 'toggleBtnGroup':
-			return <ToggleButtonGroup {...componentProps} items={children} baseKey={key} defaultValue={defaultValue} />
+			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
 	}
 }

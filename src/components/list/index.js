@@ -1,11 +1,13 @@
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import React from 'react';
+import { generateComponent } from '../../utils/component';
 
-export {
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText
+export default function List({ baseKey, items }) {
+    return items && (
+        <ul>
+            {items.map((item, i) => {
+                const key = `${baseKey}-${i}`;
+                return <li key={key}>{generateComponent({ ...item, key })}</li>
+            })}
+        </ul>
+    );
 }
