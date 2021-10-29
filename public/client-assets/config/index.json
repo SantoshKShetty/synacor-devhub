@@ -1,6 +1,8 @@
 {
     "genericInfo": {
-        "logo": { "src": "logo.png" }
+        "logo": {
+            "src": "logo.png", "width": 140, "alt": "Brand Logo"
+        }
     },
     "routes": [
         {
