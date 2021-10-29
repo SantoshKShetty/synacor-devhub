@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '../provider/theme';
-import Box from '../components/box';
+import Box, { HORIZONTAL } from '../components/box';
 
 const useStyles = makeStyles(
     () => ({
@@ -13,10 +13,13 @@ const useStyles = makeStyles(
             height: 'calc(100vh - 56px)'
         },
         leftCol: {
-            borderRight: '1px solid #D8D8D8'
+            borderRight: '1px solid #D8D8D8',
+            width: 240,
+            overflow: 'auto'
         },
         rightCol: {
-
+            overflow: 'auto',
+            flexGrow: 1
         }
     })
 );
@@ -32,7 +35,7 @@ export default function DashboardLayout({ genericInfo, children }) {
                     React.Children.only(Header), { ...genericInfo }
                 )}
             </Box>
-            <Box className={classes.body}>
+            <Box className={classes.body} type={HORIZONTAL}>
                 <Box className={classes.leftCol}>{LeftCol}</Box>
                 <Box className={classes.rightCol}>{RightCol}</Box>
             </Box>
