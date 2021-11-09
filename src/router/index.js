@@ -48,7 +48,7 @@ export default function Router() {
 
             return composeComponents(
                 [Route, { key: `route-${key}`, path, exact: true }],
-                [DescriptorLoader, { descriptor }]
+                descriptor && [DescriptorLoader, { descriptor }] // Wrap `DescriptorLoader` only if `descriptor` is found for a given screen.
             )(<Screen genericInfo={genericInfo} Layout={Layout} />);
         })
     );
