@@ -22,7 +22,7 @@
             "screen": "Login", "layout": "SingleColumn"
         },
         {
-            "path": "/dashboard",
+            "path": "/dashboard/:view?/:action?/:item?",
             "screen": "Dashboard", "layout": "Dashboard"
         }
     ]

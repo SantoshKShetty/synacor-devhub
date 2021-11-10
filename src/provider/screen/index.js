@@ -24,29 +24,12 @@ const SCREENS = {
     ))
 };
 
-
-// Mapping of lookup id's against lazy loaded layouts (chunks)
-const LAYOUTS = {
-    SingleColumn: lazy(() => import (
-        /* webpackChunkName: "single-col-layout" */
-        '../../layout/single-col'
-    )),
-    SplitColumn: lazy(() => import (
-        /* webpackChunkName: "split-col-layout" */
-        '../../layout/split-col'
-    )),
-    Dashboard: lazy(() => import (
-        /* webpackChunkName: "dashboard-layout" */
-        '../../layout/dashboard'
-    ))
-};
-
 const context = React.createContext({});
 
-export default function ScreenAndLayoutProvider(props) {
-    return <context.Provider {...props} value={{ layouts: LAYOUTS, screens: SCREENS }} />;
+export default function ScreenProvider(props) {
+    return <context.Provider {...props} value={{ ...SCREENS }} />;
 }
 
-export function useScreenAndLayout() {
+export function useScreen() {
     return React.useContext(context);
 }

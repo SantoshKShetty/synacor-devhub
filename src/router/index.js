@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import dlv from 'dlv';
 import { useConfig } from '../provider/config';
-import { useScreenAndLayout } from '../provider/screen-layout';
+import { useLayout } from '../provider/layout';
+import { useScreen } from '../provider/screen';
 import { composeComponents } from '../utils/component';
 import { exists } from '../utils/basics';
 import { getConfigResource } from '../utils/resource-path';
@@ -33,7 +33,8 @@ const DescriptorLoader = ({ descriptor, children }) => {
 
 export default function Router() {
     const { genericInfo = {}, routes = [] } = useConfig();
-    const screenAndLayout = useScreenAndLayout();
+    const Layouts = useLayout();
+    const Screens = useScreen();
 
     return composeComponents(
         BrowserRouter,
@@ -41,8 +42,8 @@ export default function Router() {
         [Suspense, { fallback: <div>Loading app...</div> }]
     )(
         routes.map(({ path, descriptor, screen, layout }, key) => {
-            const Screen = dlv(screenAndLayout, `screens.${screen}`, null);
-            const Layout = dlv(screenAndLayout, `layouts.${layout}`, null);
+            const Screen = Screens[screen];
+            const Layout = Layouts[layout];
 
             if (!exists(Screen) || !exists(Layout)) return;
 
