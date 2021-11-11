@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,6 +19,8 @@ import HelpOutline from '@material-ui/icons/HelpOutline';
 import Apps from '@material-ui/icons/Apps';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
+import Users from "./users";
+import Link from '../../components/link';
 
 const SearchBox = () => (
     <Box type={HORIZONTAL} style={{ alignItems: 'center', padding: '0 10px', height: 36 }}>
@@ -149,6 +152,7 @@ const LeftCol = () => {
 
     return (
         <Box>
+            <Link href="/dashboard/users" label="Users" />
             {Object.entries(options).map(([title, contents], key) => {
                 return (
                     <Accordion key={`accordian-${key}`}>
@@ -171,7 +175,15 @@ const LeftCol = () => {
     );
 };
 
-const RightCol = () => null
+const RightCol = () => {
+    const { view } = useParams();
+    switch(view) {
+        case 'users':
+            return <Users />
+        default:
+            return null;
+    }
+}
 
 export default function DashboardScreen({ genericInfo, Layout }) {
     return (

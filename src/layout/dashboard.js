@@ -19,7 +19,9 @@ const useStyles = makeStyles(
         },
         rightCol: {
             overflow: 'auto',
-            flexGrow: 1
+            flexGrow: 1,
+            alignItems: 'center',
+            padding: '24px 0'
         }
     })
 );
