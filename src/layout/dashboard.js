@@ -26,7 +26,7 @@ const useStyles = makeStyles(
     })
 );
 
-export default function DashboardLayout({ genericInfo, children }) {
+export default function DashboardLayout({ info, children }) {
     const classes = useStyles();
     const [Header = null, LeftCol = null, RightCol = null] = children;
 
@@ -34,7 +34,7 @@ export default function DashboardLayout({ genericInfo, children }) {
         <React.Fragment>
             <Box className={classes.header}>
                 {React.cloneElement(
-                    React.Children.only(Header), { ...genericInfo }
+                    React.Children.only(Header), { ...info }
                 )}
             </Box>
             <Box className={classes.body} type={HORIZONTAL}>

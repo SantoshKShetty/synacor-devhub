@@ -185,9 +185,9 @@ const RightCol = () => {
     }
 }
 
-export default function DashboardScreen({ genericInfo, Layout }) {
+export default function DashboardScreen({ info, Layout, Subscreen }) {
     return (
-        <Layout genericInfo={genericInfo}>
+        <Layout info={info}>
             <Header />
             <LeftCol />
             <RightCol />

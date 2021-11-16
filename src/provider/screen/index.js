@@ -2,32 +2,40 @@ import React, { lazy } from 'react';
 
 // Mapping of lookup id's against lazy loaded screens (chunks)
 const SCREENS = {
-    Home: lazy(() => import (
+    Home: lazy(() => import(
         /* webpackChunkName: "home-screen" */
         '../../screens/home'
     )),
-    Register: lazy(() => import (
+    Register: lazy(() => import(
         /* webpackChunkName: "registration-screen" */
         '../../screens/registration'
     )),
-    AccountSetup: lazy(() => import (
+    AccountSetup: lazy(() => import(
         /* webpackChunkName: "setup-account-screen" */
         '../../screens/setup-account'
     )),
-    Login: lazy(() => import (
+    Login: lazy(() => import(
         /* webpackChunkName: "login-screen" */
         '../../screens/login'
     )),
-    Dashboard: lazy(() => import (
+    Dashboard: lazy(() => import(
         /* webpackChunkName: "dashboard-screen" */
         '../../screens/dashboard'
+    ))
+};
+
+// Mapping of lookup id's against lazy loaded sub-screens (chunks)
+const SUB_SCREENS = {
+    UsersBoard: lazy(() => import(
+        /* webpackChunkName: "home-screen" */
+        '../../screens/home'
     ))
 };
 
 const context = React.createContext({});
 
 export default function ScreenProvider(props) {
-    return <context.Provider {...props} value={{ ...SCREENS }} />;
+    return <context.Provider {...props} value={[SCREENS, SUB_SCREENS]} />;
 }
 
 export function useScreen() {

@@ -2,15 +2,15 @@ import React, { lazy } from 'react';
 
 // Mapping of lookup id's against lazy loaded layouts (chunks)
 const LAYOUTS = {
-    SingleColumn: lazy(() => import (
+    SingleColumn: lazy(() => import(
         /* webpackChunkName: "single-col-layout" */
         '../../layout/single-col'
     )),
-    SplitColumn: lazy(() => import (
+    SplitColumn: lazy(() => import(
         /* webpackChunkName: "split-col-layout" */
         '../../layout/split-col'
     )),
-    Dashboard: lazy(() => import (
+    Dashboard: lazy(() => import(
         /* webpackChunkName: "dashboard-layout" */
         '../../layout/dashboard'
     ))

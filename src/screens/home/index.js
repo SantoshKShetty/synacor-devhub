@@ -22,11 +22,11 @@ const FormSection = ({ form: { controls } }) => {
     );
 };
 
-export default function HomeScreen({ genericInfo, Layout, descriptor }) {
-    const { screenInfo, form } = descriptor;
+export default function HomeScreen({ info, Layout }) {
+    const { logo, screenInfo, form } = info;
 
     return (
-        <Layout genericInfo={genericInfo}>
+        <Layout logo={logo}>
             <InfoSection screenInfo={screenInfo} />
             <FormSection form={form} />
         </Layout>

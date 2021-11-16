@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import mergeOptions from 'merge-options';
 import { useConfig } from '../provider/config';
 import { useLayout } from '../provider/layout';
 import { useScreen } from '../provider/screen';
@@ -13,9 +14,10 @@ import { getConfigResource } from '../utils/resource-path';
  
  * @param {string} descriptor - descriptor file name
  * @param {Object} children - `Screen` component for that specific `url`.
- * @returns - Wrapped component for `Screen` with downloaded `descriptor` passed as prop to `Screen`.
+ * @param {Object} genericInfo - An object we got already from `config/index.json` file.
+ * @returns - Wrapped component for every `Screen` with downloaded `descriptor` object passed as prop to `Screen`.
  */
-const DescriptorLoader = ({ descriptor, children }) => {
+const DescriptorLoader = ({ descriptor, children, genericInfo }) => {
     const [desc, setDesc] = React.useState(null);
 
     React.useEffect(() => {
@@ -26,31 +28,33 @@ const DescriptorLoader = ({ descriptor, children }) => {
     }, []);
 
     return desc && React.cloneElement(
-        React.Children.only(children),
-        { descriptor: desc }
+        React.Children.only(children), {
+            info: mergeOptions(genericInfo, desc)
+        }
     );
 }
 
 export default function Router() {
     const { genericInfo = {}, routes = [] } = useConfig();
     const Layouts = useLayout();
-    const Screens = useScreen();
+    const [Screens, Subscreens] = useScreen();
 
     return composeComponents(
         BrowserRouter,
         Switch,
         [Suspense, { fallback: <div>Loading app...</div> }]
     )(
-        routes.map(({ path, descriptor, screen, layout }, key) => {
+        routes.map(({ path, descriptor, screen, subScreen, layout }, key) => {
             const Screen = Screens[screen];
+            const Subscreen = subScreen ? Subscreens[subScreen] : null;
             const Layout = Layouts[layout];
 
             if (!exists(Screen) || !exists(Layout)) return;
 
             return composeComponents(
                 [Route, { key: `route-${key}`, path, exact: true }],
-                descriptor && [DescriptorLoader, { descriptor }] // Wrap `DescriptorLoader` only if `descriptor` is found for a given screen.
-            )(<Screen genericInfo={genericInfo} Layout={Layout} />);
+                descriptor && [DescriptorLoader, { descriptor, genericInfo }] // Wrap `DescriptorLoader` only if `descriptor` is found for a given screen.
+            )(<Screen info={genericInfo} Layout={Layout} Subscreen={Subscreen} />);
         })
     );
 }

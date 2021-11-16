@@ -29,7 +29,15 @@ export function composeComponents() {
 }
 
 export function generateComponent(componentData) {
-	const { type, subType, key, label, defaultValue, children, styles, ...props } = componentData;
+	const {
+		type, subType,
+		key = `component-key-${Math.random() * 100000}`,
+		label,
+		defaultValue,
+		children,
+		styles,
+		...props
+	} = componentData;
 
 	const componentProps = {
 		key,
