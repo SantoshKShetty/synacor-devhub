@@ -5,7 +5,9 @@ import { generateComponent } from '../utils/component';
 
 const useStyles = makeStyles({
     singleColLayout: {
-        justifyContent: 'center'
+        '& > div': {
+            margin: '0 auto'
+        }
     }
 });
 
@@ -13,9 +15,11 @@ export default function SingleColumnLayout({ logo, children }) {
     const classes = useStyles();
 
     return (
-        <Box type={HORIZONTAL} className={classes.singleColLayout}>
-            {/** Logo */ generateComponent(logo)}
-            {children}
+        <Box className={classes.singleColLayout}>
+            <Box>
+                {generateComponent(logo)}
+                {children}
+            </Box>
         </Box>
     );
 }

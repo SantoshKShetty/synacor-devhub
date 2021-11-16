@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SearchIcon from '@material-ui/icons/Search';
 import Box, { HORIZONTAL } from "../../components/box";
-import BrandLogo from '../../components/brand-logo';
 import InputBase from "@material-ui/core/InputBase";
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -112,7 +111,7 @@ const UserMenu = () => {
 const Header = ({ logo }) => (
     <Box type={HORIZONTAL} style={{ alignItems: "center", justifyContent: 'space-between', padding: '0 32px' }}>
         <Box>
-            <BrandLogo logo={logo} />
+            {/* <BrandLogo logo={logo} /> */}
         </Box>
         <Box style={{ border: '1px solid #D8D8D8', flexGrow: 1, maxWidth: 650 }}>
             <SearchBox />

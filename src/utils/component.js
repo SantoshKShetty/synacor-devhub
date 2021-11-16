@@ -14,6 +14,7 @@ import Button from '../components/button';
 import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
 import List from '../components/list';
+import Image from '../components/image';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -88,5 +89,7 @@ export function generateComponent(componentData) {
 			return <Link {...componentProps} label={label} />
 		case 'toggleBtnGroup':
 			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
+		case 'image':
+			return <Image {...componentProps} />
 	}
 }

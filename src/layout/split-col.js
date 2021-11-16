@@ -34,6 +34,16 @@ const useStyles = makeStyles(
                 marginLeft: '50%',
                 flexGrow: 1
             }
+        },
+        nonMobileLogo: {
+            [breakpoints.down('sm')]: {
+                display: 'none'
+            }
+        },
+        mobileLogo: {
+            [breakpoints.up('md')]: {
+                display: 'none'
+            }
         }
     })
 );
@@ -45,11 +55,15 @@ export default function SplitColumnLayout({ logo, children }) {
     return (
         <Box type={HORIZONTAL} className={classes.splitColLayout}>
             <Box className={classes.leftCol}>
-                {/** Logo in desktop/tablet devices */ generateComponent(logo)}
+                <Box className={classes.nonMobileLogo}>
+                    {generateComponent(logo)}
+                </Box>
                 {LeftColComponent}
             </Box>
             <Box className={classes.rightCol}>
-                {/** Logo in mobile device */ generateComponent(logo)}
+                <Box className={classes.mobileLogo}>
+                    {generateComponent(logo)}
+                </Box>
                 {RightColComponent}
             </Box>
         </Box>
