@@ -7,6 +7,7 @@ import TextField from '../components/textfield';
 import EmailField from '../components/textfield/email';
 import PasswordField from '../components/textfield/password';
 import PrimaryCTABtn from '../components/button/primary-cta';
+import SecondaryCTABtn from '../components/button/secondary-cta';
 import GithubSignBtn from '../components/button/social-signing/github';
 import GoogleSignBtn from '../components/button/social-signing/google';
 import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
@@ -72,6 +73,8 @@ export function generateComponent(componentData) {
 			switch(subType) {
 				case 'primary':
 					return <PrimaryCTABtn {...componentProps} label={label} />
+				case 'secondary':
+					return <SecondaryCTABtn {...componentProps} label={label} />
 				case 'socialGoogle':
 					return <GoogleSignBtn {...componentProps} label={label} />
 				case 'socialMicrosoft':
