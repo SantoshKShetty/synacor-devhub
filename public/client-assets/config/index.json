@@ -24,8 +24,16 @@
             "screen": "Login", "layout": "SingleColumn"
         },
         {
-            "path": "/dashboard/:view?/:action?/:item?",
-            "screen": "Dashboard", "layout": "Dashboard"
+            "path": "/dashboard", "descriptor": "dashboard/index.json",
+            "screen": "Dashboard", "subScreen": "DashboardMain", "layout": "Dashboard"
+        },
+        {
+            "path": "/dashboard/users",
+            "screen": "Dashboard", "subScreen": "UsersList", "layout": "Dashboard"
+        },
+        {
+            "path": "/dashboard/users/add", "subDescriptor": "dashboard/users/add-user.json",
+            "screen": "Dashboard", "subScreen": "AddUser", "layout": "Dashboard"
         }
     ]
 }

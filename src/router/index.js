@@ -17,7 +17,7 @@ import { getConfigResource } from '../utils/resource-path';
  * @param {Object} genericInfo - An object we got already from `config/index.json` file.
  * @returns - Wrapped component for every `Screen` with downloaded `descriptor` object passed as prop to `Screen`.
  */
-const DescriptorLoader = ({ descriptor, children, genericInfo }) => {
+const DescriptorLoader = ({ descriptor, children, genericInfo = {} }) => {
     const [desc, setDesc] = React.useState(null);
 
     React.useEffect(() => {
@@ -44,10 +44,17 @@ export default function Router() {
         Switch,
         [Suspense, { fallback: <div>Loading app...</div> }]
     )(
-        routes.map(({ path, descriptor, screen, subScreen, layout }, key) => {
+        routes.map(({ path, descriptor, subDescriptor, screen, subScreen, layout }, key) => {
             const Screen = Screens[screen];
-            const Subscreen = subScreen ? Subscreens[subScreen] : null;
             const Layout = Layouts[layout];
+
+            let Subscreen = subScreen ? Subscreens[subScreen] : null;
+
+            if (Subscreen && subDescriptor) {
+                Subscreen = composeComponents(
+                    [DescriptorLoader, { descriptor: subDescriptor }]
+                )(<Subscreen />);
+            }
 
             if (!exists(Screen) || !exists(Layout)) return;
 
