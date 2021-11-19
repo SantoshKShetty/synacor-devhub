@@ -26,6 +26,10 @@ const SCREENS = {
 
 // Mapping of lookup id's against lazy loaded sub-screens (chunks)
 const SUB_SCREENS = {
+    UsersList: lazy(() => import(
+        /* webpackChunkName: "users-list-subscreen" */
+        '../../screens/dashboard/users'
+    ))
 };
 
 const context = React.createContext({});

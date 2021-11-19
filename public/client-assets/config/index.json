@@ -24,16 +24,17 @@
             "screen": "Login", "layout": "SingleColumn"
         },
         {
-            "path": "/dashboard", "descriptor": "dashboard/index.json",
-            "screen": "Dashboard", "subScreen": "DashboardMain", "layout": "Dashboard"
-        },
-        {
-            "path": "/dashboard/users",
-            "screen": "Dashboard", "subScreen": "UsersList", "layout": "Dashboard"
-        },
-        {
-            "path": "/dashboard/users/add", "subDescriptor": "dashboard/users/add-user.json",
-            "screen": "Dashboard", "subScreen": "AddUser", "layout": "Dashboard"
+            "path": "/dashboard/:section?/:action?/:item?", "descriptor": "dashboard/index.json",
+            "screen": "Dashboard", "layout": "Dashboard",
+            "subScreens": {
+                "/dashboard/users": {
+                    "component": "UsersList"
+                },
+                "/dashboard/users/add": {
+                    "component": "AddUser",
+                    "descriptor": "dashboard/users/add-user.json"
+                }
+            }
         }
     ]
 }

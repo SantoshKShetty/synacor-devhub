@@ -4,20 +4,20 @@ import Box, { HORIZONTAL } from '../components/box';
 
 const useStyles = makeStyles(
     () => ({
-        header: {
+        headerContainer: {
             height: 56,
             justifyContent: 'center',
             borderBottom: '1px solid #D8D8D8'
         },
-        body: {
+        bodyContainer: {
             height: 'calc(100vh - 56px)'
         },
-        leftCol: {
+        leftColContainer: {
             borderRight: '1px solid #D8D8D8',
             width: 240,
             overflow: 'auto'
         },
-        rightCol: {
+        rightColContainer: {
             overflow: 'auto',
             flexGrow: 1,
             alignItems: 'center',
@@ -26,20 +26,22 @@ const useStyles = makeStyles(
     })
 );
 
-export default function DashboardLayout({ info, children }) {
+export default function DashboardLayout({ children }) {
     const classes = useStyles();
     const [Header = null, LeftCol = null, RightCol = null] = children;
 
     return (
         <React.Fragment>
-            <Box className={classes.header}>
-                {React.cloneElement(
-                    React.Children.only(Header), { ...info }
-                )}
+            <Box className={classes.headerContainer}>
+                {Header}
             </Box>
-            <Box className={classes.body} type={HORIZONTAL}>
-                <Box className={classes.leftCol}>{LeftCol}</Box>
-                <Box className={classes.rightCol}>{RightCol}</Box>
+            <Box className={classes.bodyContainer} type={HORIZONTAL}>
+                <Box className={classes.leftColContainer}>
+                    {LeftCol}
+                </Box>
+                <Box className={classes.rightColContainer}>
+                    {RightCol}
+                </Box>
             </Box>
         </React.Fragment>
     );

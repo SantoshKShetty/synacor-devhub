@@ -16,6 +16,7 @@ import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
 import List from '../components/list';
 import Image from '../components/image';
+import Accordion from '../components/accordion';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -94,5 +95,7 @@ export function generateComponent(componentData) {
 			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
 		case 'image':
 			return <Image {...componentProps} />
+		case 'accordion':
+			return <Accordion {...componentProps} baseKey={key} label={label} items={children} />
 	}
 }

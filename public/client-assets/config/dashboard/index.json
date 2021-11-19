@@ -1,4 +1,53 @@
 {
     "header": {},
-    "leftCol": {}
+    "leftCol": [
+        { "type": "accordion", "label": "Dashboard", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "/dashboard", "label": "Dashboard" },
+                { "type": "link", "href": "", "label": "Tasks" },
+                { "type": "link", "href": "", "label": "Notifications" },
+                { "type": "link", "href": "", "label": "Getting Started" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Directory", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "/dashboard/users", "label": "Users" },
+                { "type": "link", "href": "", "label": "Groups" },
+                { "type": "link", "href": "", "label": "Attributes" },
+                { "type": "link", "href": "", "label": "Directory Integrations" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Customization", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "", "label": "Brading" },
+                { "type": "link", "href": "", "label": "Sign-in page editor" },
+                { "type": "link", "href": "", "label": "Email" },
+                { "type": "link", "href": "", "label": "SMS" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Applications", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "", "label": "Applications" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Security", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "", "label": "Authentication" },
+                { "type": "link", "href": "", "label": "Multifactor" },
+                { "type": "link", "href": "", "label": "Administrators" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Reports", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "", "label": "Reports" },
+                { "type": "link", "href": "", "label": "Logs" }
+            ]}
+        ]},
+        { "type": "accordion", "label": "Settings", "expandIcon": "ExpandMoreIcon", "children": [
+            { "type": "list", "children": [
+                { "type": "link", "href": "", "label": "Account" },
+                { "type": "link", "href": "", "label": "Downloads" }
+            ]}
+        ]}
+    ]
 }

@@ -1,16 +1,5 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import SearchIcon from '@material-ui/icons/Search';
 import Box, { HORIZONTAL } from "../../components/box";
-import InputBase from "@material-ui/core/InputBase";
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Text from '../../components/text';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,19 +7,12 @@ import HelpOutline from '@material-ui/icons/HelpOutline';
 import Apps from '@material-ui/icons/Apps';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import Users from "./users";
-import Link from '../../components/link';
-
-const SearchBox = () => (
-    <Box type={HORIZONTAL} style={{ alignItems: 'center', padding: '0 10px', height: 36 }}>
-        <SearchIcon />
-        <InputBase
-            placeholder="Search"
-            inputProps={{ 'aria-label': 'search' }}
-            style={{ marginLeft: 15 }}
-        />
-    </Box>
-);
+import { makeStyles } from '../../provider/theme';
+import { generateComponent, composeComponents } from '../../utils/component';
+import { useScreen } from "../../provider/screen";
+import { findMatchingRoute } from "../../utils/route";
+import { exists } from "../../utils/basics";
+import DescriptorLoader from '../../enhancers/descriptor-loader';
 
 const HelpMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -108,88 +90,84 @@ const UserMenu = () => {
     );
 }
 
-const Header = ({ logo }) => (
-    <Box type={HORIZONTAL} style={{ alignItems: "center", justifyContent: 'space-between', padding: '0 32px' }}>
-        <Box>
-            {/* <BrandLogo logo={logo} /> */}
-        </Box>
-        <Box style={{ border: '1px solid #D8D8D8', flexGrow: 1, maxWidth: 650 }}>
-            <SearchBox />
-        </Box>
-        <Box type={HORIZONTAL} style={{ alignItems: "center" }}>
-            <Box><HelpMenu /></Box>
-            <Box><AppMenu /></Box>
-            <Box><UserMenu /></Box>
-        </Box>
-    </Box>
+const headerStyles = makeStyles(
+    ({ spacing }) => ({
+        header: {
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: `0 ${spacing(4)}px`
+        }
+    })
 );
 
-const LeftCol = () => {
-    const options = {
-        "Dashboard": [
-            "Dashboard", "Tasks", "Notifications", "Getting Started"
-        ],
-        "Directory": [
-            "Users", "Groups", "Attributes", "Directory Integrations"
-        ],
-        "Customization": [
-            "Brading", "Sign-in page editor", "Email", "SMS"
-        ],
-        "Applications": [
-            "Applications"
-        ],
-        "Security": [
-            "Authentication", "Multifactor", "Administrators"
-        ],
-        "Reports": [
-            "Reports", "Logs"
-        ],
-        "Settings": [
-            "Account", "Downloads"
-        ]
-    };
+const Header = ({ logo, header }) => {
+    const classes = headerStyles();
 
     return (
-        <Box>
-            <Link href="/dashboard/users" label="Users" />
-            {Object.entries(options).map(([title, contents], key) => {
-                return (
-                    <Accordion key={`accordian-${key}`}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Text>{title}</Text>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <List>
-                                {contents.map((item, k) => (
-                                    <ListItem key={`${key}-${k}`}>
-                                        <ListItemText>{item}</ListItemText>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </AccordionDetails>
-                    </Accordion>
-                );
-            })}
+        <Box type={HORIZONTAL} className={classes.header}>
+            {logo && (
+                <Box>
+                    {generateComponent(logo)}
+                </Box>
+            )}
+            <Box type={HORIZONTAL} style={{ alignItems: "center" }}>
+                <Box><HelpMenu /></Box>
+                <Box><AppMenu /></Box>
+                <Box><UserMenu /></Box>
+            </Box>
         </Box>
     );
-};
-
-const RightCol = () => {
-    const { view } = useParams();
-    switch(view) {
-        case 'users':
-            return <Users />
-        default:
-            return null;
-    }
 }
 
-export default function DashboardScreen({ info, Layout, Subscreen }) {
+
+const leftColStyles = makeStyles(
+    ({ spacing }) => ({
+        leftCol: {
+            padding: `${spacing(2)}px ${spacing(1)}px`
+        },
+        accordion: {}
+    })
+);
+
+const LeftCol = ({ leftCol = [] }) => {
+    const classes = leftColStyles();
+
     return (
-        <Layout info={info}>
-            <Header />
-            <LeftCol />
-            <RightCol />
+        <Box className={classes.leftCol}>
+            {leftCol.map(item => generateComponent({ ...item, className: classes.accordion }))}
+        </Box>
+    )
+}
+
+
+const RightCol = ({ subScreens = {} }) => {
+    const [, SubScreens] = useScreen();
+    const matchingUri = findMatchingRoute(Object.keys(subScreens));
+
+    if (matchingUri) {
+        const { component, descriptor } = subScreens[matchingUri];
+
+        if (!exists(component)) return null;
+
+        const SubScreen = SubScreens[component];
+
+        return SubScreen && composeComponents(
+            descriptor && [DescriptorLoader, { descriptor }]
+        )(<SubScreen />) || null;
+    }
+
+    return null;
+}
+
+
+export default function DashboardScreen({ info, Layout, subScreens }) {
+    const { logo, header, leftCol } = info;
+
+    return (
+        <Layout>
+            <Header logo={logo} header={header} />
+            <LeftCol leftCol={leftCol} />
+            <RightCol subScreens={subScreens} />
         </Layout>
     );
 };
