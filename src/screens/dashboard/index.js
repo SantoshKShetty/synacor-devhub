@@ -1,94 +1,11 @@
 import React from "react";
 import Box, { HORIZONTAL } from "../../components/box";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import HelpOutline from '@material-ui/icons/HelpOutline';
-import Apps from '@material-ui/icons/Apps';
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import { makeStyles } from '../../provider/theme';
 import { generateComponent, composeComponents } from '../../utils/component';
 import { useScreen } from "../../provider/screen";
 import { findMatchingRoute } from "../../utils/route";
 import { exists } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
-
-const HelpMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <React.Fragment>
-            <IconButton onClick={handleClick}>
-                <HelpOutline />
-            </IconButton>
-            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} getContentAnchorEl={null} anchorOrigin={{ vertical: 'bottom', horizontal: 'left'}} transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                <MenuItem onClick={handleClose}>Help Center</MenuItem>
-                <MenuItem onClick={handleClose}>Developer Documentation</MenuItem>
-                <MenuItem onClick={handleClose}>Training</MenuItem>
-            </Menu>
-        </React.Fragment>
-    );
-}
-
-const AppMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <React.Fragment>
-            <IconButton onClick={handleClick}>
-                <Apps />
-            </IconButton>
-            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} getContentAnchorEl={null} anchorOrigin={{ vertical: 'bottom', horizontal: 'left'}} transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                <MenuItem onClick={handleClose}>End-user dashboard</MenuItem>
-            </Menu>
-        </React.Fragment>
-    );
-}
-
-const UserMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <React.Fragment>
-            <IconButton onClick={handleClick}>
-                <Box style={{ border: '1px solid', borderRadius: '50%', padding: 5, boxSizing: 'border-box', fontSize: '1rem' }}>JD</Box>
-                {anchorEl ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-            </IconButton>
-            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} getContentAnchorEl={null} anchorOrigin={{ vertical: 'bottom', horizontal: 'left'}} transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                <MenuItem onClick={handleClose}>User Name</MenuItem>
-                <MenuItem onClick={handleClose}>User Email</MenuItem>
-                <MenuItem onClick={handleClose}>hbo.synacor.com(link to End-user dashboard)</MenuItem>
-                <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleClose}>Sign out</MenuItem>
-            </Menu>
-        </React.Fragment>
-    );
-}
 
 const headerStyles = makeStyles(
     ({ spacing }) => ({
@@ -100,7 +17,7 @@ const headerStyles = makeStyles(
     })
 );
 
-const Header = ({ logo, header }) => {
+const Header = ({ logo, header: { menus } = {} }) => {
     const classes = headerStyles();
 
     return (
@@ -110,10 +27,11 @@ const Header = ({ logo, header }) => {
                     {generateComponent(logo)}
                 </Box>
             )}
-            <Box type={HORIZONTAL} style={{ alignItems: "center" }}>
-                <Box><HelpMenu /></Box>
-                <Box><AppMenu /></Box>
-                <Box><UserMenu /></Box>
+            <Box type={HORIZONTAL}>
+                {menus && menus.map((m, i) => generateComponent({
+                    ...m,
+                    key: `dashboard-header-menu-${i}`
+                }))}
             </Box>
         </Box>
     );
@@ -134,7 +52,11 @@ const LeftCol = ({ leftCol = [] }) => {
 
     return (
         <Box className={classes.leftCol}>
-            {leftCol.map(item => generateComponent({ ...item, className: classes.accordion }))}
+            {leftCol.map((item, i) => generateComponent({
+                ...item,
+                key: `dashboard-left-col-item-${i}`,
+                className: classes.accordion
+            }))}
         </Box>
     )
 }

@@ -1,5 +1,54 @@
 {
-    "header": {},
+    "header": {
+        "menus": [
+            { "type": "menu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "icon", "label": "HelpOutlineIcon" }
+                    ]
+                },
+                "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                },
+                "children": [
+                    { "type": "link", "href": "", "label": "Help Center" },
+                    { "type": "link", "href": "", "label": "Developer Documentation" },
+                    { "type": "link", "href": "", "label": "Training" }
+                ]
+            },
+            { "type": "menu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "icon", "label": "AppsIcon" }
+                    ]
+                },
+                "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                },
+                "children": [
+                    { "type": "link", "href": "", "label": "End-user dashboard" }
+                ]
+            },
+            { "type": "menu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "avatar", "label": "JD" },
+                        { "type": "icon", "label": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
+                    ]
+                }, "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                }, "children": [
+                    { "type": "link", "href": "", "label": "joe.doe@hbo.com" },
+                    { "type": "link", "href": "", "label": "hbo.bonafid.com" },
+                    { "type": "link", "href": "", "label": "My Settings" },
+                    { "type": "link", "href": "", "label": "Sign Out" }
+                ]
+            }
+        ]
+    },
     "leftCol": [
         { "type": "accordion", "label": "Dashboard", "expandIcon": "ExpandMoreIcon", "children": [
             { "type": "list", "children": [
