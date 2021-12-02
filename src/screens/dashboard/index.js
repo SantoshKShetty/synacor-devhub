@@ -7,58 +7,37 @@ import { findMatchingRoute } from "../../utils/route";
 import { exists } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
 
-const headerStyles = makeStyles(
-    ({ spacing }) => ({
-        header: {
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: `0 ${spacing(4)}px`
-        }
-    })
-);
-
-const Header = ({ logo, header: { menus } = {} }) => {
-    const classes = headerStyles();
-
-    return (
-        <Box type={HORIZONTAL} className={classes.header}>
-            {logo && (
-                <Box>
-                    {generateComponent(logo)}
-                </Box>
-            )}
-            <Box type={HORIZONTAL}>
-                {menus && menus.map((m, i) => generateComponent({
-                    ...m,
-                    key: `dashboard-header-menu-${i}`
-                }))}
+const Header = ({ logo, header: { menus } = {} }) => (
+    <React.Fragment>
+        {logo && (
+            <Box>
+                {generateComponent(logo)}
             </Box>
+        )}
+        <Box type={HORIZONTAL}>
+            {menus && menus.map((m, i) => generateComponent({
+                ...m,
+                key: `dashboard-header-menu-${i}`
+            }))}
         </Box>
-    );
-}
+    </React.Fragment>
+)
 
 
-const leftColStyles = makeStyles(
-    ({ spacing }) => ({
-        leftCol: {
-            padding: `${spacing(2)}px ${spacing(1)}px`
-        },
-        accordion: {}
-    })
-);
+const leftColStyles = makeStyles({
+    accordion: {}
+});
 
 const LeftCol = ({ leftCol = [] }) => {
     const classes = leftColStyles();
 
-    return (
-        <Box className={classes.leftCol}>
-            {leftCol.map((item, i) => generateComponent({
-                ...item,
-                key: `dashboard-left-col-item-${i}`,
-                className: classes.accordion
-            }))}
-        </Box>
-    )
+    return leftCol.map(
+        (item, i) => generateComponent({
+            ...item,
+            key: `dashboard-left-col-item-${i}`,
+            className: classes.accordion
+        })
+    );
 }
 
 

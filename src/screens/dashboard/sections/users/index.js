@@ -72,7 +72,7 @@ export default function Users() {
     const data = getSortedData(sortBy, sortOrder);
 
     return (
-        <Box style={{ width: 824 }}>
+        <Box style={{ width: '100%' }}>
             <Box type={HORIZONTAL} style={{ justifyContent: 'space-between', paddingBottom: '1.5rem' }}>
                 <Box type={HORIZONTAL} style={{ alignItems: 'center' }}>
                     <Box>

@@ -3,27 +3,36 @@ import { makeStyles } from '../provider/theme';
 import Box, { HORIZONTAL } from '../components/box';
 
 const useStyles = makeStyles(
-    () => ({
-        headerContainer: {
-            height: 56,
-            justifyContent: 'center',
-            borderBottom: '1px solid #D8D8D8'
-        },
-        bodyContainer: {
-            height: 'calc(100vh - 56px)'
-        },
-        leftColContainer: {
-            borderRight: '1px solid #D8D8D8',
-            width: 240,
-            overflow: 'auto'
-        },
-        rightColContainer: {
-            overflow: 'auto',
-            flexGrow: 1,
-            alignItems: 'center',
-            padding: '24px 0'
-        }
-    })
+    ({ spacing, palette }) => {
+        const headerHeight = 56;
+        const containerBorderColor = palette.custom.dashboardLayout.containerBorderColor;
+
+        return {
+            headerContainer: {
+                height: `${headerHeight}px`,
+                justifyContent: 'center',
+                borderBottom: `1px solid ${containerBorderColor}`,
+                padding: `0 ${spacing(4)}px`,
+                alignItems: 'center',
+                justifyContent: 'space-between'
+            },
+            bodyContainer: {
+                height: `calc(100vh - ${headerHeight}px)`
+            },
+            leftColContainer: {
+                borderRight: `1px solid ${containerBorderColor}`,
+                width: '20%',
+                minWidth: `${spacing(30)}px`,
+                overflow: 'auto'
+            },
+            rightColContainer: {
+                overflow: 'auto',
+                flexGrow: 1,
+                alignItems: 'center',
+                padding: `${spacing(3)}px`
+            }
+        };
+    }
 );
 
 export default function DashboardLayout({ children }) {
@@ -32,7 +41,7 @@ export default function DashboardLayout({ children }) {
 
     return (
         <React.Fragment>
-            <Box className={classes.headerContainer}>
+            <Box className={classes.headerContainer} type={HORIZONTAL}>
                 {Header}
             </Box>
             <Box className={classes.bodyContainer} type={HORIZONTAL}>
