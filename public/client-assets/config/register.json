@@ -1,7 +1,7 @@
 {
     "screenInfo": [
         { "type": "text", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!", "variant": "h4" },
-        { "type": "list", "styleType": { "icon": "CheckList" }, "children": [
+        { "type": "list", "children": [
             { "type": "text", "label": "7,000 Monthly Active Users" },
             { "type": "text", "label": "Email/Password Login" },
             { "type": "text", "label": "3 Social Login Providers" },

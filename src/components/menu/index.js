@@ -21,17 +21,17 @@ export default function Menu({ baseKey = 'menu', items, opensBy, position: { anc
         MenuOpenController = opensBy;
     } else if (isObject(opensBy)) {
         /**
-         * Below `deep cloning` is necessary because we're modifying `icon.label`,
-         * without which we'll be modifying `children` resulting in unexpected results.
+         * Below `deep cloning` is necessary because we're modifying `Icon['icon']`.
+         * Without cloning, we'll be modifying `children` by reference, resulting in unexpected results.
          */
-        const { type, children } = deepClone(opensBy);
-        const icon = children.find(c => c.type === 'icon');
+        const { type, children, ...rest } = deepClone(opensBy);
+        const Icon = children && children.find(c => c.type === 'icon');
 
-        if (icon && isArray(icon.label)) {
-            icon.label = Boolean(anchorEl) && icon.label[1] || icon.label[0];
+        if (Icon && isArray(Icon['icon'])) {
+            Icon['icon'] = Boolean(anchorEl) && Icon['icon'][1] || Icon['icon'][0];
         }
 
-        MenuOpenController = generateComponent({ type, children });
+        MenuOpenController = generateComponent({ type, children, ...rest });
     }
 
     MenuOpenController = MenuOpenController && React.cloneElement(MenuOpenController, { onClick: handleOpen });

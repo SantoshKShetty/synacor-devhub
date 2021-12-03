@@ -4,7 +4,7 @@
             { "type": "menu", "opensBy": {
                     "type": "iconButton",
                     "children": [
-                        { "type": "icon", "label": "HelpOutlineIcon" }
+                        { "type": "icon", "icon": "HelpOutlineIcon" }
                     ]
                 },
                 "position": {
@@ -20,7 +20,7 @@
             { "type": "menu", "opensBy": {
                     "type": "iconButton",
                     "children": [
-                        { "type": "icon", "label": "AppsIcon" }
+                        { "type": "icon", "icon": "AppsIcon" }
                     ]
                 },
                 "position": {
@@ -35,7 +35,7 @@
                     "type": "iconButton",
                     "children": [
                         { "type": "avatar", "label": "JD" },
-                        { "type": "icon", "label": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
+                        { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
                     ]
                 }, "position": {
                     "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },

@@ -44,6 +44,54 @@
                 { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
             ], "styles": { "mb": 10 }},
             { "type": "box", "children": [
+                { "type": "text", "label": "Checkboxes", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "checkbox", "label": "Checkbox" },
+                { "type": "box" , "styles": { "mb": 1 }},
+                { "type": "checkbox", "label": "A ticked Checkbox", "checked": true },
+                { "type": "box" , "styles": { "mb": 1 }},
+                { "type": "checkbox", "label": "Disabled checkbox", "disabled": true },
+                { "type": "box" , "styles": { "mb": 1 }}
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Dropdown Menus", "variant": "h4" },
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 2 }},
+                { "type": "box", "children": [
+                    { "type": "text", "label": "Button Menu", "variant": "h6" },
+                    { "type": "box", "children": [
+                        { "type": "menu", "opensBy": { "type": "button", "label": "Button" },
+                            "position": {
+                                "anchorOrigin": { "vertical": "bottom", "horizontal": "center" },
+                                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                            },
+                            "children": [
+                                { "type": "text", "label": "I am a text under button menu" },
+                                { "type": "link", "label": "I am a link under button menu", "href": "#" }
+                            ]
+                        }
+                    ], "styles": { "mt": 2, "mb": 2, "maxWidth": "100px" }},
+                    { "type": "text", "label": "Icon Menu", "variant": "h6" },
+                    { "type": "box", "children": [
+                        { "type": "menu", "opensBy": { "type": "iconButton", "children": [
+                                { "type": "icon", "icon": "MenuIcon" }
+                            ]},
+                            "position": {
+                                "anchorOrigin": { "vertical": "bottom", "horizontal": "center" },
+                                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                            },
+                            "children": [
+                                { "type": "text", "label": "I am a text under icon menu" },
+                                { "type": "link", "label": "I am a link under icon menu", "href": "#" }
+                            ]
+                        }
+                    ], "styles": { "mt": 2, "mb": 2, "width": "fit-content" }}
+                ]}
+            ], "styles": { "mb": 10 }},
+            { "type": "box", "children": [
                 { "type": "text", "label": "List of flows", "variant": "h4" },
                 { "type": "box" , "children": [
                     { "type": "divider" }

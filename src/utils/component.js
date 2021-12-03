@@ -21,6 +21,7 @@ import Accordion from '../components/accordion';
 import Menu from '../components/menu';
 import * as Icons from '../components/icons';
 import Avatar from '../components/avatar';
+import CheckBox from '../components/checkbox';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -43,6 +44,7 @@ export function generateComponent(componentData) {
 		defaultValue,
 		children,
 		styles,
+		icon,
 		...props
 	} = componentData;
 
@@ -110,9 +112,11 @@ export function generateComponent(componentData) {
 				</IconButton>
 			);
 		case 'icon':
-			const Icon = Icons[label];
+			const Icon = Icons[icon];
 			return <Icon {...componentProps} />
 		case 'avatar':
 			return <Avatar {...componentProps} label={label} />
+		case 'checkbox':
+			return <CheckBox {...componentProps} label={label} />
 	}
 }

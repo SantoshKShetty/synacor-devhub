@@ -4,6 +4,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import AppsIcon from '@material-ui/icons/Apps';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import MenuIcon from '@material-ui/icons/Menu';
 
 export {
     CheckIcon,
@@ -11,5 +12,6 @@ export {
     HelpOutlineIcon,
     AppsIcon,
     KeyboardArrowDownIcon,
-    KeyboardArrowUpIcon
+    KeyboardArrowUpIcon,
+    MenuIcon
 }
