@@ -2,9 +2,16 @@ import React from 'react'
 import ReactMenu from '@material-ui/core/Menu';
 import ReactMenuItem from '@material-ui/core/MenuItem';
 import { generateComponent } from '../../utils/component';
-import { isReactComponent, isObject, isArray, deepClone } from '../../utils/basics';
+import { createMenuOpener } from './utils';
+import { isReactComponent } from '../../utils/basics';
 
-export default function Menu({ baseKey = 'menu', items, opensBy, position: { anchorOrigin, transformOrigin } = {}, ...props }) {
+export default function Menu({
+    baseKey = 'menu',
+    items,
+    opensBy,
+    position: { anchorOrigin, transformOrigin } = {},
+    ...props
+}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleOpen = event => {
@@ -15,26 +22,7 @@ export default function Menu({ baseKey = 'menu', items, opensBy, position: { anc
         setAnchorEl(null);
     };
 
-    let MenuOpenController = null;
-
-    if (isReactComponent(opensBy)) {
-        MenuOpenController = opensBy;
-    } else if (isObject(opensBy)) {
-        /**
-         * Below `deep cloning` is necessary because we're modifying `Icon['icon']`.
-         * Without cloning, we'll be modifying `children` by reference, resulting in unexpected results.
-         */
-        const { type, children, ...rest } = deepClone(opensBy);
-        const Icon = children && children.find(c => c.type === 'icon');
-
-        if (Icon && isArray(Icon['icon'])) {
-            Icon['icon'] = Boolean(anchorEl) && Icon['icon'][1] || Icon['icon'][0];
-        }
-
-        MenuOpenController = generateComponent({ type, children, ...rest });
-    }
-
-    MenuOpenController = MenuOpenController && React.cloneElement(MenuOpenController, { onClick: handleOpen });
+    const MenuOpenController = createMenuOpener({ opensBy, anchorEl, onClick: handleOpen });
 
     return (
         <React.Fragment>
@@ -52,10 +40,11 @@ export default function Menu({ baseKey = 'menu', items, opensBy, position: { anc
                     >
                     {items.map((item, i) => {
                         const key = `${baseKey}-menu-item-${i}}`;
+                        const MenuItem = isReactComponent(item) ? item : generateComponent({ ...item, key });
 
                         return (
                             <ReactMenuItem key={key} onClick={handleClose}>
-                                {generateComponent({ ...item, key })}
+                                {MenuItem}
                             </ReactMenuItem>
                         )
                     })}

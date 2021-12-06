@@ -22,6 +22,7 @@ import Menu from '../components/menu';
 import * as Icons from '../components/icons';
 import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
+import MultiChoiceMenu from '../components/menu/multi-choice';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -45,13 +46,15 @@ export function generateComponent(componentData) {
 		children,
 		styles,
 		icon,
+		events,
 		...props
 	} = componentData;
 
 	const componentProps = {
 		key,
 		...props,
-		...styles
+		...styles,
+		...events
 	};
 
 	switch(type) {
@@ -118,5 +121,7 @@ export function generateComponent(componentData) {
 			return <Avatar {...componentProps} label={label} />
 		case 'checkbox':
 			return <CheckBox {...componentProps} label={label} />
+		case 'multiChoiceMenu':
+			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
 	}
 }
