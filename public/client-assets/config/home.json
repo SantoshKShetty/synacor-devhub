@@ -37,6 +37,11 @@
                 { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "label": "Just a button" },
                 { "type": "box" , "styles": { "mb": 2 }},
+                { "type": "button", "label": "Another awesome button",
+                    "startIcon": { "type": "icon", "icon": "MenuIcon" },
+                    "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }
+                },
+                { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
                 { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
@@ -91,19 +96,22 @@
                     ], "styles": { "mt": 2, "mb": 2, "width": "fit-content" }},
                     { "type": "text", "label": "Multi Choice Menu", "variant": "h6" },
                     { "type": "box", "children": [
-                        { "type": "multiChoiceMenu", "opensBy": { "type": "button", "label": "Button" },
-                            "refName": "options",
+                        { "type": "multiChoiceMenu", "opensBy": {
+                                "type": "button", "label": "Favourite Places",
+                                "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }
+                            },
+                            "referencedAs": "favPlaces",
                             "position": {
                                 "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
                                 "transformOrigin": { "vertical": "top", "horizontal": "left" }
                             },
                             "children": [
-                                { "label": "Option 1", "value": "op1" },
-                                { "label": "Option 2", "value": "op2" },
-                                { "label": "Option 3", "value": "op3" }
+                                { "type": "checkbox", "label": "Switzerland", "value": "switzerland" },
+                                { "type": "checkbox", "label": "Venice", "value": "venice" },
+                                { "type": "checkbox", "label": "Mysore", "value": "mysore" }
                             ]
                         }
-                    ], "styles": { "mt": 2, "mb": 2, "maxWidth": "200px" }}
+                    ], "styles": { "mt": 2, "mb": 2, "width": "fit-content" }}
                 ]}
             ], "styles": { "mb": 10 }},
             { "type": "box", "children": [

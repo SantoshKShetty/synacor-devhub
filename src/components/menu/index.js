@@ -22,7 +22,11 @@ export default function Menu({
         setAnchorEl(null);
     };
 
-    const MenuOpenController = createMenuOpener({ opensBy, anchorEl, onClick: handleOpen });
+    const MenuOpenController = createMenuOpener({
+        opensBy,
+        isMenuOpen: Boolean(anchorEl),
+        onClick: handleOpen
+    });
 
     return (
         <React.Fragment>

@@ -8,7 +8,7 @@ import { exists } from '../../../utils/basics';
 
 export default function MultiChoiceMenu({
     baseKey = 'multi-choice-menu',
-    refName = `ref-${Math.random()}`,
+    referencedAs = `ref-${Math.random()}`,
     items,
     opensBy,
     position: { anchorOrigin, transformOrigin } = {},
@@ -56,7 +56,17 @@ export default function MultiChoiceMenu({
         handleClose();
     }
 
-    const MenuOpenController = createMenuOpener({ opensBy, anchorEl, onClick: handleOpen });
+    const getSelectedItemsLabel = () => items.reduce((acc, { label, value }) => {
+        selected.includes(value) && acc.push(label);
+        return acc;
+    }, []).join(', ')
+
+    const MenuOpenController = createMenuOpener({
+        opensBy,
+        isMenuOpen: Boolean(anchorEl),
+        onClick: handleOpen,
+        selectedItemsLabel: getSelectedItemsLabel()
+    });
 
     return (
         <React.Fragment>
@@ -78,12 +88,11 @@ export default function MultiChoiceMenu({
                         </Box>
                         <Box>
                             {items.map(({ value, ...rest }, key) => generateComponent({
-                                name: `${refName}-option-item`,
+                                name: `${referencedAs}-option`,
                                 ...rest,
-                                type: 'checkbox',
                                 value,
                                 key: `${baseKey}-${key}`,
-                                checked: tempSelected.indexOf(value) >= 0,
+                                checked: tempSelected.includes(value),
                                 events: { onClick: handleSelect }
                             }))}
                         </Box>
