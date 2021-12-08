@@ -4,11 +4,14 @@ import Button from '../';
 import { makeStyles } from '../../../provider/theme';
 
 const styles = makeStyles(
-    ({ palette }) => ({
+    ({ palette, spacing }) => ({
         primaryCta: {
             backgroundColor: palette.custom.button.primaryCTA.bgColor,
             color: palette.custom.button.primaryCTA.color,
+            border: 'none',
             textTransform: 'capitalize',
+            maxWidth: 'max-content',
+            padding: `${spacing(0.625)}px ${spacing(6)}px`,
 
             '&:hover': {
                 backgroundColor: palette.custom.button.primaryCTA.bgColorHover

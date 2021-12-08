@@ -3,12 +3,14 @@ import Router from "./router";
 import { composeComponents } from "./utils/component";
 import ConfigProvider from "./provider/config";
 import ThemeProvider from "./provider/theme";
-import ScreenAndLayoutProvider from "./provider/screen-layout";
+import LayoutProvider from './provider/layout';
+import ScreenProvider from './provider/screen';
 
 export default function App() {
     return composeComponents(
         ConfigProvider,
         ThemeProvider,
-        ScreenAndLayoutProvider
+        LayoutProvider,
+        ScreenProvider
     )(<Router />);
 }

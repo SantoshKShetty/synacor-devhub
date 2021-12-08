@@ -7,15 +7,32 @@
                     "color": "#003C79"
                 }
             },
+            "dashboardLayout": {
+                "containerBorderColor": "#D8D8D8"
+            },
             "button": {
-                "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)",
+                "default": {
+                    "bgColor": "#FFFFFF",
+                    "bgColorHover": "#EEEEEE",
+                    "color": "#000000",
+                    "borderColor": "#CCCCCC"
+                },
                 "primaryCTA": {
-                    "bgColor": "#B134EB",
-                    "bgColorHover": "#852CAF",
-                    "color": "#FFFFFF"
+                    "bgColor": "#CEE7FF",
+                    "bgColorHover": "#CEE7FF",
+                    "color": "#000000"
+                },
+                "secondaryCTA": {
+                    "bgColor": "#FFFFFF",
+                    "bgColorHover": "#FFFFFF",
+                    "color": "#000000",
+                    "borderColor": "#CCCCCC"
                 },
                 "socialSign": {
-                    "color": "#666666"
+                    "bgColor": "#FFFFFF",
+                    "bgColorHover": "#FFFFFF",
+                    "color": "#666666",
+                    "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)"
                 }
             }
         }
