@@ -28,7 +28,8 @@
             "screen": "Dashboard", "layout": "Dashboard",
             "subScreens": {
                 "/dashboard/users": {
-                    "component": "UsersList"
+                    "component": "UsersList",
+                    "descriptor": "dashboard/users/index.json"
                 },
                 "/dashboard/users/add": {
                     "component": "AddUser",

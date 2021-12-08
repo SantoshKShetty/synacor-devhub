@@ -3,6 +3,7 @@ import Box, { HORIZONTAL } from '../../../../components/box';
 import { TableContainer, Table, TableBody, TableRow, TableCell, TableHead, IconButton, TableSortLabel } from '@material-ui/core';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
+import { generateComponent } from '../../../../utils/component';
 
 function createData(fullName, userName, email, status) {
     return { fullName, userName, email, status }
@@ -60,7 +61,7 @@ function getSortedData(sortBy, sortOrder) {
     return stableSort(getComparator(sortBy, sortOrder));
 }
 
-export default function Users() {
+export default function Users({ info: { filter } = {} }) {
     const [sortBy, setSortBy] = React.useState('fullName');
     const [sortOrder, setSortOrder] = React.useState('asc');
 
@@ -84,6 +85,13 @@ export default function Users() {
                     <Button label="Add User" style={{ paddingLeft: '1rem', paddingRight: '1rem', marginRight: '1rem' }} />
                     <Button label="Import from CSV" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} />
                 </Box>
+            </Box>
+            <Box type={HORIZONTAL}>
+                {filter && filter.map((item, key) => (
+                    <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
+                        {generateComponent(item)}
+                    </Box>
+                ))}
             </Box>
             <Box>
                 <TableContainer>

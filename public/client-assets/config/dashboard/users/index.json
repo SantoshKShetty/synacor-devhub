@@ -1,0 +1,20 @@
+{
+    "filter": [
+        { "type": "textfield", "label": "Search", "variant": "outlined" },
+        { "type": "multiChoiceMenu", "opensBy": {
+                "type": "button", "label": "Status",
+                "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }
+            },
+            "referencedAs": "status",
+            "position": {
+                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                "transformOrigin": { "vertical": "top", "horizontal": "left" }
+            },
+            "children": [
+                { "type": "checkbox", "label": "Active", "value": "active" },
+                { "type": "checkbox", "label": "Inactive", "value": "inactive" },
+                { "type": "checkbox", "label": "Suspended", "value": "suspended" }
+            ]
+        }
+    ]
+}
