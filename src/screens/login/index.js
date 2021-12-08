@@ -22,11 +22,11 @@ const FormSection = ({ form: { controls } }) => {
     );
 };
 
-export default function LoginScreen({ genericInfo, Layout, descriptor }) {
-    const { screenInfo, form } = descriptor;
+export default function LoginScreen({ info, Layout }) {
+    const { logo, screenInfo, form } = info;
 
     return (
-        <Layout genericInfo={genericInfo}>
+        <Layout logo={logo}>
             <InfoSection screenInfo={screenInfo} />
             <FormSection form={form} />
         </Layout>

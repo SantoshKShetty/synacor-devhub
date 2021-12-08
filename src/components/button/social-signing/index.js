@@ -6,9 +6,19 @@ import { makeStyles } from '../../../provider/theme';
 const styles = makeStyles(
     ({ palette, spacing }) => ({
         socialSignBtn: {
+            backgroundColor: palette.custom.button.socialSign.bgColor,
             color: palette.custom.button.socialSign.color,
+            boxShadow: palette.custom.button.socialSign.shadow,
+            border: 'none',
+            textTransform: 'uppercase',
             justifyContent: 'start',
-            paddingLeft: spacing(3)
+            paddingLeft: spacing(3),
+            fontSize: '0.875rem',
+            fontWeight: 400,
+
+            '&:hover': {
+                backgroundColor: palette.custom.button.socialSign.bgColorHover
+            }
         }
     })
 )

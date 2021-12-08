@@ -1,19 +1,25 @@
 import React from 'react';
 import { makeStyles } from '../provider/theme';
 import Box, { HORIZONTAL } from '../components/box';
+import { generateComponent } from '../utils/component';
 
 const useStyles = makeStyles({
     singleColLayout: {
-        justifyContent: 'center'
+        '& > div': {
+            margin: '0 auto'
+        }
     }
 });
 
-export default function SingleColumnLayout({ children }) {
+export default function SingleColumnLayout({ logo, children }) {
     const classes = useStyles();
 
     return (
-        <Box type={HORIZONTAL} className={classes.singleColLayout}>
-            {children}
+        <Box className={classes.singleColLayout}>
+            <Box>
+                {generateComponent(logo)}
+                {children}
+            </Box>
         </Box>
     );
 }

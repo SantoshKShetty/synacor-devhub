@@ -1,4 +1,5 @@
 import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
 import { isArray, exists } from "./basics";
 import Text from '../components/text';
 import Box from '../components/box';
@@ -7,6 +8,7 @@ import TextField from '../components/textfield';
 import EmailField from '../components/textfield/email';
 import PasswordField from '../components/textfield/password';
 import PrimaryCTABtn from '../components/button/primary-cta';
+import SecondaryCTABtn from '../components/button/secondary-cta';
 import GithubSignBtn from '../components/button/social-signing/github';
 import GoogleSignBtn from '../components/button/social-signing/google';
 import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
@@ -14,6 +16,13 @@ import Button from '../components/button';
 import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
 import List from '../components/list';
+import Image from '../components/image';
+import Accordion from '../components/accordion';
+import Menu from '../components/menu';
+import * as Icons from '../components/icons';
+import Avatar from '../components/avatar';
+import CheckBox from '../components/checkbox';
+import MultiChoiceMenu from '../components/menu/multi-choice';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -29,12 +38,23 @@ export function composeComponents() {
 }
 
 export function generateComponent(componentData) {
-	const { type, subType, key, label, defaultValue, children, styles, ...props } = componentData;
+	const {
+		type, subType,
+		key,
+		label,
+		defaultValue,
+		children,
+		styles,
+		icon,
+		events,
+		...props
+	} = componentData;
 
 	const componentProps = {
 		key,
 		...props,
-		...styles
+		...styles,
+		...events
 	};
 
 	switch(type) {
@@ -63,6 +83,8 @@ export function generateComponent(componentData) {
 			switch(subType) {
 				case 'primary':
 					return <PrimaryCTABtn {...componentProps} label={label} />
+				case 'secondary':
+					return <SecondaryCTABtn {...componentProps} label={label} />
 				case 'socialGoogle':
 					return <GoogleSignBtn {...componentProps} label={label} />
 				case 'socialMicrosoft':
@@ -80,5 +102,26 @@ export function generateComponent(componentData) {
 			return <Link {...componentProps} label={label} />
 		case 'toggleBtnGroup':
 			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
+		case 'image':
+			return <Image {...componentProps} />
+		case 'accordion':
+			return <Accordion {...componentProps} baseKey={key} label={label} items={children} />
+		case 'menu':
+			return <Menu {...componentProps} baseKey={key} items={children} />
+		case 'iconButton':
+			return (
+				<IconButton {...componentProps}>
+					{children && children.map((c, i) => generateComponent({ ...c, key: `${key}-${i}` }))}
+				</IconButton>
+			);
+		case 'icon':
+			const Icon = Icons[icon];
+			return <Icon {...componentProps} />
+		case 'avatar':
+			return <Avatar {...componentProps} label={label} />
+		case 'checkbox':
+			return <CheckBox {...componentProps} label={label} />
+		case 'multiChoiceMenu':
+			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
 	}
 }

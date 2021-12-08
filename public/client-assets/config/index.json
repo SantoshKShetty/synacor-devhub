@@ -1,7 +1,9 @@
 {
     "genericInfo": {
         "logo": {
-            "src": "logo.png", "width": 147, "alt": "Brand Logo"
+            "type": "box", "children": [{
+                "type": "image", "src": "logo.png", "width": 147, "alt": "Brand Logo"
+            }]
         }
     },
     "routes": [
@@ -22,8 +24,18 @@
             "screen": "Login", "layout": "SingleColumn"
         },
         {
-            "path": "/dashboard/:view?/:action?/:item?",
-            "screen": "Dashboard", "layout": "Dashboard"
+            "path": "/dashboard/:section?/:action?/:item?", "descriptor": "dashboard/index.json",
+            "screen": "Dashboard", "layout": "Dashboard",
+            "subScreens": {
+                "/dashboard/users": {
+                    "component": "UsersList",
+                    "descriptor": "dashboard/users/index.json"
+                },
+                "/dashboard/users/add": {
+                    "component": "AddUser",
+                    "descriptor": "dashboard/users/add-user.json"
+                }
+            }
         }
     ]
 }

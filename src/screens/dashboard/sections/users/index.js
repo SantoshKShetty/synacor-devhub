@@ -1,11 +1,9 @@
 import React from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Box, { HORIZONTAL } from '../../components/box';
+import Box, { HORIZONTAL } from '../../../../components/box';
 import { TableContainer, Table, TableBody, TableRow, TableCell, TableHead, IconButton, TableSortLabel } from '@material-ui/core';
-import Text from '../../components/text';
-import Button from '../../components/button';
-import FilterList from '@material-ui/icons/FilterList';
+import Text from '../../../../components/text';
+import Button from '../../../../components/button';
+import { generateComponent } from '../../../../utils/component';
 
 function createData(fullName, userName, email, status) {
     return { fullName, userName, email, status }
@@ -29,33 +27,6 @@ const DATA = [
     createData('Joe Kayle', 'Joe', 'jk@xyz.com', 'Inactive'),
     createData('Aston Martin', 'Martin', 'amart@xyz.com', 'Active')
 ];
-
-const FilterMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <React.Fragment>
-            <IconButton onClick={handleClick}>
-                <FilterList />
-            </IconButton>
-            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} getContentAnchorEl={null} anchorOrigin={{ vertical: 'bottom', horizontal: 'left'}} transformOrigin={{ vertical: 'top', horizontal: 'left' }}>
-                <MenuItem onClick={handleClose}>Display Quick Filter</MenuItem>
-                <MenuItem onClick={handleClose}>By User Type</MenuItem>
-                <MenuItem onClick={handleClose}>By Status</MenuItem>
-                <MenuItem onClick={handleClose}>By Group</MenuItem>
-                <MenuItem onClick={handleClose}>By Apps</MenuItem>
-            </Menu>
-        </React.Fragment>
-    );
-}
 
 function descendingComparator(a, b, sortBy) {
     if (b[sortBy] < a[sortBy]) {
@@ -90,7 +61,7 @@ function getSortedData(sortBy, sortOrder) {
     return stableSort(getComparator(sortBy, sortOrder));
 }
 
-export default function Users() {
+export default function Users({ info: { filter } = {} }) {
     const [sortBy, setSortBy] = React.useState('fullName');
     const [sortOrder, setSortOrder] = React.useState('asc');
 
@@ -102,19 +73,25 @@ export default function Users() {
     const data = getSortedData(sortBy, sortOrder);
 
     return (
-        <Box style={{ width: 824 }}>
+        <Box style={{ width: '100%' }}>
             <Box type={HORIZONTAL} style={{ justifyContent: 'space-between', paddingBottom: '1.5rem' }}>
                 <Box type={HORIZONTAL} style={{ alignItems: 'center' }}>
                     <Box>
                         <Text color="secondary">Users</Text>
                         <Text color="secondary" variant="caption">Manage Users</Text>
                     </Box>
-                    <FilterMenu />
                 </Box>
                 <Box type={HORIZONTAL}>
                     <Button label="Add User" style={{ paddingLeft: '1rem', paddingRight: '1rem', marginRight: '1rem' }} />
                     <Button label="Import from CSV" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} />
                 </Box>
+            </Box>
+            <Box type={HORIZONTAL}>
+                {filter && filter.map((item, key) => (
+                    <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
+                        {generateComponent(item)}
+                    </Box>
+                ))}
             </Box>
             <Box>
                 <TableContainer>
