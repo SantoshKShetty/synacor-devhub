@@ -5,6 +5,8 @@ import AppsIcon from '@material-ui/icons/Apps';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MenuIcon from '@material-ui/icons/Menu';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CloseIcon from '@material-ui/icons/Close';
 
 export {
     CheckIcon,
@@ -13,5 +15,7 @@ export {
     AppsIcon,
     KeyboardArrowDownIcon,
     KeyboardArrowUpIcon,
-    MenuIcon
+    MenuIcon,
+    MoreVertIcon,
+    CloseIcon
 }

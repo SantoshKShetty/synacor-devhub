@@ -1,5 +1,4 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import { isArray, exists } from "./basics";
 import Text from '../components/text';
 import Box from '../components/box';
@@ -23,6 +22,7 @@ import * as Icons from '../components/icons';
 import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
+import IconButton from '../components/button/icon-button';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {

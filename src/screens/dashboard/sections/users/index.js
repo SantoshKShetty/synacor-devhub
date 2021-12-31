@@ -5,6 +5,7 @@ import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
 import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody } from '@material-ui/core';
+import TransferList from '../../../../components/transfer-list';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -115,6 +116,7 @@ function getSortedData(sortBy, sortOrder) {
 export default function Users({ info: { filter } = {} }) {
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);
+    const [columns, setColumns] = React.useState(DEFAULT_COLUMNS);
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
@@ -122,7 +124,6 @@ export default function Users({ info: { filter } = {} }) {
     }
 
     const data = sortBy && sortOrder ? getSortedData(sortBy, sortOrder) : DATA;
-    const columns = [...DEFAULT_COLUMNS];
 
     return (
         <Box style={{ width: '100%' }}>
@@ -162,6 +163,15 @@ export default function Users({ info: { filter } = {} }) {
                                             </TableCell>
                                         );
                                     })}
+                                    <TableCell align="right">
+                                        <TransferList
+                                            title="Column Selector"
+                                            items={HEADER_FIELD_DATA_MAP.map(({ label, sortKey }) => ({ label, key: sortKey  }))}
+                                            selected={columns}
+                                            defaultValue={DEFAULT_COLUMNS}
+                                            onApply={setColumns}
+                                        />
+                                    </TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -176,6 +186,7 @@ export default function Users({ info: { filter } = {} }) {
                                                 </TableCell>
                                             )
                                         })}
+                                        <TableCell align="right"></TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
