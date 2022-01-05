@@ -1,10 +1,11 @@
 import React from 'react';
+import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
 import Box, { HORIZONTAL } from '../../../../components/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, TablePagination, Select, MenuItem } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
@@ -41,39 +42,6 @@ const HEADER_FIELD_DATA_MAP = [
     },
 ];
 
-// Data received from server
-const DATA = [
-    {
-        userId: "willow_test",
-        userStatus: "ACTIVE",
-        fullName: "willow_test"
-    },
-    {
-        contactEmail: "roytestuser1@cableco.com",
-        userId: "roytestuser1",
-        userStatus: "INACTIVE",
-        fullName: "roytestuser1"
-    },
-    {
-        contactEmail: "bobuser20@hughes.net",
-        firstName: "Bob",
-        lastName: "Durgin",
-        userId: "bobuser20",
-        userStatus: "ACTIVE",
-        fullName: "Bob Durgin"
-    },
-    {
-        userId: "tvecableco_3",
-        userStatus: "SUSPENDED",
-        fullName: "tvecableco_3"
-    },
-    {
-        userId: "peacock4_vp",
-        userStatus: "ACTIVE",
-        fullName: "peacock4_vp"
-    }
-];
-
 const DEFAULT_COLUMNS = ['FULL_NAME', 'CONTACT_EMAIL', 'USER_STATUS'];
 
 const getColumnDetails = key => HEADER_FIELD_DATA_MAP.find(f => f.sortKey === key);
@@ -97,8 +65,8 @@ function getComparator(sortBy, sortOrder) {
         : (a, b) => -descendingComparator(a, b, dataSortKey);
 }
 
-function stableSort(comparator) {
-    const stabilizedThis = DATA.map((el, index) => [el, index]);
+function stableSort(comparator, data) {
+    const stabilizedThis = data.map((el, index) => [el, index]);
 
     stabilizedThis.sort((a, b) => {
       const order = comparator(a[0], b[0]);
@@ -109,21 +77,60 @@ function stableSort(comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 
-function getSortedData(sortBy, sortOrder) {
-    return stableSort(getComparator(sortBy, sortOrder));
+function getSortedData(sortBy, sortOrder, data) {
+    return stableSort(getComparator(sortBy, sortOrder), data);
+}
+
+function prepareData(data) {
+    return data.map(d => {
+        d.fullName = d.firstName && d.lastName && `${d.firstName} ${d.lastName}` || d.userId;
+        return d;
+    })
 }
 
 export default function Users({ info: { filter } = {} }) {
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);
     const [columns, setColumns] = React.useState(DEFAULT_COLUMNS);
+    const [data, setData] = React.useState(null);
+    const [perPage, setPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(1);
+    const [total, setTotal] = React.useState(0);
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
         setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
     }
 
-    const data = sortBy && sortOrder ? getSortedData(sortBy, sortOrder) : DATA;
+    const handlePageChange = (event, value) => {
+        setData(null);
+        setPage(value);
+    };
+
+    const handlePerPageChange = event => {
+        setData(null);
+        setPage(1);
+        setPerPage(event.target.value);
+    }
+
+    React.useEffect(() => {
+        fetch(
+            `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${page}&numberOfRecords=${perPage}`,
+            {
+                method: 'POST'
+            }
+        ).then(r => r.json()).then(data => {
+            setTotal(data.totalNumberOfRecords);
+
+            setData(
+                getSortedData(
+                    sortBy,
+                    sortOrder,
+                    prepareData(data.users)
+                )
+            );
+        }).catch(e => console.log(e))
+    }, [page, perPage]);
 
     return (
         <Box style={{ width: '100%' }}>
@@ -147,52 +154,66 @@ export default function Users({ info: { filter } = {} }) {
                 ))}
             </Box>
             <Box>
-                {data.length && (
-                    <TableContainer>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((c, i) => {
+                                    const t = getColumnDetails(c);
+
+                                    return (
+                                        <TableCell key={`thead-cell-${i}`}>
+                                            <TableSortLabel onClick={handleOnSort(t.sortKey)} active={sortBy === t.sortKey} direction={sortBy === t.sortKey ? sortOrder : 'asc'}>
+                                                <Text variant="h6">{t.label}</Text>
+                                            </TableSortLabel>
+                                        </TableCell>
+                                    );
+                                })}
+                                <TableCell align="right">
+                                    <TransferList
+                                        title="Column Selector"
+                                        items={HEADER_FIELD_DATA_MAP.map(({ label, sortKey }) => ({ label, key: sortKey  }))}
+                                        selected={columns}
+                                        defaultValue={DEFAULT_COLUMNS}
+                                        onApply={setColumns}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {data ? data.map((d, i) => (
+                                <TableRow key={`tbody-row-${i}`} hover>
                                     {columns.map((c, i) => {
                                         const t = getColumnDetails(c);
 
                                         return (
-                                            <TableCell key={`thead-cell-${i}`}>
-                                                <TableSortLabel onClick={handleOnSort(t.sortKey)} active={sortBy === t.sortKey} direction={sortBy === t.sortKey ? sortOrder : 'asc'}>
-                                                    <Text variant="h6">{t.label}</Text>
-                                                </TableSortLabel>
+                                            <TableCell key={`tbody-cell-${i}`}>
+                                                <Text>{d[t.dataKey]}</Text>
                                             </TableCell>
-                                        );
+                                        )
                                     })}
-                                    <TableCell align="right">
-                                        <TransferList
-                                            title="Column Selector"
-                                            items={HEADER_FIELD_DATA_MAP.map(({ label, sortKey }) => ({ label, key: sortKey  }))}
-                                            selected={columns}
-                                            defaultValue={DEFAULT_COLUMNS}
-                                            onApply={setColumns}
-                                        />
-                                    </TableCell>
+                                    <TableCell align="right"></TableCell>
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {data.map((d, i) => (
-                                    <TableRow key={`tbody-row-${i}`} hover>
-                                        {columns.map((c, i) => {
-                                            const t = getColumnDetails(c);
-
-                                            return (
-                                                <TableCell key={`tbody-cell-${i}`}>
-                                                    <Text>{d[t.dataKey]}</Text>
-                                                </TableCell>
-                                            )
-                                        })}
-                                        <TableCell align="right"></TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                )}
+                            )) : (
+                                <TableRow>
+                                    <TableCell colSpan={columns.length + 1} align="center">Loading...</TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Box style={{ flexDirection: 'row', justifyContent: 'flex-end' }} pt={3} pb={3}>
+                    <Box style={{ width: 'fit-content' }} pr={3}>
+                        <Select value={perPage} onChange={handlePerPageChange} autoWidth variant="outlined">
+                            <MenuItem value={5}>5</MenuItem>
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={15}>15</MenuItem>
+                        </Select>
+                    </Box>
+                    <Box>
+                        <Pagination count={Math.ceil(total/perPage)} page={page} onChange={handlePageChange} />
+                    </Box>
+                </Box>
             </Box>
         </Box>
     )
