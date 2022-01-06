@@ -117,7 +117,7 @@ export default function Users({ info: { filter } = {} }) {
         const index = (page - 1) * perPage + 1;
 
         fetch(
-            `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${index}&numberOfRecords=${perPage}`,
+            `//tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${index}&numberOfRecords=${perPage}`,
             {
                 method: 'POST'
             }
