@@ -23,8 +23,12 @@ const SCREENS = {
         '../../screens/dashboard'
     )),
     DemoSetupLDAPConfig: lazy(() => import(
-        /* webpackChunkName: "demo-set-conf-screen" */
+        /* webpackChunkName: "demo-setup-ldap-config-screen" */
         '../../screens/demo/ldap/setup-config'
+    )),
+    DemoSSOLogin: lazy(() => import(
+        /* webpackChunkName: "demo-sso-login-screen" */
+        '../../screens/demo/sso/login'
     ))
 };
 
