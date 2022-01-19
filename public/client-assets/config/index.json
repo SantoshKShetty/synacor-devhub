@@ -36,6 +36,14 @@
                     "descriptor": "dashboard/users/add-user.json"
                 }
             }
+        },
+        {
+            "path": "/demo/ldap/setup-config", "descriptor": "demo/ldap/setup-config/index.json",
+            "screen": "DemoSetupLDAPConfig", "layout": "SingleColumn"
+        },
+        {
+            "path": "/demo/sso/login", "descriptor": "demo/sso/login/index.json",
+            "screen": "DemoSSOLogin", "layout": "SingleColumn"
         }
     ]
 }

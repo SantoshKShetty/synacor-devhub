@@ -27,5 +27,5 @@ export default function PrimaryCTABtn({ routeTo, ...props }) {
     const history = useHistory();
     const handleClick = () => history.push(routeTo);
 
-    return <Button {...props} className={classes.primaryCta} onClick={handleClick} />
+    return <Button {...props} className={classes.primaryCta} {...routeTo && { onClick: handleClick }} />
 }

@@ -47,21 +47,26 @@ export function generateComponent(componentData) {
 		styles,
 		icon,
 		events,
+		fieldName,
+		handleChange,
 		...props
 	} = componentData;
+
+	const tempChangeEvent = handleChange && { onChange: handleChange(fieldName) };
 
 	const componentProps = {
 		key,
 		...props,
 		...styles,
-		...events
+		...events,
+		...tempChangeEvent
 	};
 
 	switch(type) {
 		case 'box':
 			return (
 				<Box {...componentProps}>
-					{children && children.map((c, i) => generateComponent({ ...c, key: `${key}-${i}` }))}
+					{children && children.map((c, i) => generateComponent({ ...c, handleChange, key: `${key}-${i}` }))}
 				</Box>
 			);
 		case 'text':
