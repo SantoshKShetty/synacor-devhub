@@ -132,7 +132,8 @@
                     { "type": "divider" }
                 ], "styles": { "mb": 2 }},
                 { "type": "list", "children": [
-                    { "type": "link", "href": "/demo/ldap/setup-config", "label": "Setup LDAP Configuration" }
+                    { "type": "link", "href": "/demo/ldap/setup-config", "label": "Setup LDAP Configuration" },
+                    { "type": "link", "href": "/demo/sso/login", "label": "SSO Login" }
                 ]}
             ], "styles": { "mb": 10 }}
         ]
