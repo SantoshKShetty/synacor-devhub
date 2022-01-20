@@ -15,7 +15,7 @@ const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
 const FormSection = ({ form: { controls } }) => {
     const [states, setStates] = React.useState({});
     const [status, setStatus] = React.useState({ code: null, msg: null });
-    const ldapConnectorUrl = 'http://localhost:9090';
+    const ldapConnectorUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:9090' : 'http://ldap-agent01.cloudid.ci.opal.synacor.com:9090';
 
     const handleChange = fieldName => event => {
         const val = event.target.value;
