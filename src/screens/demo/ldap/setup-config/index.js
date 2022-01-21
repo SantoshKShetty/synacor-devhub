@@ -15,7 +15,7 @@ const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
 const FormSection = ({ form: { controls } }) => {
     const [states, setStates] = React.useState({});
     const [status, setStatus] = React.useState({ code: null, msg: null });
-    const ldapConnectorUrl = /** process.env.NODE_ENV === 'development' ? 'http://localhost:9090' : **/ 'http://ldap-agent01.cloudid.ci.opal.synacor.com:9090';
+    const ldapConnectorUrl = 'http://ldap-agent01.cloudid.ci.opal.synacor.com:9090';
 
     const handleChange = fieldName => event => {
         const val = event.target.value;
@@ -48,7 +48,10 @@ const FormSection = ({ form: { controls } }) => {
     const saveConnection = () => {
         fetch(`${ldapConnectorUrl}/ldap/saveLdapConnection`, {
             method: 'POST',
-            body: JSON.stringify(states)
+            body: JSON.stringify(states),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }).then(res => {
             if (!res.ok) {
                 throw Error(res.statusText);
