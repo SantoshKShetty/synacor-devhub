@@ -27,7 +27,7 @@ const FormSection = ({ form: { controls } }) => {
     }
 
     const setSessionData = obj => {
-        Object.entries(obj).map((key, val) => {
+        Object.entries(obj).map(([key, val]) => {
             sessionStorage.setItem(key, val);
         })
     }

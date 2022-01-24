@@ -5,7 +5,7 @@ import Box, { HORIZONTAL } from '../../../../components/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, TablePagination, Select, MenuItem } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, TablePagination, Select, MenuItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
@@ -97,6 +97,18 @@ export default function Users({ info: { filter } = {} }) {
     const [page, setPage] = React.useState(1);
     const [total, setTotal] = React.useState(0);
 
+    const usersAPIList = {
+        tenantUsersApi: {
+            endpoint: `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${page}&numberOfRecords=${perPage}`,
+            params: { method: 'POST' }
+        },
+        ldapUsersApi: {
+            endpoint: sessionStorage.getItem('ldapUsersApiEndpoint'),
+            params: {}
+        }
+    };
+    const [usersApi, setUsersApi] = React.useState('tenantUsersApi');
+
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
         setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
@@ -113,13 +125,16 @@ export default function Users({ info: { filter } = {} }) {
         setPerPage(event.target.value);
     }
 
+    const handleUsersApiChange = event => {
+        setUsersApi(event.target.value);
+    }
+
     React.useEffect(() => {
-        fetch(
-            `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${page}&numberOfRecords=${perPage}`,
-            {
-                method: 'POST'
-            }
-        ).then(r => r.json()).then(data => {
+        const { endpoint, params } = usersAPIList[usersApi];
+
+        !endpoint && alert('API Endpoint not set properly!')
+
+        fetch(endpoint, params).then(r => r.json()).then(data => {
             setTotal(data.totalNumberOfRecords);
 
             setData(
@@ -130,7 +145,7 @@ export default function Users({ info: { filter } = {} }) {
                 )
             );
         }).catch(e => console.log(e))
-    }, [page, perPage]);
+    }, [page, perPage, usersApi]);
 
     return (
         <Box style={{ width: '100%' }}>
@@ -152,6 +167,15 @@ export default function Users({ info: { filter } = {} }) {
                         {generateComponent(item)}
                     </Box>
                 ))}
+            </Box>
+            <Box>
+                <FormControl>
+                    <FormLabel component="legend">Select API to pull Users.</FormLabel>
+                    <RadioGroup name="usersApi" value={usersApi} onChange={handleUsersApiChange}>
+                        <FormControlLabel value="tenantUsersApi" control={<Radio />} label="Tenant Api" />
+                        <FormControlLabel value="ldapUsersApi" control={<Radio />} label="LDAP Api" />
+                    </RadioGroup>
+                </FormControl>
             </Box>
             <Box>
                 <TableContainer>
