@@ -26,7 +26,21 @@ const FormSection = ({ form: { controls } }) => {
         });
     }
 
+    const setSessionData = obj => {
+        Object.entries(obj).map((key, val) => {
+            sessionStorage.setItem(key, val);
+        })
+    }
+
+    const clearSessionData = keys => {
+        keys.map(k => {
+            sessionStorage.removeItem(k)
+        });
+    }
+
     const testConnection = () => {
+        setStatus({ code: null, msg: null });
+
         fetch(`${ldapConnectorUrl}/ldap/testLdapConnection`, {
             method: 'POST',
             body: JSON.stringify(states),
@@ -35,17 +49,20 @@ const FormSection = ({ form: { controls } }) => {
             }
         }).then(res => {
             if (!res.ok) {
-                throw Error(res.statusText);
+                return Promise.reject(res.statusText);
             }
             return res.json();
-        }).then(data => {
-            console.log(data)
+        }).then(({ code, msg }) => {
+            setStatus({ code, msg });
         }).catch(e => {
-            console.log(e)
+            setStatus({ code: 500, msg: e });
         });
     }
 
     const saveConnection = () => {
+        setStatus({ code: null, msg: null });
+        clearSessionData(['ldapUsersApiEndpoint']);
+
         fetch(`${ldapConnectorUrl}/ldap/saveLdapConnection`, {
             method: 'POST',
             body: JSON.stringify(states),
@@ -54,13 +71,17 @@ const FormSection = ({ form: { controls } }) => {
             }
         }).then(res => {
             if (!res.ok) {
-                throw Error(res.statusText);
+                return Promise.reject(res.statusText);
             }
             return res.json();
-        }).then(data => {
-            console.log(data)
+        }).then(({ code, msg }) => {
+            setSessionData({
+                ldapUsersApiEndpoint: `${ldapConnectorUrl}/ldap/users`
+            });
+
+            setStatus({ code, msg });
         }).catch(e => {
-            console.log(e)
+            setStatus({ code: 500, msg: e });
         });
     }
 
