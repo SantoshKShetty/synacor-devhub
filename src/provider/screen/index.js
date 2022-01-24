@@ -37,6 +37,10 @@ const SUB_SCREENS = {
     UsersList: lazy(() => import(
         /* webpackChunkName: "users-list-subscreen" */
         '../../screens/dashboard/sections/users'
+    )),
+    DemoSetupLDAPConfig: lazy(() => import(
+        /* webpackChunkName: "demo-setup-ldap-config-screen" */
+        '../../screens/demo/ldap/setup-config'
     ))
 };
 

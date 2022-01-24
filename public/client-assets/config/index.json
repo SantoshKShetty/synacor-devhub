@@ -34,6 +34,10 @@
                 "/dashboard/users/add": {
                     "component": "AddUser",
                     "descriptor": "dashboard/users/add-user.json"
+                },
+                "/dashboard/directory-integrations": {
+                    "component": "DemoSetupLDAPConfig",
+                    "descriptor": "demo/ldap/setup-config/index.json"
                 }
             }
         },

@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../../../../components/form';
-import { generateComponent } from '../../../../utils/component';
+import { generateComponent, composeComponents } from '../../../../utils/component';
 import Box, { HORIZONTAL } from '../../../../components/box';
 import PrimaryCTABtn from '../../../../components/button/primary-cta';
 import SecondaryCTABtn from '../../../../components/button/secondary-cta';
@@ -116,10 +116,12 @@ const FormSection = ({ form: { controls } }) => {
 export default function DemoSetConfig({ info, Layout }) {
     const { logo, screenInfo, form } = info;
 
-    return (
-        <Layout logo={logo}>
+    return composeComponents(
+        Layout && [Layout, { logo }]
+    )(
+        <React.Fragment>
             <InfoSection screenInfo={screenInfo} />
             <FormSection form={form} />
-        </Layout>
+        </React.Fragment>
     );
 };
