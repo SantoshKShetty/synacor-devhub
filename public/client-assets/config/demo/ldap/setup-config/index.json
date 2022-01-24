@@ -2,7 +2,7 @@
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Configuration Screen", "variant": "h4" }
+                { "type": "text", "label": "LDAP/AD Configuration", "variant": "h4" }
             ], "styles": { "mt": 5, "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "textfield", "label": "Connection URL", "fieldName": "connectoinURL" }

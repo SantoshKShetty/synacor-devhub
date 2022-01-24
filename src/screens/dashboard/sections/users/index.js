@@ -168,12 +168,14 @@ export default function Users({ info: { filter } = {} }) {
                     </Box>
                 ))}
             </Box>
-            <Box>
+            <Box type={HORIZONTAL}>
                 <FormControl>
-                    <FormLabel component="legend">Select API to pull Users.</FormLabel>
                     <RadioGroup name="usersApi" value={usersApi} onChange={handleUsersApiChange}>
-                        <FormControlLabel value="tenantUsersApi" control={<Radio />} label="Tenant Api" />
-                        <FormControlLabel value="ldapUsersApi" control={<Radio />} label="LDAP Api" />
+                        <Box type={HORIZONTAL} mt={3} style={{ alignItems: 'center' }}>
+                            <Text variant="h6">Users from  -&nbsp;</Text>
+                            <FormControlLabel value="tenantUsersApi" control={<Radio />} label="Tenant Service" />
+                            <FormControlLabel value="ldapUsersApi" control={<Radio />} label="LDAP/AD Service" />
+                        </Box>
                     </RadioGroup>
                 </FormControl>
             </Box>
