@@ -40,7 +40,13 @@ const FormSection = ({ form: { controls } }) => {
             if (!res.ok) {
                 return Promise.reject({ message: res.statusText });
             }
-            history.push('/dashboard');
+            return res.json();
+        }).then(({ code, msg }) => {
+            if (code === "200") {
+                history.push('/dashboard');
+            } else {
+                setStatus({ code, msg })
+            }
         }).catch(e => {
             setStatus({ code: 500, msg: e.message })
         });
