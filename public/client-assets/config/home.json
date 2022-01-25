@@ -1,141 +1,17 @@
 {
     "screenInfo": [
-        { "type": "text", "label": "Home Page", "variant": "h2" },
+        { "type": "text", "label": "SSO Login", "variant": "h2" },
         { "type": "box" , "styles": { "mb": 2 }},
-        { "type": "text", "label": "This is the place which showcases all different components that are built." }
+        { "type": "text", "label": "Login and land on dashboard" }
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Header Tags", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "text", "label": "h1.Text", "variant": "h1" },
+                { "type": "textfield", "label": "User name", "fieldName": "user" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "text", "label": "h3.Text", "variant": "h3" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "text", "label": "h6.Text", "variant": "h6" }
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Text fields", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "textfield", "subType": "email", "label": "Email" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "textfield", "subType": "password", "label": "Password" }
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Buttons", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "button", "subType": "primary", "label": "Primary Button" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "secondary", "label": "Secondary Button" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "label": "Just a button" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "label": "Another awesome button",
-                    "startIcon": { "type": "icon", "icon": "MenuIcon" },
-                    "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }
-                },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Checkboxes", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "checkbox", "label": "Checkbox" },
-                { "type": "box" , "styles": { "mb": 1 }},
-                { "type": "checkbox", "label": "A ticked Checkbox", "checked": true },
-                { "type": "box" , "styles": { "mb": 1 }},
-                { "type": "checkbox", "label": "Disabled checkbox", "disabled": true },
-                { "type": "box" , "styles": { "mb": 1 }}
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Dropdown Menus", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "box", "children": [
-                    { "type": "text", "label": "Button Menu", "variant": "h6" },
-                    { "type": "box", "children": [
-                        { "type": "menu", "opensBy": { "type": "button", "label": "Button" },
-                            "position": {
-                                "anchorOrigin": { "vertical": "bottom", "horizontal": "center" },
-                                "transformOrigin": { "vertical": "top", "horizontal": "center" }
-                            },
-                            "children": [
-                                { "type": "text", "label": "I am a text under button menu" },
-                                { "type": "link", "label": "I am a link under button menu", "href": "#" }
-                            ]
-                        }
-                    ], "styles": { "mt": 2, "mb": 2, "maxWidth": "100px" }},
-                    { "type": "text", "label": "Icon Menu", "variant": "h6" },
-                    { "type": "box", "children": [
-                        { "type": "menu", "opensBy": { "type": "iconButton", "children": [
-                                { "type": "icon", "icon": "MenuIcon" }
-                            ]},
-                            "position": {
-                                "anchorOrigin": { "vertical": "bottom", "horizontal": "center" },
-                                "transformOrigin": { "vertical": "top", "horizontal": "left" }
-                            },
-                            "children": [
-                                { "type": "text", "label": "I am a text under icon menu" },
-                                { "type": "link", "label": "I am a link under icon menu", "href": "#" }
-                            ]
-                        }
-                    ], "styles": { "mt": 2, "mb": 2, "width": "fit-content" }},
-                    { "type": "text", "label": "Multi Choice Menu", "variant": "h6" },
-                    { "type": "box", "children": [
-                        { "type": "multiChoiceMenu", "opensBy": {
-                                "type": "button", "label": "Favourite Places",
-                                "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }
-                            },
-                            "referencedAs": "favPlaces",
-                            "position": {
-                                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
-                                "transformOrigin": { "vertical": "top", "horizontal": "left" }
-                            },
-                            "children": [
-                                { "type": "checkbox", "label": "Switzerland", "value": "switzerland" },
-                                { "type": "checkbox", "label": "Venice", "value": "venice" },
-                                { "type": "checkbox", "label": "Mysore", "value": "mysore" }
-                            ]
-                        }
-                    ], "styles": { "mt": 2, "mb": 2, "width": "fit-content" }}
-                ]}
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Main flows", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "list", "children": [
-                    { "type": "link", "href": "/register", "label": "Register" },
-                    { "type": "link", "href": "/setup", "label": "AccountSetup" },
-                    { "type": "link", "href": "/login", "label": "Login" },
-                    { "type": "link", "href": "/dashboard", "label": "Dashboard" }
-                ]}
-            ], "styles": { "mb": 10 }},
-            { "type": "box", "children": [
-                { "type": "text", "label": "Demo flows", "variant": "h4" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 2 }},
-                { "type": "list", "children": [
-                    { "type": "link", "href": "/demo/ldap/setup-config", "label": "Setup LDAP Configuration" },
-                    { "type": "link", "href": "/demo/sso/login", "label": "SSO Login" }
-                ]}
-            ], "styles": { "mb": 10 }}
+                { "type": "textfield", "subType": "password", "label": "Password", "fieldName": "password" },
+                { "type": "box" , "styles": { "mb": 2 }}
+            ]}
         ]
     }
 }
