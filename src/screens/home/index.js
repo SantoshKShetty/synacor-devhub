@@ -43,7 +43,8 @@ const FormSection = ({ form: { controls } }) => {
             return res.json();
         }).then(({ code, msg }) => {
             if (code === "200") {
-                history.push('/dashboard');
+                sessionStorage.setItem('loggedUser', states['user']);
+                history.push('/success');
             } else {
                 setStatus({ code, msg })
             }

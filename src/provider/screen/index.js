@@ -29,6 +29,10 @@ const SCREENS = {
     DemoSSOLogin: lazy(() => import(
         /* webpackChunkName: "demo-sso-login-screen" */
         '../../screens/demo/sso/login'
+    )),
+    DemoSSOLoginSuccess: lazy(() => import(
+        /* webpackChunkName: "demo-sso-login-success-screen" */
+        '../../screens/demo/sso/login/success'
     ))
 };
 

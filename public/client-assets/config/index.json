@@ -44,6 +44,9 @@
         {
             "path": "/demo/sso/login", "descriptor": "demo/sso/login/index.json",
             "screen": "DemoSSOLogin", "layout": "SingleColumn"
+        },
+        {
+            "path": "/success", "screen": "DemoSSOLoginSuccess", "layout": "SingleColumn"
         }
     ]
 }
