@@ -1,6 +1,5 @@
 {
     "filter": [
-        { "type": "textfield", "label": "Search", "variant": "outlined", "margin": "dense" },
         { "type": "multiChoiceMenu", "opensBy": {
                 "type": "button", "label": "Status",
                 "endIcon": { "type": "icon", "icon": "KeyboardArrowDownIcon" }

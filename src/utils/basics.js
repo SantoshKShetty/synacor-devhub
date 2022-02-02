@@ -25,3 +25,7 @@ export function deepClone(val) {
         return JSON.parse(JSON.stringify(val)); // To do: Find better way to clone objects.
     }
 }
+
+export function isEmail(val) {
+    return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(val)
+}
