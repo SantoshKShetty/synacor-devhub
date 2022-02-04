@@ -1,5 +1,6 @@
 import React from 'react';
-import { isArray, exists } from "./basics";
+import cn from 'classnames';
+import { isArray, exists, isString } from "./basics";
 import Text from '../components/text';
 import Box from '../components/box';
 import Divider from '../components/divider';
@@ -37,7 +38,24 @@ export function composeComponents() {
 	}, children);
 }
 
-export function generateComponent(componentData) {
+/**
+ * Returns CSS Classnames that will be applied to the component.
+ * @param {Object - key: value pair} classes - Material UI styles passed from caller.
+ * @param {String or Array of Strings} classNames - name of `key` given inside `classes`.
+ */
+const findClassName = (classes, classNames) => isString(classNames) ? classes[classNames] : cn(...classNames.map(c => classes[c]))
+
+export function generateComponent(componentData, { classes, keyPrefix } = {}) {
+	// If incoming `componentData` is array, loop over them.
+	if (isArray(componentData)) {
+		return componentData.map(
+			(c, i) => generateComponent({
+				...c,
+				key: `${keyPrefix || 'component-key'}-${i}`
+			}, { classes, keyPrefix })
+		);
+	}
+
 	const {
 		type, subType,
 		key,
@@ -49,6 +67,7 @@ export function generateComponent(componentData) {
 		events,
 		fieldName,
 		handleChange,
+		classNames,
 		...props
 	} = componentData;
 
@@ -59,14 +78,17 @@ export function generateComponent(componentData) {
 		...props,
 		...styles,
 		...events,
-		...tempChangeEvent
+		...tempChangeEvent,
+		...classNames && {
+			className: findClassName(classes, classNames)
+		}
 	};
 
 	switch(type) {
 		case 'box':
 			return (
 				<Box {...componentProps}>
-					{children && children.map((c, i) => generateComponent({ ...c, handleChange, key: `${key}-${i}` }))}
+					{generateComponent(children, { classes, keyPrefix: key })}
 				</Box>
 			);
 		case 'text':
@@ -116,7 +138,7 @@ export function generateComponent(componentData) {
 		case 'iconButton':
 			return (
 				<IconButton {...componentProps}>
-					{children && children.map((c, i) => generateComponent({ ...c, key: `${key}-${i}` }))}
+					{generateComponent(children, { classes, keyPrefix: key })}
 				</IconButton>
 			);
 		case 'icon':

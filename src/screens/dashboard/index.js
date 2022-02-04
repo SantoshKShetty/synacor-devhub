@@ -1,5 +1,4 @@
 import React from "react";
-import Box, { HORIZONTAL } from "../../components/box";
 import { makeStyles } from '../../provider/theme';
 import { generateComponent, composeComponents } from '../../utils/component';
 import { useScreen } from "../../provider/screen";
@@ -7,19 +6,10 @@ import { findMatchingRoute } from "../../utils/route";
 import { exists } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
 
-const Header = ({ logo, header: { menus } = {} }) => (
+const Header = ({ logo, header }) => (
     <React.Fragment>
-        {logo && (
-            <Box>
-                {generateComponent(logo)}
-            </Box>
-        )}
-        <Box direction={HORIZONTAL}>
-            {menus && menus.map((m, i) => generateComponent({
-                ...m,
-                key: `dashboard-header-menu-${i}`
-            }))}
-        </Box>
+        {logo && generateComponent(logo)}
+        {header && generateComponent(header, { keyPrefix: 'dashboard-header-item' })}
     </React.Fragment>
 )
 
@@ -28,16 +18,13 @@ const leftColStyles = makeStyles({
     accordion: {}
 });
 
-const LeftCol = ({ leftCol = [] }) => {
+const LeftCol = ({ leftCol, css }) => {
     const classes = leftColStyles();
 
-    return leftCol.map(
-        (item, i) => generateComponent({
-            ...item,
-            key: `dashboard-left-col-item-${i}`,
-            className: classes.accordion
-        })
-    );
+    return generateComponent(leftCol, {
+        classes,
+        keyPrefix: 'dashboard-left-col-item'
+    });
 }
 
 
