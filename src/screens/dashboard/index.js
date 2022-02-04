@@ -14,7 +14,7 @@ const Header = ({ logo, header: { menus } = {} }) => (
                 {generateComponent(logo)}
             </Box>
         )}
-        <Box type={HORIZONTAL}>
+        <Box direction={HORIZONTAL}>
             {menus && menus.map((m, i) => generateComponent({
                 ...m,
                 key: `dashboard-header-menu-${i}`

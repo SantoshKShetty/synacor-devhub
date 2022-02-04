@@ -82,7 +82,7 @@ export default function MultiChoiceMenu({
                     {...anchorOrigin && { getContentAnchorEl: null }}
                     >
                     <Box p={3} style={{ minWidth: 200 }}>
-                        <Box type={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
+                        <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
                             <Link href="#" label="Select All" onClick={handleSelectAll} />
                             <Link href="#" label="Clear All" onClick={handleClearAll} />
                         </Box>
@@ -96,7 +96,7 @@ export default function MultiChoiceMenu({
                                 events: { onClick: handleSelect }
                             }))}
                         </Box>
-                        <Box type={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
+                        <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
                             <Link href="#" label="Cancel" onClick={handleClose} />
                             <Link href="#" label="Apply" onClick={handleApplySelected} />
                         </Box>

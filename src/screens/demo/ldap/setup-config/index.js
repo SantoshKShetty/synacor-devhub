@@ -84,7 +84,7 @@ const FormSection = ({ form: { controls } }) => {
                     {status.msg}
                 </Box>
             )}
-            <Box type={HORIZONTAL} {...{ mt: 4, justifyContent: 'space-between' }}>
+            <Box direction={HORIZONTAL} {...{ mt: 4, justifyContent: 'space-between' }}>
                 <SecondaryCTABtn label="Test" onClick={testConnection} />
                 <PrimaryCTABtn label="Save" onClick={saveConnection} />
             </Box>

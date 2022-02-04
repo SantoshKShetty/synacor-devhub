@@ -166,19 +166,19 @@ export default function Users({ info: { filter } = {} }) {
 
     return (
         <Box style={{ width: '100%' }}>
-            <Box type={HORIZONTAL} style={{ justifyContent: 'space-between', paddingBottom: '1.5rem' }}>
-                <Box type={HORIZONTAL} style={{ alignItems: 'center' }}>
+            <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between', paddingBottom: '1.5rem' }}>
+                <Box direction={HORIZONTAL} style={{ alignItems: 'center' }}>
                     <Box>
                         <Text color="secondary">Users</Text>
                         <Text color="secondary" variant="caption">Manage Users</Text>
                     </Box>
                 </Box>
-                <Box type={HORIZONTAL}>
+                <Box direction={HORIZONTAL}>
                     <Button label="Add User" style={{ paddingLeft: '1rem', paddingRight: '1rem', marginRight: '1rem' }} />
                     <Button label="Import from CSV" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} />
                 </Box>
             </Box>
-            <Box type={HORIZONTAL}>
+            <Box direction={HORIZONTAL}>
                 <Box style={{ marginRight: '1rem' }}>
                     <TextField label="Search" variant="outlined" margin="dense" onKeyUp={handleUserSearch} />
                 </Box>

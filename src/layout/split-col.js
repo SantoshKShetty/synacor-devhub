@@ -53,7 +53,7 @@ export default function SplitColumnLayout({ logo, children }) {
     const [LeftColComponent = null, RightColComponent = null] = children;
 
     return (
-        <Box type={HORIZONTAL} className={classes.splitColLayout}>
+        <Box direction={HORIZONTAL} className={classes.splitColLayout}>
             <Box className={classes.leftCol}>
                 <Box className={classes.nonMobileLogo}>
                     {generateComponent(logo)}

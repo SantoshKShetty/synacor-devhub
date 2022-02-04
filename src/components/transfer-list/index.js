@@ -82,7 +82,7 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                     </IconButton>
                 </DialogTitle>
                 <DialogContent dividers>
-                    <Box type={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
+                    <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
                         <Box>{LeftSideControlls}</Box>
                         <Box>
                             <IconButton onClick={handleLeftMove} disabled={rightSide.length === 0}>

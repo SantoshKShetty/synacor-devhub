@@ -14,7 +14,8 @@ const useStyles = makeStyles(
                 borderBottom: `1px solid ${containerBorderColor}`,
                 padding: `0 ${spacing(4)}px`,
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                boxSizing: 'border-box'
             },
             bodyContainer: {
                 height: `calc(100vh - ${headerHeight}px)`
@@ -41,10 +42,10 @@ export default function DashboardLayout({ children }) {
 
     return (
         <React.Fragment>
-            <Box className={classes.headerContainer} type={HORIZONTAL}>
+            <Box className={classes.headerContainer} direction={HORIZONTAL}>
                 {Header}
             </Box>
-            <Box className={classes.bodyContainer} type={HORIZONTAL}>
+            <Box className={classes.bodyContainer} direction={HORIZONTAL}>
                 <Box className={classes.leftColContainer}>
                     {LeftCol}
                 </Box>
