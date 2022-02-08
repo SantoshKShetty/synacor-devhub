@@ -8,7 +8,17 @@
                 }
             },
             "dashboardLayout": {
-                "containerBorderColor": "#D8D8D8"
+                "containerBorderColor": "#D8D8D8",
+                "leftCol": {
+                    "accordion": {
+                        "link": {
+                            "color": "#222222"
+                        },
+                        "text": {
+                            "color": "#555555"
+                        }
+                    }
+                }
             },
             "button": {
                 "default": {

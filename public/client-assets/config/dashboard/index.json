@@ -50,7 +50,7 @@
         }
     ],
     "leftCol": [
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Dashboard",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -62,7 +62,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Directory",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -74,7 +74,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Customization",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -86,7 +86,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Applications",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -95,7 +95,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Security",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -106,7 +106,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Reports",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
@@ -116,7 +116,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordionSet",
+        { "type": "accordion", "classNames": "leftColAccordion",
             "label": "Settings",
             "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [

@@ -22,8 +22,7 @@ const useStyles = makeStyles(
             },
             leftColContainer: {
                 borderRight: `1px solid ${containerBorderColor}`,
-                width: '20%',
-                minWidth: `${spacing(30)}px`,
+                width: `${spacing(30)}px`,
                 overflow: 'auto',
                 padding: `${spacing(2)}px ${spacing(1)}px`
             },
