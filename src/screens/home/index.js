@@ -2,25 +2,17 @@ import React from "react";
 import { generateComponent } from "../../utils/component";
 import Form from "../../components/form";
 
-const InfoSection = ({ screenInfo = [] }) => screenInfo.map(
-    (data, i) => generateComponent({
-        ...data,
-        key: `intro-sec-component-${i}`
-    })
-);
+const InfoSection = ({ screenInfo = [] }) => generateComponent(screenInfo, {
+    keyPrefix: 'intro-sec-component'
+})
 
-const FormSection = ({ form: { controls } }) => {
-    return (
-        <Form>
-            {controls.map(
-                (data, i) => generateComponent({
-                    ...data,
-                    key: `form-sec-component-${i}`
-                })
-            )}
-        </Form>
-    );
-};
+const FormSection = ({ form: { controls } }) => (
+    <Form>
+        {generateComponent(controls, {
+            keyPrefix: 'form-sec-component'
+        })}
+    </Form>
+)
 
 export default function HomeScreen({ info, Layout }) {
     const { logo, screenInfo, form } = info;

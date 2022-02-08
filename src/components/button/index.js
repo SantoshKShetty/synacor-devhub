@@ -16,6 +16,7 @@ const styles = makeStyles(
             fontSize: '1rem',
             borderRadius: shape.borderRadius * 2,
             padding: `${spacing(1.5)}px`,
+            textTransform: 'none',
 
             '&:hover': {
                 backgroundColor: palette.custom.button.bgColorHover

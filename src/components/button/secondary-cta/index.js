@@ -8,7 +8,6 @@ const styles = makeStyles(
             backgroundColor: palette.custom.button.secondaryCTA.bgColor,
             color: palette.custom.button.secondaryCTA.color,
             border: `1px solid ${palette.custom.button.secondaryCTA.borderColor}`,
-            textTransform: 'capitalize',
             maxWidth: 'max-content',
             padding: `${spacing(0.625)}px ${spacing(6)}px`,
 

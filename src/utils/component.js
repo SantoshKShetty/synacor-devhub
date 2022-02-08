@@ -127,7 +127,7 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 		case 'box':
 			return (
 				<Box {...componentProps}>
-					{generateComponent(children, { classes, keyPrefix: key })}
+					{children && generateComponent(children, { classes, keyPrefix: key })}
 				</Box>
 			);
 		case 'text':
@@ -177,7 +177,7 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 		case 'iconButton':
 			return (
 				<IconButton {...componentProps}>
-					{generateComponent(children, { classes, keyPrefix: key })}
+					{children && generateComponent(children, { classes, keyPrefix: key })}
 				</IconButton>
 			);
 		case 'icon':
