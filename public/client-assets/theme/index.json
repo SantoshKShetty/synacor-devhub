@@ -12,7 +12,9 @@
                 "leftCol": {
                     "accordion": {
                         "link": {
-                            "color": "#222222"
+                            "color": "#222222",
+                            "bgColorHover": "#EEEEEE",
+                            "bgColorActive": "#CEE7FF"
                         },
                         "text": {
                             "color": "#555555"

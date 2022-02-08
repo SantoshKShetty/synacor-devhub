@@ -92,11 +92,11 @@ const styles = makeStyles(
                             textDecoration: 'none',
 
                             '&:hover': {
-                                backgroundColor: '#EEEEEE'
+                                backgroundColor: palette.custom.dashboardLayout.leftCol.accordion.link.bgColorHover
                             },
 
                             '&.activeLink': {
-                                backgroundColor: '#CEE7FF'
+                                backgroundColor: palette.custom.dashboardLayout.leftCol.accordion.link.bgColorActive
                             }
                         }
                     }
