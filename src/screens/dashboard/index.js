@@ -62,11 +62,12 @@ const styles = makeStyles(
 
                 '& > .MuiAccordionSummary-content': {
                     fontSize: typography.fontSize,
-                    fontWeight: typography.fontWeightLight,
+                    fontWeight: typography.fontWeightRegular,
                     color: palette.custom.dashboardLayout.leftCol.accordion.text.color,
 
                     '& > .MuiTypography-body1': {
-                        fontSize: 'inherit'
+                        fontSize: 'inherit',
+                        fontWeight: 'inherit'
                     }
                 }
             },
