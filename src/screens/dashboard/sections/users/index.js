@@ -5,8 +5,12 @@ import Box, { HORIZONTAL } from '../../../../components/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, TablePagination, Select, MenuItem } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
+import TextField from '../../../../components/textfield';
+import { debounce } from "debounce";
+import { isEmail, exists } from '../../../../utils/basics';
+
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -96,6 +100,8 @@ export default function Users({ info: { filter } = {} }) {
     const [perPage, setPerPage] = React.useState(5);
     const [page, setPage] = React.useState(1);
     const [total, setTotal] = React.useState(0);
+    const [searchParams, setSearchParams] = React.useState({ username: null, contactEmail: null });
+    const [error, setError] = React.useState(null);
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
@@ -113,24 +119,50 @@ export default function Users({ info: { filter } = {} }) {
         setPerPage(event.target.value);
     }
 
-    React.useEffect(() => {
-        fetch(
-            `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?index=${page}&numberOfRecords=${perPage}`,
-            {
-                method: 'POST'
-            }
-        ).then(r => r.json()).then(data => {
-            setTotal(data.totalNumberOfRecords);
+    const handleUserSearch = debounce(event => {
+        const value = event.target?.value?.trim();
 
-            setData(
-                getSortedData(
-                    sortBy,
-                    sortOrder,
-                    prepareData(data.users)
-                )
-            );
+        setData(null);
+
+        if (!value) {
+            setSearchParams({ username: null, contactEmail: null })
+        } else if (isEmail(value)) {
+            setSearchParams({ username: null, contactEmail: value })
+        } else {
+            setSearchParams({ username: value, contactEmail: null })
+        }
+    }, 1000);
+
+    React.useEffect(() => {
+        setError(null);
+
+        const params = [
+            ...[
+                !searchParams.username && !searchParams.contactEmail && `index=${page}`,
+                !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
+            ].filter(Boolean),
+            searchParams.username && `username=${searchParams.username}`,
+            searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
+        ].filter(Boolean).join('&');
+
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?${params}`;
+
+        fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
+            setTotal(totalNumberOfRecords);
+
+            if (message) {
+                setError(message);
+            } else {
+                setData(
+                    getSortedData(
+                        sortBy,
+                        sortOrder,
+                        prepareData(users)
+                    )
+                );
+            }
         }).catch(e => console.log(e))
-    }, [page, perPage]);
+    }, [page, perPage, searchParams]);
 
     return (
         <Box style={{ width: '100%' }}>
@@ -147,6 +179,9 @@ export default function Users({ info: { filter } = {} }) {
                 </Box>
             </Box>
             <Box type={HORIZONTAL}>
+                <Box style={{ marginRight: '1rem' }}>
+                    <TextField label="Search" variant="outlined" margin="dense" onKeyUp={handleUserSearch} />
+                </Box>
                 {filter && filter.map((item, key) => (
                     <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
                         {generateComponent(item)}
@@ -154,65 +189,71 @@ export default function Users({ info: { filter } = {} }) {
                 ))}
             </Box>
             <Box>
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((c, i) => {
-                                    const t = getColumnDetails(c);
-
-                                    return (
-                                        <TableCell key={`thead-cell-${i}`}>
-                                            <TableSortLabel onClick={handleOnSort(t.sortKey)} active={sortBy === t.sortKey} direction={sortBy === t.sortKey ? sortOrder : 'asc'}>
-                                                <Text variant="h6">{t.label}</Text>
-                                            </TableSortLabel>
-                                        </TableCell>
-                                    );
-                                })}
-                                <TableCell align="right">
-                                    <TransferList
-                                        title="Column Selector"
-                                        items={HEADER_FIELD_DATA_MAP.map(({ label, sortKey }) => ({ label, key: sortKey  }))}
-                                        selected={columns}
-                                        defaultValue={DEFAULT_COLUMNS}
-                                        onApply={setColumns}
-                                    />
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data ? data.map((d, i) => (
-                                <TableRow key={`tbody-row-${i}`} hover>
+                {error ? (
+                    <Box>
+                        <Text color="error">{error}</Text>
+                    </Box>
+                ) : (
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
                                     {columns.map((c, i) => {
                                         const t = getColumnDetails(c);
 
                                         return (
-                                            <TableCell key={`tbody-cell-${i}`}>
-                                                <Text>{d[t.dataKey]}</Text>
+                                            <TableCell key={`thead-cell-${i}`}>
+                                                <TableSortLabel onClick={handleOnSort(t.sortKey)} active={sortBy === t.sortKey} direction={sortBy === t.sortKey ? sortOrder : 'asc'}>
+                                                    <Text variant="h6">{t.label}</Text>
+                                                </TableSortLabel>
                                             </TableCell>
-                                        )
+                                        );
                                     })}
-                                    <TableCell align="right"></TableCell>
+                                    <TableCell align="right">
+                                        <TransferList
+                                            title="Column Selector"
+                                            items={HEADER_FIELD_DATA_MAP.map(({ label, sortKey }) => ({ label, key: sortKey  }))}
+                                            selected={columns}
+                                            defaultValue={DEFAULT_COLUMNS}
+                                            onApply={setColumns}
+                                        />
+                                    </TableCell>
                                 </TableRow>
-                            )) : (
-                                <TableRow>
-                                    <TableCell colSpan={columns.length + 1} align="center">Loading...</TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {data ? data.map((d, i) => (
+                                    <TableRow key={`tbody-row-${i}`} hover>
+                                        {columns.map((c, i) => {
+                                            const t = getColumnDetails(c);
+
+                                            return (
+                                                <TableCell key={`tbody-cell-${i}`}>
+                                                    <Text>{d[t.dataKey]}</Text>
+                                                </TableCell>
+                                            )
+                                        })}
+                                        <TableCell align="right"></TableCell>
+                                    </TableRow>
+                                )) : (
+                                    <TableRow>
+                                        <TableCell colSpan={columns.length + 1} align="center">Loading...</TableCell>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                )}
                 <Box style={{ flexDirection: 'row', justifyContent: 'flex-end' }} pt={3} pb={3}>
-                    <Box style={{ width: 'fit-content' }} pr={3}>
+                    {total > 0 && (<Box style={{ width: 'fit-content' }} pr={3}>
                         <Select value={perPage} onChange={handlePerPageChange} autoWidth variant="outlined">
                             <MenuItem value={5}>5</MenuItem>
                             <MenuItem value={10}>10</MenuItem>
                             <MenuItem value={15}>15</MenuItem>
                         </Select>
-                    </Box>
-                    <Box>
+                    </Box>)}
+                    {total > 0 && (<Box>
                         <Pagination count={Math.ceil(total/perPage)} page={page} onChange={handlePageChange} />
-                    </Box>
+                    </Box>)}
                 </Box>
             </Box>
         </Box>
