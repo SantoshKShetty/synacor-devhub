@@ -25,6 +25,34 @@ import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
 import IconButton from '../components/button/icon-button';
 
+
+/**
+ * Function `composeComponents` - returns hierarchical components' ordered/wrapped as per the arguments provided.
+ * 
+ * How to call this function ?
+ *     composeComponents(
+ *         HOC - n,
+ *         HOC - n-1,
+ *         HOC - n-2,
+ *         HOC - n-3
+ *     )(Child)
+ * where `Child` - Leaf Node in the Components' hierarchy and,
+ * HOC - `Higher Order Component` and `n` is the level of that HOC in the hierarchy.
+ * 
+ * So, to achieve below hierarchy of components (along with props),
+ * (
+ *   <HOC n>
+ *     <HOC n-1 prop1={val1} prop2={val2}>
+ *       <Child>
+ *     </HOC n-1>
+ *   </HOC n>
+ * )
+ * we need to call,
+ * composeComponents(
+ *     HOC n,
+ *     [HOC n-1, { prop1: val1, prop2: val2 }],
+ * )(Child)
+ */
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
 		const [Component, props] = isArray(item) ? item : [item, {}];
@@ -38,6 +66,7 @@ export function composeComponents() {
 	}, children);
 }
 
+
 /**
  * Returns CSS Classnames that will be applied to the component.
  * @param {Object - key: value pair} classes - Material UI styles passed from caller.
@@ -45,6 +74,16 @@ export function composeComponents() {
  */
 const findClassName = (classes, classNames) => isString(classNames) ? classes[classNames] : cn(...classNames.map(c => classes[c]))
 
+
+/**
+ * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
+ * 
+ * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
+ * @param {Object} param1: { classes, keyPrefix }
+ *     classes - Material UI generated CSS Classes. This is used to apply CSS Class(es) to the components based on Config Descriptor value `classNames` provided.
+ *         `classNames` - could be single String OR Array of Strings. Each value shall have entry in `classes` Material UI CSS Object.
+ *     keyPrefix - `key` prefix basically.
+ */
 export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 	// If incoming `componentData` is array, loop over them.
 	if (isArray(componentData)) {

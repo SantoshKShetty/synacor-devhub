@@ -13,20 +13,10 @@ const Header = ({ logo, header }) => (
     </React.Fragment>
 )
 
-
-const leftColStyles = makeStyles({
-    accordion: {}
+const LeftCol = ({ leftCol, classes }) => generateComponent(leftCol, {
+    classes,
+    keyPrefix: 'dashboard-left-col-item'
 });
-
-const LeftCol = ({ leftCol, css }) => {
-    const classes = leftColStyles();
-
-    return generateComponent(leftCol, {
-        classes,
-        keyPrefix: 'dashboard-left-col-item'
-    });
-}
-
 
 const RightCol = ({ subScreens = {} }) => {
     const [, SubScreens] = useScreen();
@@ -47,14 +37,63 @@ const RightCol = ({ subScreens = {} }) => {
     return null;
 }
 
+const styles = makeStyles(
+    ({ spacing }) => ({
+        leftColAccordionSet: {
+            boxShadow: 'none',
+
+            '&:before': {
+                content: 'none'
+            },
+
+            '&.Mui-expanded': {
+                margin: 'revert',
+                marginBottom: `${spacing(2)}px`
+            },
+
+            '& > .MuiAccordionSummary-root.Mui-expanded': {
+                minHeight: 'revert',
+
+                '& > .MuiAccordionSummary-content.Mui-expanded': {
+                    margin: 'revert'
+                }
+            },
+
+            '& > .MuiCollapse-root': {
+                '& .MuiAccordionDetails-root': {
+                    padding: 'revert',
+                    display: 'block',
+
+                    '& > ul': {
+                        margin: 0,
+                        padding: 0,
+                        listStyleType: 'none',
+
+                        '& > li > a': {
+                            display: 'block',
+                            borderRadius: `${spacing(1)}px`,
+                            padding: `${spacing(1)}px ${spacing(2)}px`,
+                            textDecoration: 'none',
+
+                            '&:hover': {
+                                backgroundColor: '#EEEEEE'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+);
 
 export default function DashboardScreen({ info, Layout, subScreens }) {
+    const classes = styles();
     const { logo, header, leftCol } = info;
 
     return (
         <Layout>
             <Header logo={logo} header={header} />
-            <LeftCol leftCol={leftCol} />
+            <LeftCol leftCol={leftCol} classes={classes} />
             <RightCol subScreens={subScreens} />
         </Layout>
     );

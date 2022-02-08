@@ -24,7 +24,8 @@ const useStyles = makeStyles(
                 borderRight: `1px solid ${containerBorderColor}`,
                 width: '20%',
                 minWidth: `${spacing(30)}px`,
-                overflow: 'auto'
+                overflow: 'auto',
+                padding: `${spacing(2)}px ${spacing(1)}px`
             },
             rightColContainer: {
                 overflow: 'auto',
