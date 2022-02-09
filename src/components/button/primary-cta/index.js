@@ -9,8 +9,6 @@ const styles = makeStyles(
             backgroundColor: palette.custom.button.primaryCTA.bgColor,
             color: palette.custom.button.primaryCTA.color,
             border: 'none',
-            maxWidth: 'max-content',
-            padding: `${spacing(0.625)}px ${spacing(6)}px`,
 
             '&:hover': {
                 backgroundColor: palette.custom.button.primaryCTA.bgColorHover

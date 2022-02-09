@@ -9,13 +9,13 @@ import Text from '../text';
 const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
         button: {
+            maxWidth: 'max-content',
+            minWidth: 120,
+            padding: `${spacing(1)}px ${spacing(1.5)}px`,
             backgroundColor: palette.custom.button.default.bgColor,
             color: palette.custom.button.default.color,
-            boxShadow: palette.custom.button.default.shadow,
             border: `1px solid ${palette.custom.button.default.borderColor}`,
-            fontSize: '1rem',
             borderRadius: shape.borderRadius * 2,
-            padding: `${spacing(1.5)}px`,
             textTransform: 'none',
 
             '&:hover': {
@@ -23,10 +23,11 @@ const styles = makeStyles(
             }
         },
         labelTxt: {
+            fontSize: '0.825rem',
+            fontWeight: 400,
             textOverflow: 'ellipsis',
             overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            fontWeight: 'inherit'
+            whiteSpace: 'nowrap'
         }
     })
 );
