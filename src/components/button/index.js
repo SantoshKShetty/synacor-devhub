@@ -10,7 +10,7 @@ const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
         button: {
             maxWidth: 'max-content',
-            minWidth: 120,
+            height: 40,
             padding: `${spacing(1)}px ${spacing(1.5)}px`,
             backgroundColor: palette.custom.button.default.bgColor,
             color: palette.custom.button.default.color,

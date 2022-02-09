@@ -5,17 +5,18 @@ import Box, { HORIZONTAL } from '../../../../components/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
 import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
 import { isEmail, exists } from '../../../../utils/basics';
+import CheckBox from '../../../../components/checkbox';
 
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
     {
-        label: "FULL NAME",
+        label: "FULL NAME AND USERNAME",
         sortKey: "FULL_NAME",
         dataKey: "fullName"
     },
@@ -92,7 +93,22 @@ function prepareData(data) {
     })
 }
 
+const styles = makeStyles(
+    () => ({
+        userTable: {
+            '& .MuiTableCell-root': {
+                padding: 8
+            }
+        },
+        firstCell: {
+            border: 'none',
+            width: 42
+        }
+    })
+)
+
 export default function Users({ info: { filter } = {} }) {
+    const classes = styles();
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);
     const [columns, setColumns] = React.useState(DEFAULT_COLUMNS);
@@ -166,21 +182,28 @@ export default function Users({ info: { filter } = {} }) {
 
     return (
         <Box style={{ width: '100%' }}>
-            <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between', paddingBottom: '1.5rem' }}>
+            <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between', marginBottom: '1.5rem', padding: '0 0 0 60px' }}>
                 <Box direction={HORIZONTAL} style={{ alignItems: 'center' }}>
                     <Box>
-                        <Text color="secondary">Users</Text>
-                        <Text color="secondary" variant="caption">Manage Users</Text>
+                        <Text style={{
+                            color: '#4A4A4A',
+                            fontWeight: 300,
+                            fontSize: '24px'
+                        }}>Users</Text>
+                        <Text style={{
+                            color: '#888888',
+                            fontSize: '14px'
+                        }}>Manage Users</Text>
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <Button label="Add User" style={{ paddingLeft: '1rem', paddingRight: '1rem', marginRight: '1rem' }} />
-                    <Button label="Import from CSV" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} />
+                    <Button label="Add User" style={{ marginRight: '1rem' }} />
+                    <Button label="Import from CSV" />
                 </Box>
             </Box>
-            <Box direction={HORIZONTAL}>
+            <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>
                 <Box style={{ marginRight: '1rem' }}>
-                    <TextField label="Search" variant="outlined" margin="dense" onKeyUp={handleUserSearch} />
+                    <TextField label="Search" variant="outlined" size="small" onKeyUp={handleUserSearch} />
                 </Box>
                 {filter && filter.map((item, key) => (
                     <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
@@ -194,17 +217,24 @@ export default function Users({ info: { filter } = {} }) {
                         <Text color="error">{error}</Text>
                     </Box>
                 ) : (
-                    <TableContainer>
+                    <TableContainer className={classes.userTable}>
                         <Table>
                             <TableHead>
                                 <TableRow>
+                                    <TableCell className={classes.firstCell}>
+                                        <CheckBox color="primary" />
+                                    </TableCell>
                                     {columns.map((c, i) => {
                                         const t = getColumnDetails(c);
 
                                         return (
                                             <TableCell key={`thead-cell-${i}`}>
                                                 <TableSortLabel onClick={handleOnSort(t.sortKey)} active={sortBy === t.sortKey} direction={sortBy === t.sortKey ? sortOrder : 'asc'}>
-                                                    <Text variant="h6">{t.label}</Text>
+                                                    <Text style={{
+                                                        fontSize: 14,
+                                                        fontWeight: 300,
+                                                        color: sortBy === t.sortKey ? '#003C79' : '#888888'
+                                                    }}>{t.label}</Text>
                                                 </TableSortLabel>
                                             </TableCell>
                                         );
@@ -223,12 +253,16 @@ export default function Users({ info: { filter } = {} }) {
                             <TableBody>
                                 {data ? data.map((d, i) => (
                                     <TableRow key={`tbody-row-${i}`} hover>
+                                        <TableCell className={classes.firstCell}>
+                                            <CheckBox color="primary" />
+                                        </TableCell>
                                         {columns.map((c, i) => {
                                             const t = getColumnDetails(c);
 
                                             return (
                                                 <TableCell key={`tbody-cell-${i}`}>
                                                     <Text>{d[t.dataKey]}</Text>
+                                                    {c === 'FULL_NAME' && <Text color="secondary" style={{ fontSize: '12px' }}>{d['userId']}</Text>}
                                                 </TableCell>
                                             )
                                         })}
