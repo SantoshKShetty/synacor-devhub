@@ -20,6 +20,11 @@
                 { "type": "button", "subType": "socialMicrosoft", "label": "Sing In using Microsoft" },
                 { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "subType": "socialGithub", "label": "Sign In using Github" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Don't have an account ? ", "children": [
+                    { "type": "link", "href": "/register", "label": "Register here" }
+                ]}
             ], "styles": { "mb": 10 }}
         ]
     }

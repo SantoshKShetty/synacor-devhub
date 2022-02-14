@@ -134,6 +134,7 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 			return (
 				<Text {...componentProps}>
 					{label}
+					{children && generateComponent(children, { classes, keyPrefix: key })}
 				</Text>
 			);
 		case 'textfield':

@@ -34,6 +34,11 @@
                 { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
                 { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Already have an account? ", "children": [
+                    { "type": "link", "href": "/login", "label": "Sign In" }
+                ]}
             ], "styles": { "mb": 10 }}
         ]
     }
