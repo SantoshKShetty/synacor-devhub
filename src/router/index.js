@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useConfig } from '../provider/config';
 import { useLayout } from '../provider/layout';
 import { useScreen } from '../provider/screen';
@@ -17,7 +17,7 @@ export default function Router() {
         Switch,
         [Suspense, { fallback: <div>Loading app...</div> }]
     )(
-        routes.map(({ path, descriptor, screen, layout, subScreens }, key) => {
+        routes.map(({ path, descriptor, redirectTo, screen, layout, subScreens }, key) => {
             const Screen = Screens[screen];
             const Layout = Layouts[layout];
 
@@ -25,7 +25,7 @@ export default function Router() {
 
             return composeComponents(
                 [Route, { key: `route-${key}`, path, exact: true }],
-                descriptor && [DescriptorLoader, { descriptor, genericInfo }]
+                redirectTo ? [Redirect, { to: redirectTo }] : (descriptor && [DescriptorLoader, { descriptor, genericInfo }])
             )(<Screen info={genericInfo} Layout={Layout} subScreens={subScreens} />);
         })
     );
