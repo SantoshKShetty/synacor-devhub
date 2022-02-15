@@ -8,46 +8,53 @@
         "controls": [
             { "type": "box", "children": [
                 { "type": "heading", "variant": "screenTitle", "label": "Account Type" }
-            ]},
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Are you creating this account for yourself or on behalf of a company?" }
-            ]},
+                { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
                     { "label": "Company", "value": "company", "onSelectRender": [
                         { "type": "box", "children": [
-                            { "type": "text", "label": "Company Name" },
+                            { "type": "box", "children": [
+                                { "type": "text", "label": "Company Name" }
+                            ], "styles": { "mt": 6 }},
                             { "type": "box", "children": [
                                 { "type": "textfield", "label": "Your company name" }
                             ]}
                         ]},
                         { "type": "box", "children": [
-                            { "type": "text", "label": "Company Size" },
+                            { "type": "box", "children": [
+                                { "type": "text", "label": "Company Size" }
+                            ], "styles": { "mt": 6, "mb": 3 }},
                             { "type": "box", "children": [
                                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
                                     { "label": "1-49", "value": "50" },
                                     { "label": "50-200", "value": "200" },
                                     { "label": "201-999", "value": "999" },
                                     { "label": "1000+", "value": "1000" }
-                                ]}
+                                ], "defaultValue": "200"}
                             ]}
                         ]}
                     ]},
                     { "label": "Personal", "value": "personal" }
                 ], "defaultValue": "company" }
-            ]},
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
                 { "type": "divider" }
-            ]},
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "text", "label": "Tenant Domain" }
             ]},
             { "type": "box", "children": [
-                { "type": "text", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
-            ]},
+                { "type": "textfield", "label": "Bonafied tenant domain", "disabled": true }
+            ], "styles": { "mb": 6 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
+            ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
                 { "type": "text", "label": "Region" }
-            ]},
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
                     { "label": "AU", "value": "au" },
@@ -55,10 +62,10 @@
                     { "label": "Japan", "value": "jp" },
                     { "label": "US", "value": "us" }
                 ], "defaultValue": "us" }
-            ]},
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
-            ]},
+                { "type": "text", "variant": "body2", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
                 { "type": "button", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }
             ]}
