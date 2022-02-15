@@ -45,6 +45,11 @@
                     "bgColorHover": "#FFFFFF",
                     "color": "#666666",
                     "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)"
+                },
+                "toggleBtn": {
+                    "color": "#222222",
+                    "borderColor": "#FF9191",
+                    "bgColorActive": "#FFF1F1"
                 }
             }
         }

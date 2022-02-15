@@ -7,6 +7,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloseIcon from '@material-ui/icons/Close';
+import BusinessIcon from '@material-ui/icons/Business';
+import PersonIcon from '@material-ui/icons/Person';
 
 export {
     CheckIcon,
@@ -17,5 +19,7 @@ export {
     KeyboardArrowUpIcon,
     MenuIcon,
     MoreVertIcon,
-    CloseIcon
+    CloseIcon,
+    BusinessIcon,
+    PersonIcon
 }

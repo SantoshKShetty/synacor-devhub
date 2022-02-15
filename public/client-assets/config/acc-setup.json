@@ -14,30 +14,35 @@
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                    { "label": "Company", "value": "company", "onSelectRender": [
-                        { "type": "box", "children": [
+                    { "type": "toggleBtn", "label": "Company", "value": "company",
+                        "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
                             { "type": "box", "children": [
-                                { "type": "text", "label": "Company Name" }
-                            ], "styles": { "mt": 6 }},
+                                { "type": "box", "children": [
+                                    { "type": "text", "label": "Company Name" }
+                                ], "styles": { "mt": 6 }},
+                                { "type": "box", "children": [
+                                    { "type": "textfield", "label": "Your company name" }
+                                ]}
+                            ]},
                             { "type": "box", "children": [
-                                { "type": "textfield", "label": "Your company name" }
+                                { "type": "box", "children": [
+                                    { "type": "text", "label": "Company Size" }
+                                ], "styles": { "mt": 6, "mb": 3 }},
+                                { "type": "box", "children": [
+                                    { "type": "toggleBtnGroup", "exclusive": true, "children": [
+                                        { "label": "1-49", "value": "50" },
+                                        { "label": "50-200", "value": "200" },
+                                        { "label": "201-999", "value": "999" },
+                                        { "label": "1000+", "value": "1000" }
+                                    ], "defaultValue": "200"}
+                                ]}
                             ]}
-                        ]},
-                        { "type": "box", "children": [
-                            { "type": "box", "children": [
-                                { "type": "text", "label": "Company Size" }
-                            ], "styles": { "mt": 6, "mb": 3 }},
-                            { "type": "box", "children": [
-                                { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                                    { "label": "1-49", "value": "50" },
-                                    { "label": "50-200", "value": "200" },
-                                    { "label": "201-999", "value": "999" },
-                                    { "label": "1000+", "value": "1000" }
-                                ], "defaultValue": "200"}
-                            ]}
-                        ]}
-                    ]},
-                    { "label": "Personal", "value": "personal" }
+                        ]
+                    },
+                    {
+                        "type": "toggleBtn", "label": "Personal", "value": "personal",
+                        "icon": { "type": "icon", "icon": "PersonIcon" }
+                    }
                 ], "defaultValue": "company" }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
