@@ -1,34 +1,41 @@
 {
     "screenInfo": [
-        { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
-        { "type": "list", "children": [
-            { "type": "text", "label": "7,000 Monthly Active Users" },
-            { "type": "text", "label": "Email/Password Login" },
-            { "type": "text", "label": "3 Social Login Providers" },
-            { "type": "text", "label": "User Data Storage" },
-            { "type": "text", "label": "Customizable Login Interfaces" }
-        ]},
-        { "type": "text", "label": "Trusted by fortune 500 companies and their 100+ million users" }
+        { "type": "box", "children": [
+            { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
+            { "type": "box", "children": [
+                { "type": "list", "children": [
+                    { "type": "text", "label": "7,000 Monthly Active Users" },
+                    { "type": "text", "label": "Email/Password Login" },
+                    { "type": "text", "label": "3 Social Login Providers" },
+                    { "type": "text", "label": "User Data Storage" },
+                    { "type": "text", "label": "Customizable Login Interfaces" }
+                ]}
+            ], "styles": { "mb": 1, "mt": 1 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "label": "Trusted by fortune 500 companies and their 100+ million users" }
+            ], "styles": { "mb": 1 }},
+            { "type": "box", "styles": { "height": 160, "border": "1px dashed" }}
+        ], "styles": { "mt": { "md": 5 } }}
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
                 { "type": "heading", "variant": "screenTitle", "label": "Create Account" }
-            ]},
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "textfield", "variant": "email", "label": "Email" }
-            ]},
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "textfield", "variant": "password", "label": "Password" }
-            ]},
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "By clicking on any of the Sign Up options, ,I agree to the terms of service." }
-            ]},
+                { "type": "text", "variant": "body2", "label": "By clicking on any of the Sign Up options, I agree to the terms of service." }
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
                 { "type": "button", "variant": "primary", "label": "Sign Up", "routeTo": "/setup" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
-                ], "styles": { "m": 2 }},
+                ], "styles": { "mb": 5, "mt": 5 }},
                 { "type": "button", "variant": "socialGoogle", "label": "Sign Up with Google" },
                 { "type": "box" , "styles": { "mb": 2 }},
                 { "type": "button", "variant": "socialMicrosoft", "label": "Sing Up with Microsoft" },
@@ -36,7 +43,10 @@
                 { "type": "button", "variant": "socialGithub", "label": "Sign up with Github" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Already have an account? ", "children": [
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 5, "mt": 2 }},
+                { "type": "text", "variant": "body2", "label": "Already have an account? ", "children": [
                     { "type": "link", "href": "/login", "label": "Sign In" }
                 ]}
             ], "styles": { "mb": 10 }}

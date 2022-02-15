@@ -1,6 +1,8 @@
 {
     "screenInfo": [
-        { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
+        { "type": "box", "children": [
+            { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
+        ], "styles": { "mt": { "md": 30 } }}
     ],
     "form": {
         "controls": [

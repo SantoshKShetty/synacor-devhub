@@ -1,6 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
-import { isArray, exists, isString } from "./basics";
+import { isArray, exists } from "./basics";
 import Text from '../components/text';
 import Box from '../components/box';
 import Divider from '../components/divider';
@@ -120,7 +119,7 @@ export function generateComponent(componentData) {
 			);
 		case 'text':
 			return (
-				<Text {...componentProps}>
+				<Text {...componentProps} variant={variant}>
 					{label}
 					{children && generateComponent(children)}
 				</Text>

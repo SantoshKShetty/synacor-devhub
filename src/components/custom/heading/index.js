@@ -5,8 +5,20 @@ import Text from '../../text';
 const styles = makeStyles(
     () => ({
         screenDesc: {
-            fontSize: 40,
-            fontWeight: 900
+            fontSize: '2.5rem',
+            fontWeight: 900,
+
+            '@media (max-width: 1340px)': {
+                fontSize: '2.2rem'
+            },
+
+            '@media (max-width: 1240px)': {
+                fontSize: '2rem'
+            },
+
+            '@media (max-width: 1200px)': {
+                fontSize: '1.8rem'
+            }
         },
         screenTitle: {
             fontSize: 24,

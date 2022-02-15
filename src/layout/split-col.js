@@ -4,7 +4,7 @@ import { makeStyles } from '../provider/theme';
 import { generateComponent } from '../utils/component';
 
 const useStyles = makeStyles(
-    ({ palette: { custom = {} }, breakpoints }) => ({
+    ({ palette, breakpoints, spacing }) => ({
         splitColLayout: {
             [breakpoints.down('sm')]: {
                 flexDirection: 'column-reverse'
@@ -15,23 +15,21 @@ const useStyles = makeStyles(
             }
         },
         leftCol: {
-            color: custom.splitColLayout.leftCol.color,
-            backgroundColor: custom.splitColLayout.leftCol.bgColor,
+            color: palette.custom.splitColLayout.leftCol.color,
+            backgroundColor: palette.custom.splitColLayout.leftCol.bgColor,
 
             [breakpoints.up('md')]: {
                 height: '100vh',
-                width: '45%',
-                minWidth: 500,
+                width: '42%',
+                minWidth: 460,
                 position: 'fixed',
-                paddingLeft: 110,
-                paddingRight: 80,
-                justifyContent: 'center'
+                padding: `${spacing(3.75)}px ${spacing(10)}px ${spacing(3.75)}px ${spacing(13.75)}px`
             }
         },
         rightCol: {
             [breakpoints.up('md')]: {
                 padding: '120px 0',
-                marginLeft: '50%',
+                marginLeft: '47%',
                 flexGrow: 1
             }
         },
