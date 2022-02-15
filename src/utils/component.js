@@ -24,6 +24,9 @@ import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
 import IconButton from '../components/button/icon-button';
+import Heading from '../components/custom/heading';
+import HeaderMenu from '../components/custom/header-menu';
+import AccordionMenu from '../components/custom/accordion-menu';
 
 
 /**
@@ -68,35 +71,24 @@ export function composeComponents() {
 
 
 /**
- * Returns CSS Classnames that will be applied to the component.
- * @param {Object - key: value pair} classes - Material UI styles passed from caller.
- * @param {String or Array of Strings} classNames - name of `key` given inside `classes`.
- */
-const findClassName = (classes, classNames) => isString(classNames) ? classes[classNames] : cn(...classNames.map(c => classes[c]))
-
-
-/**
  * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
  * 
  * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
- * @param {Object} param1: { classes, keyPrefix }
- *     classes - Material UI generated CSS Classes. This is used to apply CSS Class(es) to the components based on Config Descriptor value `classNames` provided.
- *         `classNames` - could be single String OR Array of Strings. Each value shall have entry in `classes` Material UI CSS Object.
- *     keyPrefix - `key` prefix basically.
  */
-export function generateComponent(componentData, { classes, keyPrefix } = {}) {
+export function generateComponent(componentData) {
 	// If incoming `componentData` is array, loop over them.
 	if (isArray(componentData)) {
 		return componentData.map(
 			(c, i) => generateComponent({
 				...c,
-				key: `${keyPrefix || 'component-key'}-${i}`
-			}, { classes, keyPrefix })
+				key: componentData?.key || `component-${Math.random() * 100000}-${i}`
+			})
 		);
 	}
 
 	const {
-		type, subType,
+		type,
+		variant,
 		key,
 		label,
 		defaultValue,
@@ -106,7 +98,6 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 		events,
 		fieldName,
 		handleChange,
-		classNames,
 		...props
 	} = componentData;
 
@@ -117,28 +108,25 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 		...props,
 		...styles,
 		...events,
-		...tempChangeEvent,
-		...classNames && {
-			className: findClassName(classes, classNames)
-		}
+		...tempChangeEvent
 	};
 
 	switch(type) {
 		case 'box':
 			return (
 				<Box {...componentProps}>
-					{children && generateComponent(children, { classes, keyPrefix: key })}
+					{children && generateComponent(children)}
 				</Box>
 			);
 		case 'text':
 			return (
 				<Text {...componentProps}>
 					{label}
-					{children && generateComponent(children, { classes, keyPrefix: key })}
+					{children && generateComponent(children)}
 				</Text>
 			);
 		case 'textfield':
-			switch(subType) {
+			switch(variant) {
 				case 'email':
 					return <EmailField {...componentProps} label={label} />
 				case 'password':
@@ -147,7 +135,7 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 					return <TextField {...componentProps} label={label} />
 			}
 		case 'button':
-			switch(subType) {
+			switch(variant) {
 				case 'primary':
 					return <PrimaryCTABtn {...componentProps} label={label} />
 				case 'secondary':
@@ -178,7 +166,7 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 		case 'iconButton':
 			return (
 				<IconButton {...componentProps}>
-					{children && generateComponent(children, { classes, keyPrefix: key })}
+					{children && generateComponent(children)}
 				</IconButton>
 			);
 		case 'icon':
@@ -190,5 +178,11 @@ export function generateComponent(componentData, { classes, keyPrefix } = {}) {
 			return <CheckBox {...componentProps} label={label} />
 		case 'multiChoiceMenu':
 			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
+		case 'heading':
+			return <Heading {...componentProps} label={label} variant={variant} />
+		case 'headerMenu':
+			return <HeaderMenu {...componentProps} baseKey={key} items={children} />
+		case 'accordionMenu':
+			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
 	}
 }

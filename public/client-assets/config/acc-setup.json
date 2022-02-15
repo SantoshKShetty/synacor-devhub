@@ -1,11 +1,11 @@
 {
     "screenInfo": [
-        { "type": "text", "label": "Before we set you up for success!", "variant": "h4" }
+        { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Account Type" }
+                { "type": "heading", "variant": "screenTitle", "label": "Account Type" }
             ]},
             { "type": "box", "children": [
                 { "type": "text", "label": "Are you creating this account for yourself or on behalf of a company?" }
@@ -58,7 +58,7 @@
                 { "type": "text", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
             ]},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Create Account", "routeTo": "/dashboard" }
+                { "type": "button", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }
             ]}
         ]
     }

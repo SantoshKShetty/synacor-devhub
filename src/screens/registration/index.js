@@ -2,15 +2,11 @@ import React from "react";
 import { generateComponent } from "../../utils/component";
 import Form from "../../components/form";
 
-const InfoSection = ({ screenInfo = [] }) => generateComponent(screenInfo, {
-    keyPrefix: 'intro-sec-component'
-})
+const InfoSection = ({ screenInfo = [] }) => generateComponent(screenInfo)
 
 const FormSection = ({ form: { controls } }) => (
     <Form>
-        {generateComponent(controls, {
-            keyPrefix: 'form-sec-component'
-        })}
+        {generateComponent(controls)}
     </Form>
 )
 

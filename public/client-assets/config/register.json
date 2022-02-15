@@ -1,6 +1,6 @@
 {
     "screenInfo": [
-        { "type": "text", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!", "variant": "h4" },
+        { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
         { "type": "list", "children": [
             { "type": "text", "label": "7,000 Monthly Active Users" },
             { "type": "text", "label": "Email/Password Login" },
@@ -13,27 +13,27 @@
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Create Account" }
+                { "type": "heading", "variant": "screenTitle", "label": "Create Account" }
             ]},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "email", "label": "Email" }
+                { "type": "textfield", "variant": "email", "label": "Email" }
             ]},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "password", "label": "Password" }
+                { "type": "textfield", "variant": "password", "label": "Password" }
             ]},
             { "type": "box", "children": [
                 { "type": "text", "label": "By clicking on any of the Sign Up options, ,I agree to the terms of service." }
             ]},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Sign Up", "routeTo": "/setup" },
+                { "type": "button", "variant": "primary", "label": "Sign Up", "routeTo": "/setup" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "m": 2 }},
-                { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
+                { "type": "button", "variant": "socialGoogle", "label": "Sign Up with Google" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
+                { "type": "button", "variant": "socialMicrosoft", "label": "Sing Up with Microsoft" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
+                { "type": "button", "variant": "socialGithub", "label": "Sign up with Github" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "text", "label": "Already have an account? ", "children": [

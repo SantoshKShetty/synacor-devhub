@@ -1,7 +1,7 @@
 {
     "header": [
         { "type": "box", "direction": "row", "children": [
-            { "type": "menu", "opensBy": {
+            { "type": "headerMenu", "opensBy": {
                     "type": "iconButton",
                     "children": [
                         { "type": "icon", "icon": "HelpOutlineIcon" }
@@ -17,7 +17,7 @@
                     { "type": "link", "href": "", "label": "Training" }
                 ]
             },
-            { "type": "menu", "opensBy": {
+            { "type": "headerMenu", "opensBy": {
                     "type": "iconButton",
                     "children": [
                         { "type": "icon", "icon": "AppsIcon" }
@@ -31,7 +31,7 @@
                     { "type": "link", "href": "", "label": "End-user dashboard" }
                 ]
             },
-            { "type": "menu", "opensBy": {
+            { "type": "headerMenu", "opensBy": {
                     "type": "iconButton",
                     "children": [
                         { "type": "avatar", "label": "JD" },
@@ -46,13 +46,11 @@
                     { "type": "link", "href": "", "label": "My Settings" },
                     { "type": "link", "href": "", "label": "Sign Out" }
                 ]
-            }]
+            }], "styles": { "alignItems": "center" }
         }
     ],
     "leftCol": [
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Dashboard",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Dashboard", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "/dashboard", "label": "Dashboard" },
@@ -62,9 +60,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Directory",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Directory", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "/dashboard/users", "label": "Users" },
@@ -74,9 +70,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Customization",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Customization", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "", "label": "Brading" },
@@ -86,18 +80,14 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Applications",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Applications", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "", "label": "Applications" }
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Security",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Security", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "", "label": "Authentication" },
@@ -106,9 +96,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Reports",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Reports", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "", "label": "Reports" },
@@ -116,9 +104,7 @@
                 ]}
             ]
         },
-        { "type": "accordion", "classNames": "leftColAccordion",
-            "label": "Settings",
-            "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Settings", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "", "label": "Account" },
