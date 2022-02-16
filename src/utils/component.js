@@ -14,7 +14,8 @@ import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
 import Button from '../components/button';
 import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
-import List from '../components/list';
+import { UnOrderedList, OrderedList } from '../components/list';
+import AdvancedList from '../components/list/advanced';
 import Image from '../components/image';
 import Accordion from '../components/accordion';
 import Menu from '../components/menu';
@@ -151,7 +152,16 @@ export function generateComponent(componentData) {
 		case 'divider':
 			return <Divider {...componentProps} />
 		case 'list':
-			return <List {...componentProps} baseKey={key} items={children} />
+			switch(variant) {
+				case 'ordered':
+					return <OrderedList {...componentProps} baseKey={key} items={children} />
+				case 'unordered':
+					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
+				case 'advanced':
+					return <AdvancedList {...componentProps} baseKey={key} items={children} />
+				default:
+					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
+			}
 		case 'link':
 			return <Link {...componentProps} label={label} />
 		case 'toggleBtnGroup':

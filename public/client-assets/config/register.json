@@ -3,13 +3,16 @@
         { "type": "box", "children": [
             { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
             { "type": "box", "children": [
-                { "type": "list", "children": [
-                    { "type": "text", "label": "7,000 Monthly Active Users" },
-                    { "type": "text", "label": "Email/Password Login" },
-                    { "type": "text", "label": "3 Social Login Providers" },
-                    { "type": "text", "label": "User Data Storage" },
-                    { "type": "text", "label": "Customizable Login Interfaces" }
-                ]}
+                { "type": "list", "variant": "advanced",
+                    "listStyle": { "type": "icon", "icon": "CheckIcon", "styles": { "color": "#0078F3" } },
+                    "children": [
+                        { "type": "text", "label": "7,000 Monthly Active Users" },
+                        { "type": "text", "label": "Email/Password Login" },
+                        { "type": "text", "label": "3 Social Login Providers" },
+                        { "type": "text", "label": "User Data Storage" },
+                        { "type": "text", "label": "Customizable Login Interfaces" }
+                    ]
+                }
             ], "styles": { "mb": 1, "mt": 1 }},
             { "type": "box", "children": [
                 { "type": "text", "variant": "body2", "label": "Trusted by fortune 500 companies and their 100+ million users" }

@@ -1,13 +1,21 @@
 import React from 'react';
 import { generateComponent } from '../../utils/component';
 
-export default function List({ baseKey, items }) {
+function List({ containerTag: ContainerTag, baseKey, items, ...props }) {
     return items && (
-        <ul>
+        <ContainerTag {...props}>
             {items.map((item, i) => {
                 const key = `${baseKey}-${i}`;
                 return <li key={key}>{generateComponent({ ...item, key })}</li>
             })}
-        </ul>
-    );
+        </ContainerTag>
+    )
+}
+
+export function OrderedList({ baseKey, items }) {
+    return <List containerTag="ol" baseKey={baseKey} items={items} />
+}
+
+export function UnOrderedList({ baseKey, items, listStyle: { type: listStyleType } = {} }) {
+    return <List containerTag="ul" baseKey={baseKey} items={items} style={{ listStyleType }} />
 }
