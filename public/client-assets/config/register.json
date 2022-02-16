@@ -13,11 +13,36 @@
                         { "type": "text", "label": "Customizable Login Interfaces" }
                     ]
                 }
-            ], "styles": { "mb": 1, "mt": 1 }},
+            ], "styles": { "mb": 3, "mt": 1 }},
             { "type": "box", "children": [
                 { "type": "text", "variant": "body2", "label": "Trusted by fortune 500 companies and their 100+ million users" }
             ], "styles": { "mb": 1 }},
-            { "type": "box", "styles": { "height": 160, "border": "1px dashed" }}
+            { "type": "box", "direction": "row", "children": [
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/hbo.png", "width": "76", "height": "38" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/youtube.png", "width": "95", "height": "40" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/epix.png", "width": "71", "height": "42" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/sxm.png", "width": "98", "height": "28" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/openfit.png", "width": "95", "height": "34" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/sling.png", "width": "76", "height": "46" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/tmobile.png", "width": "76", "height": "26" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/dish.png", "width": "74", "height": "39" }
+                ], "styles": { "m": 1 }}
+            ], "styles": { "flexWrap": "wrap", "alignItems": "center" }}
         ], "styles": { "mt": { "md": 5 } }}
     ],
     "form": {

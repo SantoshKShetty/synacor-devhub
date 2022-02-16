@@ -23,6 +23,10 @@ const useStyles = makeStyles(
                 width: '42%',
                 minWidth: 460,
                 position: 'fixed',
+                padding: `${spacing(3.75)}px ${spacing(8.75)}px ${spacing(3.75)}px ${spacing(11.25)}px`
+            },
+
+            [breakpoints.up('lg')]: {
                 padding: `${spacing(3.75)}px ${spacing(10)}px ${spacing(3.75)}px ${spacing(13.75)}px`
             }
         },
