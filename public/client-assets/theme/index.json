@@ -30,9 +30,9 @@
                     "borderColor": "#CCCCCC"
                 },
                 "primaryCTA": {
-                    "bgColor": "#CEE7FF",
+                    "bgColor": "#FFFFFF",
                     "bgColorHover": "#CEE7FF",
-                    "color": "#000000"
+                    "color": "#222222"
                 },
                 "secondaryCTA": {
                     "bgColor": "#FFFFFF",

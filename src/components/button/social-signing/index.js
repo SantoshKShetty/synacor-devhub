@@ -13,6 +13,8 @@ const styles = makeStyles(
             textTransform: 'uppercase',
             justifyContent: 'start',
             paddingLeft: spacing(3),
+            maxWidth: 'revert',
+            height: '44px',
 
             '&:hover': {
                 backgroundColor: palette.custom.button.socialSign.bgColorHover
