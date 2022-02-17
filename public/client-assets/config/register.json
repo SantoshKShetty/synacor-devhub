@@ -66,9 +66,13 @@
                 ], "styles": { "mb": 5, "mt": 5 }},
                 { "type": "button", "variant": "socialGithub", "label": "Sign Up With Github" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google" },
+                { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google", "startIcon": {
+                    "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
+                }},
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft" }
+                { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft", "startIcon": {
+                    "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
+                }}
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "box" , "children": [
@@ -77,7 +81,7 @@
                 { "type": "text", "variant": "body2", "label": "Already have an account? ", "color": "textPrimary", "children": [
                     { "type": "link", "href": "/login", "label": "Sign In" }
                 ]}
-            ], "styles": { "mb": 10 }}
+            ], "styles": { "mb": 5 }}
         ]
     }
 }

@@ -6,7 +6,7 @@ export default function GithubSignBtn(props) {
     return (
         <SocialSigningBtn
             {...props}
-            startIcon={<GitHubIcon style={{ fontSize: 24 }} />}
+            startIcon={<GitHubIcon style={{ fontSize: 24 }} color="primary" />}
         />
     );
 }
