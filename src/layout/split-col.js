@@ -15,8 +15,8 @@ const useStyles = makeStyles(
             }
         },
         leftCol: {
-            color: palette.custom.splitColLayout.leftCol.color,
-            backgroundColor: palette.custom.splitColLayout.leftCol.bgColor,
+            color: palette.custom.layout.split.leftCol.color,
+            backgroundColor: palette.custom.layout.split.leftCol.bgColor,
 
             [breakpoints.up('md')]: {
                 height: '100vh',

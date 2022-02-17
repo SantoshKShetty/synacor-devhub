@@ -7,7 +7,6 @@ const styles = makeStyles(
     ({ palette }) => ({
         primaryCta: {
             backgroundColor: palette.custom.button.primaryCTA.bgColor,
-            color: palette.custom.button.primaryCTA.color,
             width: '190px',
             height: '32px',
             maxWidth: 'revert',

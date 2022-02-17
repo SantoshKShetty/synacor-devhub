@@ -9,6 +9,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloseIcon from '@material-ui/icons/Close';
 import BusinessIcon from '@material-ui/icons/Business';
 import PersonIcon from '@material-ui/icons/Person';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 export {
     CheckIcon,
@@ -21,5 +22,6 @@ export {
     MoreVertIcon,
     CloseIcon,
     BusinessIcon,
-    PersonIcon
+    PersonIcon,
+    GitHubIcon
 }

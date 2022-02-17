@@ -10,12 +10,12 @@ const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
         toggleBtn: {
             borderRadius: shape.borderRadius * 3,
-            color: palette.custom.button.toggleBtn.color,
+            color: palette.text.primary,
             borderColor: palette.custom.button.toggleBtn.borderColor,
             textTransform: 'capitalize',
 
             '&.Mui-selected': {
-                color: palette.custom.button.toggleBtn.color,
+                color: palette.text.primary,
                 backgroundColor: palette.custom.button.toggleBtn.bgColorActive,
                 borderColor: palette.custom.button.toggleBtn.borderColor
             }

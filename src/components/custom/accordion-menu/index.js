@@ -28,7 +28,7 @@ const styles = makeStyles(
                 '& > .MuiAccordionSummary-content': {
                     fontSize: typography.fontSize,
                     fontWeight: typography.fontWeightRegular,
-                    color: palette.custom.dashboardLayout.leftCol.accordion.text.color,
+                    color: palette.custom.layout.dashboard.leftCol.accordion.summary.color,
 
                     '& > .MuiTypography-body1': {
                         fontSize: 'inherit',
@@ -50,18 +50,18 @@ const styles = makeStyles(
                         '& > li > a': {
                             fontSize: typography.fontSize,
                             fontWeight: typography.fontWeightMedium,
-                            color: palette.custom.dashboardLayout.leftCol.accordion.link.color,
+                            color: palette.text.primary,
                             display: 'block',
                             borderRadius: `${spacing(1)}px`,
                             padding: `${spacing(1)}px ${spacing(2)}px`,
                             textDecoration: 'none',
 
                             '&:hover': {
-                                backgroundColor: palette.custom.dashboardLayout.leftCol.accordion.link.bgColorHover
+                                backgroundColor: palette.custom.layout.dashboard.leftCol.accordion.content.bgColorHover
                             },
 
                             '&.activeLink': {
-                                backgroundColor: palette.custom.dashboardLayout.leftCol.accordion.link.bgColorActive
+                                backgroundColor: palette.custom.layout.dashboard.leftCol.accordion.content.bgColorActive
                             }
                         }
                     }

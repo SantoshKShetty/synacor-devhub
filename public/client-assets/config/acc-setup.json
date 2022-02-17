@@ -2,15 +2,15 @@
     "screenInfo": [
         { "type": "box", "children": [
             { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
-        ], "styles": { "mt": { "md": 30 } }}
+        ], "styles": { "mt": { "md": 25 } }}
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "heading", "variant": "screenTitle", "label": "Account Type" }
+                { "type": "heading", "variant": "screenTitle", "label": "Account Type", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?" }
+                { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
@@ -18,7 +18,7 @@
                         "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
                             { "type": "box", "children": [
                                 { "type": "box", "children": [
-                                    { "type": "text", "label": "Company Name" }
+                                    { "type": "text", "label": "Company Name", "color": "textPrimary" }
                                 ], "styles": { "mt": 6 }},
                                 { "type": "box", "children": [
                                     { "type": "textfield", "label": "Your company name" }
@@ -26,7 +26,7 @@
                             ]},
                             { "type": "box", "children": [
                                 { "type": "box", "children": [
-                                    { "type": "text", "label": "Company Size" }
+                                    { "type": "text", "label": "Company Size", "color": "textPrimary" }
                                 ], "styles": { "mt": 6, "mb": 3 }},
                                 { "type": "box", "children": [
                                     { "type": "toggleBtnGroup", "exclusive": true, "children": [
@@ -49,16 +49,16 @@
                 { "type": "divider" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Tenant Domain" }
+                { "type": "text", "label": "Tenant Domain", "color": "textPrimary" }
             ]},
             { "type": "box", "children": [
                 { "type": "textfield", "label": "Bonafied tenant domain", "disabled": true }
             ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
-                { "type": "text", "variant": "body2", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
+                { "type": "text", "variant": "body2", "color": "textPrimary", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
             ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Region" }
+                { "type": "text", "label": "Region", "color": "textPrimary" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
@@ -69,7 +69,7 @@
                 ], "defaultValue": "us" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "text", "variant": "body2", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
+                { "type": "text", "variant": "body2", "color": "textPrimary", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
                 { "type": "button", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }

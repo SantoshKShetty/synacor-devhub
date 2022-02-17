@@ -4,6 +4,9 @@ import { CheckIcon } from '../../../icons';
 
 export default function GoogleSignBtn(props) {
     return (
-        <SocialSigningBtn {...props} startIcon={<CheckIcon />} />
+        <SocialSigningBtn
+            {...props}
+            startIcon={<CheckIcon />}
+        />
     );
 }

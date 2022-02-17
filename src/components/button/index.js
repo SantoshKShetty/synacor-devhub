@@ -13,7 +13,6 @@ const styles = makeStyles(
             height: 40,
             padding: `${spacing(1)}px ${spacing(1.5)}px`,
             backgroundColor: palette.custom.button.default.bgColor,
-            color: palette.custom.button.default.color,
             border: `1px solid ${palette.custom.button.default.borderColor}`,
             borderRadius: shape.borderRadius * 2,
             textTransform: 'none',
