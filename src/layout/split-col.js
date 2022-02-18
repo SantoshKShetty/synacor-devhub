@@ -11,7 +11,11 @@ const useStyles = makeStyles(
             },
 
             '& > div': {
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+
+                [breakpoints.down('sm')]: {
+                    padding: '5%'
+                }
             }
         },
         leftCol: {
@@ -43,6 +47,8 @@ const useStyles = makeStyles(
             }
         },
         mobileLogo: {
+            marginBottom: spacing(4),
+
             [breakpoints.up('md')]: {
                 display: 'none'
             }

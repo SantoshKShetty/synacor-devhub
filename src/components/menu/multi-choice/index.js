@@ -15,6 +15,8 @@ export default function MultiChoiceMenu({
     ...props
 }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const isMenuOpen = Boolean(anchorEl);
+
     const [selected, setSelected] = React.useState([]);
     const [tempSelected, setTempSelected] = React.useState([]);
 
@@ -63,7 +65,7 @@ export default function MultiChoiceMenu({
 
     const MenuOpenController = createMenuOpener({
         opensBy,
-        isMenuOpen: Boolean(anchorEl),
+        isMenuOpen,
         onClick: handleOpen,
         selectedItemsLabel: getSelectedItemsLabel()
     });
@@ -75,7 +77,7 @@ export default function MultiChoiceMenu({
                 <Popover
                     {...props}
                     anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
+                    open={isMenuOpen}
                     onClose={handleClose}
                     anchorOrigin={anchorOrigin}
                     transformOrigin={transformOrigin}
