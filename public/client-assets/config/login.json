@@ -15,13 +15,13 @@
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "mb": 5, "mt": 5 }},
-                { "type": "button", "variant": "socialGithub", "label": "Sign Up With Github" },
+                { "type": "button", "variant": "socialGithub", "label": "Sign In With Github" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google", "startIcon": {
+                { "type": "button", "variant": "socialGoogle", "label": "Sign In With Google", "startIcon": {
                     "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
                 }},
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft", "startIcon": {
+                { "type": "button", "variant": "socialMicrosoft", "label": "Sign In With Microsoft", "startIcon": {
                     "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
                 }}
             ], "styles": { "mb": 3 }},
