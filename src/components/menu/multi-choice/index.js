@@ -1,6 +1,6 @@
 import React from 'react';
 import Popover from '../../popover';
-import Box, { HORIZONTAL } from '../../box';
+import Box, { HORIZONTAL } from '../../containers/box';
 import { createMenuOpener } from '../utils';
 import { generateComponent } from '../../../utils/component';
 import Link from '../../link';

@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../../../../components/form';
 import { generateComponent } from '../../../../utils/component';
-import Box, { HORIZONTAL } from '../../../../components/box';
+import Box, { HORIZONTAL } from '../../../../components/containers/box';
 import PrimaryCTABtn from '../../../../components/button/primary-cta';
 import SecondaryCTABtn from '../../../../components/button/secondary-cta';
 

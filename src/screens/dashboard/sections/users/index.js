@@ -1,7 +1,7 @@
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
-import Box, { HORIZONTAL } from '../../../../components/box';
+import Box, { HORIZONTAL } from '../../../../components/containers/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
