@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../../../../components/form';
 import PrimaryCTABtn from '../../../../components/button/primary-cta';
-import Box from '../../../../components/box';
+import Box from '../../../../components/containers/box';
 import { generateComponent } from '../../../../utils/component';
 
 const InfoSection = ({ screenInfo = [] }) => screenInfo.map(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { isArray, exists } from "./basics";
 import Text from '../components/text';
-import Box from '../components/box';
+import Box from '../components/containers/box';
 import Divider from '../components/divider';
 import TextField from '../components/textfield';
 import EmailField from '../components/textfield/email';
@@ -23,6 +23,7 @@ import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
 import IconButton from '../components/button/icon-button';
+import Grid from '../components/containers/grid';
 
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
@@ -128,5 +129,7 @@ export function generateComponent(componentData) {
 			return <CheckBox {...componentProps} label={label} />
 		case 'multiChoiceMenu':
 			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
+		case 'grid':
+			return <Grid {...componentProps} baseKey={key} items={children} />
 	}
 }
