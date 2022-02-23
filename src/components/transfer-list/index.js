@@ -23,6 +23,8 @@ const styles = makeStyles(
             border: '1px solid #CCCCCC',
             borderRadius: 8,
             padding: 8,
+            width: 32,
+            height: 32,
 
             '&:hover': {
                 backgroundColor: '#CEE7FF'
@@ -105,9 +107,9 @@ export default function TransferList({ title, items, selected, defaultValue, onA
             <IconButton onClick={handleOpen}>
                 <MoreVertIcon />
             </IconButton>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%', maxWidth: 700 } }}>
                 <DialogTitle>
-                    <Box type={HORIZONTAL} style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Text>{title}</Text>
                         <IconButton onClick={handleClose}>
                             <CloseIcon />
@@ -120,7 +122,7 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                             <Box mb={2}><Text className={classes.colLabel}>Available fields</Text></Box>
                             <Box>{LeftSideControlls}</Box>
                         </Grid>
-                        <Grid variant={GRID_ITEM} xs={2}>
+                        <Grid variant={GRID_ITEM} xs={1}>
                             <Box style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
                                 <IconButton onClick={handleLeftMove} disabled={rightSide.length === 0} className={classes.iconBtn}>
                                     <ArrowBack />
@@ -137,9 +139,9 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <PrimaryCTABtn onClick={handleClose} label="Cancel" />
-                    <PrimaryCTABtn label="Reset to Default" onClick={handleResetToDefault} />
-                    <PrimaryCTABtn label="Apply" onClick={handleApply} />
+                    <PrimaryCTABtn onClick={handleClose} label="Cancel" style={{ width: 140 }} />
+                    <PrimaryCTABtn label="Reset to Default" onClick={handleResetToDefault} style={{ width: 140 }} />
+                    <PrimaryCTABtn label="Apply" onClick={handleApply} style={{ width: 140 }} />
                 </DialogActions>
             </Dialog>
         </React.Fragment>
