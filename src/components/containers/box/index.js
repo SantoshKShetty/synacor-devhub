@@ -9,10 +9,10 @@ export const VERTICAL = 'column';
  * Returns Containerized `Div` element with children.
  * 
  * @param {String} display - Basically all values that `CSS` `display` property supports - flex / inline / block / inline-block / table etc... 
- * @param {String} type - HORIZONTAL or VERTICAL placement of childrens.
+ * @param {String} direction - HORIZONTAL or VERTICAL placement of childrens.
  */
-export default function Box({ display = 'flex', type = VERTICAL, className, ...props }) {
+export default function Box({ display = 'flex', direction = VERTICAL, className, ...props }) {
     return (
-        <ReactBox {...props} display={display} flexDirection={type} className={className} />
+        <ReactBox {...props} display={display} flexDirection={direction} className={className} />
     );
 };
