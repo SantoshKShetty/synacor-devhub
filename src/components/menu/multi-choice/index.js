@@ -15,6 +15,8 @@ export default function MultiChoiceMenu({
     ...props
 }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const isMenuOpen = Boolean(anchorEl);
+
     const [selected, setSelected] = React.useState([]);
     const [tempSelected, setTempSelected] = React.useState([]);
 
@@ -63,7 +65,7 @@ export default function MultiChoiceMenu({
 
     const MenuOpenController = createMenuOpener({
         opensBy,
-        isMenuOpen: Boolean(anchorEl),
+        isMenuOpen,
         onClick: handleOpen,
         selectedItemsLabel: getSelectedItemsLabel()
     });
@@ -75,14 +77,14 @@ export default function MultiChoiceMenu({
                 <Popover
                     {...props}
                     anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
+                    open={isMenuOpen}
                     onClose={handleClose}
                     anchorOrigin={anchorOrigin}
                     transformOrigin={transformOrigin}
                     {...anchorOrigin && { getContentAnchorEl: null }}
                     >
                     <Box p={3} style={{ minWidth: 200 }}>
-                        <Box type={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
+                        <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
                             <Link href="#" label="Select All" onClick={handleSelectAll} />
                             <Link href="#" label="Clear All" onClick={handleClearAll} />
                         </Box>
@@ -96,7 +98,7 @@ export default function MultiChoiceMenu({
                                 events: { onClick: handleSelect }
                             }))}
                         </Box>
-                        <Box type={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
+                        <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>
                             <Link href="#" label="Cancel" onClick={handleClose} />
                             <Link href="#" label="Apply" onClick={handleApplySelected} />
                         </Box>

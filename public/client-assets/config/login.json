@@ -2,25 +2,34 @@
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Login Here", "variant": "h4" }
-            ]},
+                { "type": "heading", "variant": "screenTitle", "label": "Login", "color": "textPrimary" }
+            ], "styles": { "mb": 2, "mt": 4 }},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "email", "label": "Email" }
-            ]},
+                { "type": "textfield", "variant": "email", "label": "Email" }
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "password", "label": "Password" }
-            ]},
+                { "type": "textfield", "variant": "password", "label": "Password" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Sign In", "routeTo": "/dashboard" },
+                { "type": "button", "variant": "primary", "label": "Sign In", "routeTo": "/dashboard" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
-                ], "styles": { "m": 2 }},
-                { "type": "button", "subType": "socialGoogle", "label": "Sign In using Google" },
+                ], "styles": { "mb": 5, "mt": 5 }},
+                { "type": "button", "variant": "socialGithub", "label": "Sign In With Github" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialMicrosoft", "label": "Sing In using Microsoft" },
+                { "type": "button", "variant": "socialGoogle", "label": "Sign In With Google", "startIcon": {
+                    "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
+                }},
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialGithub", "label": "Sign In using Github" }
-            ], "styles": { "mb": 10 }}
+                { "type": "button", "variant": "socialMicrosoft", "label": "Sign In With Microsoft", "startIcon": {
+                    "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
+                }}
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "label": "Don't have an account ? ", "children": [
+                    { "type": "link", "href": "/register", "label": "Register here" }
+                ]}
+            ]}
         ]
     }
 }

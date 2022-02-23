@@ -5,10 +5,10 @@
                 { "type": "text", "label": "SSO Login", "variant": "h4" }
             ]},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "email", "label": "Email", "fieldName": "email" }
+                { "type": "textfield", "variant": "email", "label": "Email", "fieldName": "email" }
             ]},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "password", "label": "Password", "fieldName": "password" }
+                { "type": "textfield", "variant": "password", "label": "Password", "fieldName": "password" }
             ]}
         ]
     }

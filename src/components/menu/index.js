@@ -13,6 +13,7 @@ export default function Menu({
     ...props
 }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const isMenuOpen = Boolean(anchorEl);
 
     const handleOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -24,7 +25,7 @@ export default function Menu({
 
     const MenuOpenController = createMenuOpener({
         opensBy,
-        isMenuOpen: Boolean(anchorEl),
+        isMenuOpen,
         onClick: handleOpen
     });
 
@@ -36,7 +37,7 @@ export default function Menu({
                     {...props}
                     anchorEl={anchorEl}
                     keepMounted
-                    open={Boolean(anchorEl)}
+                    open={isMenuOpen}
                     onClose={handleClose}
                     anchorOrigin={anchorOrigin}
                     transformOrigin={transformOrigin}

@@ -8,7 +8,7 @@
     },
     "routes": [
         {
-            "path": "/", "descriptor": "home.json",
+            "path": "/", "descriptor": "home.json", "redirectTo": "/register",
             "screen": "Home", "layout": "SplitColumn"
         },
         {

@@ -1,40 +1,87 @@
 {
     "screenInfo": [
-        { "type": "text", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!", "variant": "h4" },
-        { "type": "list", "children": [
-            { "type": "text", "label": "7,000 Monthly Active Users" },
-            { "type": "text", "label": "Email/Password Login" },
-            { "type": "text", "label": "3 Social Login Providers" },
-            { "type": "text", "label": "User Data Storage" },
-            { "type": "text", "label": "Customizable Login Interfaces" }
-        ]},
-        { "type": "text", "label": "Trusted by fortune 500 companies and their 100+ million users" }
+        { "type": "box", "children": [
+            { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
+            { "type": "box", "children": [
+                { "type": "list", "variant": "advanced",
+                    "listStyle": { "type": "icon", "icon": "CheckIcon", "styles": { "color": "#0078F3" } },
+                    "children": [
+                        { "type": "text", "label": "7,000 Monthly Active Users" },
+                        { "type": "text", "label": "Email/Password Login" },
+                        { "type": "text", "label": "3 Social Login Providers" },
+                        { "type": "text", "label": "User Data Storage" },
+                        { "type": "text", "label": "Customizable Login Interfaces" }
+                    ]
+                }
+            ], "styles": { "mb": 3, "mt": 1 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "label": "Trusted by fortune 500 companies and their 100+ million users" }
+            ], "styles": { "mb": 1 }},
+            { "type": "box", "direction": "row", "children": [
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/hbo.png", "width": "76", "height": "38" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/youtube.png", "width": "95", "height": "40" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/epix.png", "width": "71", "height": "42" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/sxm.png", "width": "98", "height": "28" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/openfit.png", "width": "95", "height": "34" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/sling.png", "width": "76", "height": "46" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/tmobile.png", "width": "76", "height": "26" }
+                ], "styles": { "m": 1 }},
+                { "type": "box", "children": [
+                    { "type": "image", "src": "partner-logos/dish.png", "width": "74", "height": "39" }
+                ], "styles": { "m": 1 }}
+            ], "styles": { "flexWrap": "wrap", "alignItems": "center" }}
+        ], "styles": { "mt": { "md": 5 } }}
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Create Account" }
-            ]},
+                { "type": "heading", "variant": "screenTitle", "label": "Create Account", "color": "textPrimary" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "email", "label": "Email" }
-            ]},
+                { "type": "textfield", "variant": "email", "label": "Email" }
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "textfield", "subType": "password", "label": "Password" }
-            ]},
+                { "type": "textfield", "variant": "password", "label": "Password" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "By clicking on any of the Sign Up options, ,I agree to the terms of service." }
-            ]},
+                { "type": "text", "variant": "body2", "label": "By clicking on any of the Sign Up options, I agree to the terms of service.", "color": "textPrimary" }
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Sign Up", "routeTo": "/setup" },
+                { "type": "button", "variant": "primary", "label": "Sign Up", "routeTo": "/setup" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
-                ], "styles": { "m": 2 }},
-                { "type": "button", "subType": "socialGoogle", "label": "Sign Up with Google" },
+                ], "styles": { "mb": 5, "mt": 5 }},
+                { "type": "button", "variant": "socialGithub", "label": "Sign Up With Github" },
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialMicrosoft", "label": "Sing Up with Microsoft" },
+                { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google", "startIcon": {
+                    "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
+                }},
                 { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "subType": "socialGithub", "label": "Sign up with Github" }
-            ], "styles": { "mb": 10 }}
+                { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft", "startIcon": {
+                    "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
+                }}
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "box" , "children": [
+                    { "type": "divider" }
+                ], "styles": { "mb": 5, "mt": 2 }},
+                { "type": "text", "variant": "body2", "label": "Already have an account? ", "color": "textPrimary", "children": [
+                    { "type": "link", "href": "/login", "label": "Sign In" }
+                ]}
+            ], "styles": { "mb": 5 }}
         ]
     }
 }

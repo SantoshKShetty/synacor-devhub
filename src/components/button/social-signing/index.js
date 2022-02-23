@@ -7,14 +7,14 @@ const styles = makeStyles(
     ({ palette, spacing }) => ({
         socialSignBtn: {
             backgroundColor: palette.custom.button.socialSign.bgColor,
-            color: palette.custom.button.socialSign.color,
+            color: palette.text.secondary,
             boxShadow: palette.custom.button.socialSign.shadow,
             border: 'none',
             textTransform: 'uppercase',
             justifyContent: 'start',
             paddingLeft: spacing(3),
-            fontSize: '0.875rem',
-            fontWeight: 400,
+            maxWidth: 320,
+            height: 44,
 
             '&:hover': {
                 backgroundColor: palette.custom.button.socialSign.bgColorHover

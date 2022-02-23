@@ -5,25 +5,26 @@ import Box, { HORIZONTAL } from '../components/box';
 const useStyles = makeStyles(
     ({ spacing, palette }) => {
         const headerHeight = 56;
-        const containerBorderColor = palette.custom.dashboardLayout.containerBorderColor;
+        const borderColor = palette.custom.layout.dashboard.borderColor;
 
         return {
             headerContainer: {
                 height: `${headerHeight}px`,
                 justifyContent: 'center',
-                borderBottom: `1px solid ${containerBorderColor}`,
+                borderBottom: `1px solid ${borderColor}`,
                 padding: `0 ${spacing(4)}px`,
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                boxSizing: 'border-box'
             },
             bodyContainer: {
                 height: `calc(100vh - ${headerHeight}px)`
             },
             leftColContainer: {
-                borderRight: `1px solid ${containerBorderColor}`,
-                width: '20%',
-                minWidth: `${spacing(30)}px`,
-                overflow: 'auto'
+                borderRight: `1px solid ${borderColor}`,
+                width: `${spacing(30)}px`,
+                overflow: 'auto',
+                padding: `${spacing(2)}px ${spacing(1)}px`
             },
             rightColContainer: {
                 overflow: 'auto',
@@ -41,10 +42,10 @@ export default function DashboardLayout({ children }) {
 
     return (
         <React.Fragment>
-            <Box className={classes.headerContainer} type={HORIZONTAL}>
+            <Box className={classes.headerContainer} direction={HORIZONTAL}>
                 {Header}
             </Box>
-            <Box className={classes.bodyContainer} type={HORIZONTAL}>
+            <Box className={classes.bodyContainer} direction={HORIZONTAL}>
                 <Box className={classes.leftColContainer}>
                     {LeftCol}
                 </Box>

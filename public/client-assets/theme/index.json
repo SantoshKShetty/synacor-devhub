@@ -1,38 +1,56 @@
 {
     "palette": {
+        "text": {
+            "primary": "#222222",
+            "secondary": "#666666"
+        },
         "custom": {
-            "splitColLayout": {
-                "leftCol": {
-                    "bgColor": "#EEEEEE",
-                    "color": "#003C79"
-                }
-            },
-            "dashboardLayout": {
-                "containerBorderColor": "#D8D8D8"
-            },
             "button": {
                 "default": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#EEEEEE",
-                    "color": "#000000",
                     "borderColor": "#CCCCCC"
                 },
                 "primaryCTA": {
-                    "bgColor": "#CEE7FF",
-                    "bgColorHover": "#CEE7FF",
-                    "color": "#000000"
+                    "bgColor": "#FFFFFF",
+                    "bgColorHover": "#CEE7FF"
                 },
                 "secondaryCTA": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#FFFFFF",
-                    "color": "#000000",
                     "borderColor": "#CCCCCC"
                 },
                 "socialSign": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#FFFFFF",
-                    "color": "#666666",
                     "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)"
+                },
+                "toggleBtn": {
+                    "borderColor": "#FF9191",
+                    "bgColorActive": "#FFF1F1"
+                }
+            },
+            "layout": {
+                "split": {
+                    "leftCol": {
+                        "bgColor": "#EEEEEE",
+                        "color": "#003C79"
+                    }
+                },
+                "dashboard": {
+                    "borderColor": "#D8D8D8",
+                    "leftCol": {
+                        "accordion": {
+                            "summary": {
+                                "color": "#555555"
+                            },
+                            "content": {
+                                "color": "#222222",
+                                "bgColorHover": "#EEEEEE",
+                                "bgColorActive": "#CEE7FF"
+                            }
+                        }
+                    }
                 }
             }
         }

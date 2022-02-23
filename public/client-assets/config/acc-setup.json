@@ -1,64 +1,86 @@
 {
     "screenInfo": [
-        { "type": "text", "label": "Before we set you up for success!", "variant": "h4" }
+        { "type": "box", "children": [
+            { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
+        ], "styles": { "mt": { "md": 25 } }}
     ],
     "form": {
         "controls": [
             { "type": "box", "children": [
-                { "type": "text", "label": "Account Type" }
-            ]},
+                { "type": "heading", "variant": "screenTitle", "label": "Account Type", "color": "textPrimary" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Are you creating this account for yourself or on behalf of a company?" }
-            ]},
+                { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?", "color": "textPrimary" }
+            ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                    { "label": "Company", "value": "company", "onSelectRender": [
-                        { "type": "box", "children": [
-                            { "type": "text", "label": "Company Name" },
+                    { "type": "toggleBtn", "label": "Company", "value": "company",
+                        "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
                             { "type": "box", "children": [
-                                { "type": "textfield", "label": "Your company name" }
-                            ]}
-                        ]},
-                        { "type": "box", "children": [
-                            { "type": "text", "label": "Company Size" },
+                                { "type": "box", "children": [
+                                    { "type": "text", "label": "Company Name", "color": "textPrimary" }
+                                ], "styles": { "mt": 6 }},
+                                { "type": "box", "children": [
+                                    { "type": "textfield", "label": "Your company name" }
+                                ]}
+                            ]},
                             { "type": "box", "children": [
-                                { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                                    { "label": "1-49", "value": "50" },
-                                    { "label": "50-200", "value": "200" },
-                                    { "label": "201-999", "value": "999" },
-                                    { "label": "1000+", "value": "1000" }
+                                { "type": "box", "children": [
+                                    { "type": "text", "label": "Company Size", "color": "textPrimary" }
+                                ], "styles": { "mt": 6, "mb": 3 }},
+                                { "type": "box", "children": [
+                                    { "type": "toggleBtnGroup", "exclusive": true, "children": [
+                                        { "type": "toggleBtn", "label": "1-49", "value": "50" },
+                                        { "type": "toggleBtn", "label": "50-200", "value": "200" },
+                                        { "type": "toggleBtn", "label": "201-999", "value": "999" },
+                                        { "type": "toggleBtn", "label": "1000+", "value": "1000" }
+                                    ], "defaultValue": "200"}
                                 ]}
                             ]}
-                        ]}
-                    ]},
-                    { "label": "Personal", "value": "personal" }
+                        ]
+                    },
+                    {
+                        "type": "toggleBtn", "label": "Personal", "value": "personal",
+                        "icon": { "type": "icon", "icon": "PersonIcon" }
+                    }
                 ], "defaultValue": "company" }
-            ]},
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
                 { "type": "divider" }
+            ], "styles": { "mb": 4 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Tenant Domain", "color": "textPrimary" }
             ]},
             { "type": "box", "children": [
-                { "type": "text", "label": "Tenant Domain" }
-            ]},
+                { "type": "textfield", "label": "Bonafied tenant domain", "disabled": true }
+            ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
-            ]},
+                { "type": "text", "variant": "body2", "color": "textPrimary", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
+            ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "Region" }
-            ]},
+                { "type": "text", "label": "Region", "color": "textPrimary" }
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                    { "label": "AU", "value": "au" },
-                    { "label": "EU", "value": "eu" },
-                    { "label": "Japan", "value": "jp" },
-                    { "label": "US", "value": "us" }
+                    { "type": "toggleBtn", "label": "AU", "value": "au", "icon": {
+                        "type": "image", "src": "country-flags/au.svg", "width": "28", "height": "21"
+                    }},
+                    { "type": "toggleBtn", "label": "EU", "value": "eu", "icon": {
+                        "type": "image", "src": "country-flags/eu.png", "width": "28", "height": "21"
+                    }},
+                    { "type": "toggleBtn", "label": "Japan", "value": "jp", "icon": {
+                        "type": "image", "src": "country-flags/jp.svg", "width": "28", "height": "21"
+                    }},
+                    { "type": "toggleBtn", "label": "US", "value": "us", "icon": {
+                        "type": "image", "src": "country-flags/us.svg", "width": "28", "height": "21"
+                    }}
                 ], "defaultValue": "us" }
-            ]},
+            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "text", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
-            ]},
+                { "type": "text", "variant": "body2", "color": "textPrimary", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
+            ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "button", "subType": "primary", "label": "Create Account", "routeTo": "/dashboard" }
+                { "type": "button", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }
             ]}
         ]
     }

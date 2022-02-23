@@ -14,7 +14,8 @@ import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
 import Button from '../components/button';
 import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
-import List from '../components/list';
+import { UnOrderedList, OrderedList } from '../components/list';
+import AdvancedList from '../components/list/advanced';
 import Image from '../components/image';
 import Accordion from '../components/accordion';
 import Menu from '../components/menu';
@@ -23,7 +24,38 @@ import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
 import IconButton from '../components/button/icon-button';
+import Heading from '../components/custom/heading';
+import HeaderMenu from '../components/custom/header-menu';
+import AccordionMenu from '../components/custom/accordion-menu';
 
+
+/**
+ * Function `composeComponents` - returns hierarchical components' ordered/wrapped as per the arguments provided.
+ * 
+ * How to call this function ?
+ *     composeComponents(
+ *         HOC - n,
+ *         HOC - n-1,
+ *         HOC - n-2,
+ *         HOC - n-3
+ *     )(Child)
+ * where `Child` - Leaf Node in the Components' hierarchy and,
+ * HOC - `Higher Order Component` and `n` is the level of that HOC in the hierarchy.
+ * 
+ * So, to achieve below hierarchy of components (along with props),
+ * (
+ *   <HOC n>
+ *     <HOC n-1 prop1={val1} prop2={val2}>
+ *       <Child>
+ *     </HOC n-1>
+ *   </HOC n>
+ * )
+ * we need to call,
+ * composeComponents(
+ *     HOC n,
+ *     [HOC n-1, { prop1: val1, prop2: val2 }],
+ * )(Child)
+ */
 export function composeComponents() {
 	return children => [...arguments].reverse().reduce((acc, item) => {
 		const [Component, props] = isArray(item) ? item : [item, {}];
@@ -37,9 +69,26 @@ export function composeComponents() {
 	}, children);
 }
 
+
+/**
+ * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
+ * 
+ * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
+ */
 export function generateComponent(componentData) {
+	// If incoming `componentData` is array, loop over them.
+	if (isArray(componentData)) {
+		return componentData.map(
+			(c, i) => generateComponent({
+				...c,
+				key: componentData?.key || `component-${Math.random() * 100000}-${i}`
+			})
+		);
+	}
+
 	const {
-		type, subType,
+		type,
+		variant,
 		key,
 		label,
 		defaultValue,
@@ -66,17 +115,18 @@ export function generateComponent(componentData) {
 		case 'box':
 			return (
 				<Box {...componentProps}>
-					{children && children.map((c, i) => generateComponent({ ...c, handleChange, key: `${key}-${i}` }))}
+					{children && generateComponent(children)}
 				</Box>
 			);
 		case 'text':
 			return (
-				<Text {...componentProps}>
+				<Text {...componentProps} variant={variant}>
 					{label}
+					{children && generateComponent(children)}
 				</Text>
 			);
 		case 'textfield':
-			switch(subType) {
+			switch(variant) {
 				case 'email':
 					return <EmailField {...componentProps} label={label} />
 				case 'password':
@@ -85,7 +135,7 @@ export function generateComponent(componentData) {
 					return <TextField {...componentProps} label={label} />
 			}
 		case 'button':
-			switch(subType) {
+			switch(variant) {
 				case 'primary':
 					return <PrimaryCTABtn {...componentProps} label={label} />
 				case 'secondary':
@@ -102,7 +152,16 @@ export function generateComponent(componentData) {
 		case 'divider':
 			return <Divider {...componentProps} />
 		case 'list':
-			return <List {...componentProps} baseKey={key} items={children} />
+			switch(variant) {
+				case 'ordered':
+					return <OrderedList {...componentProps} baseKey={key} items={children} />
+				case 'unordered':
+					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
+				case 'advanced':
+					return <AdvancedList {...componentProps} baseKey={key} items={children} />
+				default:
+					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
+			}
 		case 'link':
 			return <Link {...componentProps} label={label} />
 		case 'toggleBtnGroup':
@@ -116,7 +175,7 @@ export function generateComponent(componentData) {
 		case 'iconButton':
 			return (
 				<IconButton {...componentProps}>
-					{children && children.map((c, i) => generateComponent({ ...c, key: `${key}-${i}` }))}
+					{children && generateComponent(children)}
 				</IconButton>
 			);
 		case 'icon':
@@ -128,5 +187,11 @@ export function generateComponent(componentData) {
 			return <CheckBox {...componentProps} label={label} />
 		case 'multiChoiceMenu':
 			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
+		case 'heading':
+			return <Heading {...componentProps} label={label} variant={variant} />
+		case 'headerMenu':
+			return <HeaderMenu {...componentProps} baseKey={key} items={children} />
+		case 'accordionMenu':
+			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
 	}
 }
