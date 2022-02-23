@@ -9,7 +9,6 @@ import Text from '../text';
 const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
         button: {
-            maxWidth: 'max-content',
             height: 40,
             padding: `${spacing(1)}px ${spacing(1.5)}px`,
             backgroundColor: palette.custom.button.default.bgColor,

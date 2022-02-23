@@ -5,12 +5,14 @@ import Box, { HORIZONTAL } from '../../../../components/containers/box';
 import Text from '../../../../components/text';
 import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
 import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
 import { isEmail, exists } from '../../../../utils/basics';
 import CheckBox from '../../../../components/checkbox';
+import IconButton from '../../../../components/button/icon-button';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
@@ -36,7 +38,7 @@ const HEADER_FIELD_DATA_MAP = [
         dataKey: "userId"
     },
     {
-        label: "EMAIL",
+        label: "PRIMARY EMAIL",
         sortKey: "CONTACT_EMAIL",
         dataKey: "contactEmail"
     },
@@ -203,7 +205,12 @@ export default function Users({ info: { filter } = {} }) {
             </Box>
             <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>
                 <Box style={{ marginRight: '1rem' }}>
-                    <TextField label="Search" variant="outlined" size="small" onKeyUp={handleUserSearch} />
+                    <TextField label="Search" variant="outlined" size="small" onKeyUp={handleUserSearch} InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton style={{padding: 0}}><SearchIcon /></IconButton>
+                            </InputAdornment>
+                        )}}/>
                 </Box>
                 {filter && filter.map((item, key) => (
                     <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
@@ -262,7 +269,7 @@ export default function Users({ info: { filter } = {} }) {
                                             return (
                                                 <TableCell key={`tbody-cell-${i}`}>
                                                     <Text>{d[t.dataKey]}</Text>
-                                                    {c === 'FULL_NAME' && <Text color="secondary" style={{ fontSize: '12px' }}>{d['userId']}</Text>}
+                                                    {c === 'FULL_NAME' && <Text style={{ fontSize: '12px', color: '#888888' }}>{d['userId']}</Text>}
                                                 </TableCell>
                                             )
                                         })}

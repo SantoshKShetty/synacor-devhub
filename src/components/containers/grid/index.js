@@ -15,7 +15,7 @@ export const GRID_ITEM = 'item';
  */
 export default function Grid({ variant = GRID_CONTAINER, spacing = 0, items, children, ...props }) {
     return (
-        <ReactGrid {...props} {...{ [variant]: true, spacing }}>
+        <ReactGrid {...props} {...{ [variant]: true, ...variant === GRID_CONTAINER && { spacing } }}>
             {items && generateComponent(items)}
             {children}
         </ReactGrid>
