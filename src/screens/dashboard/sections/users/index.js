@@ -47,6 +47,21 @@ const HEADER_FIELD_DATA_MAP = [
         sortKey: "USER_STATUS",
         dataKey: "userStatus"
     },
+    {
+        label: "USER UPDATE DATE",
+        sortKey: "USER_UPD_DATE",
+        dataKey: "userUpdateDate"
+    },
+    {
+        label: "PASSWORD STATUS",
+        sortKey: "PWD_STATUS",
+        dataKey: "passwordStatus"
+    },
+    {
+        label: "PASSWORD UPDATE DATE",
+        sortKey: "PWD_UPD_DATE",
+        dataKey: "passwordUpdateDate"
+    }
 ];
 
 const DEFAULT_COLUMNS = ['FULL_NAME', 'CONTACT_EMAIL', 'USER_STATUS'];

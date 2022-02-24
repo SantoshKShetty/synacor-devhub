@@ -19,6 +19,10 @@ const styles = makeStyles(
             fontSize: '14px',
             fontWeight: 400
         },
+        colList: {
+            height: 190,
+            overflow: 'auto'
+        },
         iconBtn: {
             border: '1px solid #CCCCCC',
             borderRadius: 8,
@@ -120,7 +124,7 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                     <Grid spacing={3} variant={GRID_CONTAINER}>
                         <Grid variant={GRID_ITEM} xs>
                             <Box mb={2}><Text className={classes.colLabel}>Available fields</Text></Box>
-                            <Box>{LeftSideControlls}</Box>
+                            <Box className={classes.colList}>{LeftSideControlls}</Box>
                         </Grid>
                         <Grid variant={GRID_ITEM} xs={1}>
                             <Box style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
@@ -134,7 +138,7 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                         </Grid>
                         <Grid variant={GRID_ITEM} xs>
                             <Box mb={2}><Text className={classes.colLabel}>Visible fields</Text></Box>
-                            <Box>{RightSideControlls}</Box>
+                            <Box className={classes.colList}>{RightSideControlls}</Box>
                         </Grid>
                     </Grid>
                 </DialogContent>
