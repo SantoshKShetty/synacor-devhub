@@ -26,7 +26,7 @@ const RightCol = ({ subScreens = {} }) => {
         const SubScreen = SubScreens[component];
 
         return SubScreen && composeComponents(
-            descriptor && [DescriptorLoader, { descriptor }]
+            descriptor && [DescriptorLoader, { descriptor, key: descriptor }]
         )(<SubScreen />) || null;
     }
 

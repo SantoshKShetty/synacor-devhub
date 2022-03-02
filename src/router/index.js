@@ -25,7 +25,9 @@ export default function Router() {
 
             return composeComponents(
                 [Route, { key: `route-${key}`, path, exact: true }],
-                redirectTo ? [Redirect, { to: redirectTo }] : (descriptor && [DescriptorLoader, { descriptor, genericInfo }])
+                redirectTo ? [Redirect, { to: redirectTo }] : (
+                    descriptor && [DescriptorLoader, { descriptor, genericInfo, key: descriptor }]
+                )
             )(<Screen info={genericInfo} Layout={Layout} subScreens={subScreens} />);
         })
     );
