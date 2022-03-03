@@ -11,7 +11,7 @@ import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
 import { isEmail, exists } from '../../../../utils/basics';
 import CheckBox from '../../../../components/checkbox';
-
+import CLIENTS from '../../../../constants/clients';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -142,7 +142,7 @@ export default function Users({ info: { filter } = {} }) {
 
         if (!value) {
             setSearchParams({ username: null, contactEmail: null })
-        } else if (isEmail(value)) {
+        } else if ('{{CLIENT}}' !== CLIENTS.SXM.NAME && isEmail(value)) {
             setSearchParams({ username: null, contactEmail: value })
         } else {
             setSearchParams({ username: value, contactEmail: null })
@@ -152,18 +152,20 @@ export default function Users({ info: { filter } = {} }) {
     React.useEffect(() => {
         setError(null);
 
+        const paginationParams = '{{CLIENT}}' !== CLIENTS.SXM.NAME ? [
+            !searchParams.username && !searchParams.contactEmail && `index=${page}`,
+            !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
+        ].filter(Boolean) : [];
+
         const params = [
-            ...[
-                !searchParams.username && !searchParams.contactEmail && `index=${page}`,
-                !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
-            ].filter(Boolean),
+            ...paginationParams,
             searchParams.username && `username=${searchParams.username}`,
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?${params}`;
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users?${params}`;
 
-        fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
+        params && fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
             setTotal(totalNumberOfRecords);
 
             if (message) {
