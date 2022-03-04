@@ -196,7 +196,9 @@ export default function Users({ info: { filter } = {} }) {
                     )
                 );
             }
-        }).catch(e => console.log(e))
+        }).catch(e => {
+            setError(e.message)
+        })
     }, [page, perPage, searchParams]);
 
     return (
@@ -237,8 +239,12 @@ export default function Users({ info: { filter } = {} }) {
             </Box>
             <Box>
                 {error ? (
-                    <Box>
-                        <Text color="error">{error}</Text>
+                    <Box style={{ padding: '0 0 0 60px' }}>
+                        <Text color="error" variant="body2">{error}</Text>
+                    </Box>
+                ) : !exists(data) && '{{CLIENT}}' === CLIENTS.SXM.NAME ? (
+                    <Box style={{ padding: '0 0 0 60px' }}>
+                        <Text color="textSecondary" variant="body2">Enter something to find the user</Text>
                     </Box>
                 ) : (
                     <TableContainer className={classes.userTable}>
