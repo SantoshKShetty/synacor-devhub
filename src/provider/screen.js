@@ -4,31 +4,31 @@ import React, { lazy } from 'react';
 const SCREENS = {
     Home: lazy(() => import(
         /* webpackChunkName: "home-screen" */
-        '../../screens/home'
+        '../screens/home'
     )),
     Register: lazy(() => import(
         /* webpackChunkName: "registration-screen" */
-        '../../screens/registration'
+        '../screens/registration'
     )),
     AccountSetup: lazy(() => import(
         /* webpackChunkName: "setup-account-screen" */
-        '../../screens/setup-account'
+        '../screens/setup-account'
     )),
     Login: lazy(() => import(
         /* webpackChunkName: "login-screen" */
-        '../../screens/login'
+        '../screens/login'
     )),
     Dashboard: lazy(() => import(
         /* webpackChunkName: "dashboard-screen" */
-        '../../screens/dashboard'
+        '../screens/dashboard'
     )),
     DemoSetupLDAPConfig: lazy(() => import(
         /* webpackChunkName: "demo-setup-ldap-config-screen" */
-        '../../screens/demo/ldap/setup-config'
+        '../screens/demo/ldap/setup-config'
     )),
     DemoSSOLogin: lazy(() => import(
         /* webpackChunkName: "demo-sso-login-screen" */
-        '../../screens/demo/sso/login'
+        '../screens/demo/sso/login'
     ))
 };
 
@@ -36,11 +36,11 @@ const SCREENS = {
 const SUB_SCREENS = {
     UsersList: lazy(() => import(
         /* webpackChunkName: "users-list-subscreen" */
-        '../../screens/dashboard/sections/users'
+        '../screens/dashboard/sections/users'
     )),
     AddUser: lazy(() => import(
         /* webpackChunkName: "add-users-subscreen" */
-        '../../screens/dashboard/sections/users/add'
+        '../screens/dashboard/sections/users/add'
     ))
 };
 

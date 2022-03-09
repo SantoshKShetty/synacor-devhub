@@ -4,15 +4,15 @@ import React, { lazy } from 'react';
 const LAYOUTS = {
     SingleColumn: lazy(() => import(
         /* webpackChunkName: "single-col-layout" */
-        '../../layout/single-col'
+        '../layout/single-col'
     )),
     SplitColumn: lazy(() => import(
         /* webpackChunkName: "split-col-layout" */
-        '../../layout/split-col'
+        '../layout/split-col'
     )),
     Dashboard: lazy(() => import(
         /* webpackChunkName: "dashboard-layout" */
-        '../../layout/dashboard'
+        '../layout/dashboard'
     ))
 };
 

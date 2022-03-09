@@ -1,6 +1,6 @@
 import React from 'react';
 import mergeOptions from 'merge-options';
-import { getConfigResource } from '../../utils/resource-path';
+import { getConfigResource } from '../utils/resource-path';
 
 /**
  * Component `DescriptorLoader` is a thin wrapper that wraps around every screen component given for a route.
