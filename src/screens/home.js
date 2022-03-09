@@ -1,6 +1,6 @@
 import React from "react";
-import { generateComponent } from "../../utils/component";
-import Form from "../../components/form";
+import { generateComponent } from "../utils/component";
+import Form from "../components/form";
 
 const InfoSection = ({ screenInfo = [] }) => generateComponent(screenInfo)
 
@@ -10,7 +10,7 @@ const FormSection = ({ form: { controls } }) => (
     </Form>
 )
 
-export default function LoginScreen({ info, Layout }) {
+export default function HomeScreen({ info, Layout }) {
     const { logo, screenInfo, form } = info;
 
     return (

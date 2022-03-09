@@ -1,5 +1,5 @@
 import React from 'react';
-import { getConfigResource } from '../../utils/resource-path';
+import { getConfigResource } from '../utils/resource-path';
 
 const context = React.createContext({});
 
