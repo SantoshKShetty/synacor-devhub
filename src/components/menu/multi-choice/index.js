@@ -95,7 +95,7 @@ export default function MultiChoiceMenu({
                                 value,
                                 key: `${baseKey}-${key}`,
                                 checked: tempSelected.includes(value),
-                                events: { onClick: handleSelect }
+                                onClick: handleSelect
                             }))}
                         </Box>
                         <Box direction={HORIZONTAL} style={{ justifyContent: 'space-between' }}>

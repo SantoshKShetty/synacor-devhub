@@ -21,7 +21,7 @@ export function createMenuOpener({ opensBy, isMenuOpen, onClick, selectedItemsLa
             ...rest,
             label: [label, selectedItemsLabel].filter(Boolean).join(': '),
             children,
-            events: { onClick }
+            onClick
         });
     }
 }
