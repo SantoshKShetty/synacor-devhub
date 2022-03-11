@@ -1,5 +1,5 @@
 import React from 'react';
-import { isArray, exists } from "./basics";
+import { isArray, exists, isObject } from "./basics";
 import Text from '../components/text';
 import Box from '../components/containers/box';
 import Divider from '../components/divider';
@@ -28,6 +28,8 @@ import Heading from '../components/custom/heading';
 import HeaderMenu from '../components/custom/header-menu';
 import AccordionMenu from '../components/custom/accordion-menu';
 import Grid from '../components/containers/grid';
+import { TYPE_TEXTFIELD, TYPE_SUBMIT, TYPE_TOGGLE_BTN_GROUP } from '../constants/fields';
+import { useForm } from '../components/form';
 
 
 /**
@@ -72,17 +74,45 @@ export function composeComponents() {
 
 
 /**
+ * Function returns a random key attaching prefix and suffix (if passed).
+ *
+ * @param {String} prefix
+ * @param {String} suffix
+ */
+export function generateKey(prefix = 'component', suffix = '', randomize = false) {
+	return `${prefix}-${randomize ? Math.random() * 1000000 : ''}-${suffix}`;
+}
+
+
+/**
+ * Function returns collection of events to be bound.
+ *
+ * @param {Object} events - collection of callbacks.
+ * @param {String} eventName - key (name) in events
+ * @param {String} type - component type (which is also a key in events)
+ */
+const getEvents = (events, eventName, type) => {
+	return isObject(events) && {
+		...type && events[type],
+		...eventName && events[eventName]
+	}
+}
+
+
+/**
  * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
  * 
  * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
  */
 export function generateComponent(componentData) {
+	if (!exists(componentData)) return null;
+
 	// If incoming `componentData` is array, loop over them.
 	if (isArray(componentData)) {
 		return componentData.map(
 			(c, i) => generateComponent({
 				...c,
-				key: componentData?.key || `component-${Math.random() * 100000}-${i}`
+				key: generateKey(c.name || c.key, i)
 			})
 		);
 	}
@@ -96,20 +126,17 @@ export function generateComponent(componentData) {
 		children,
 		styles,
 		icon,
-		events,
-		fieldName,
-		handleChange,
+		eventName,
 		...props
 	} = componentData;
 
-	const tempChangeEvent = handleChange && { onChange: handleChange(fieldName) };
+	const { formEvents } = useForm()
 
 	const componentProps = {
 		key,
 		...props,
 		...styles,
-		...events,
-		...tempChangeEvent
+		...getEvents(formEvents, eventName, type)
 	};
 
 	switch(type) {
@@ -126,7 +153,7 @@ export function generateComponent(componentData) {
 					{children && generateComponent(children)}
 				</Text>
 			);
-		case 'textfield':
+		case TYPE_TEXTFIELD:
 			switch(variant) {
 				case 'email':
 					return <EmailField {...componentProps} label={label} />
@@ -150,6 +177,8 @@ export function generateComponent(componentData) {
 				default:
 					return <Button {...componentProps} label={label} />
 			}
+		case TYPE_SUBMIT:
+			return <PrimaryCTABtn {...componentProps} label={label} />
 		case 'divider':
 			return <Divider {...componentProps} />
 		case 'list':
@@ -165,7 +194,7 @@ export function generateComponent(componentData) {
 			}
 		case 'link':
 			return <Link {...componentProps} label={label} />
-		case 'toggleBtnGroup':
+		case TYPE_TOGGLE_BTN_GROUP:
 			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
 		case 'image':
 			return <Image {...componentProps} />
