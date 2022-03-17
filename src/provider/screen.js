@@ -18,30 +18,26 @@ const SCREENS = {
         /* webpackChunkName: "login-screen" */
         '../screens/login'
     )),
-    Dashboard: lazy(() => import(
-        /* webpackChunkName: "dashboard-screen" */
-        '../screens/dashboard'
+    Console: lazy(() => import(
+        /* webpackChunkName: "console-screen" */
+        '../screens/console'
     )),
-    DemoSetupLDAPConfig: lazy(() => import(
-        /* webpackChunkName: "demo-setup-ldap-config-screen" */
-        '../screens/demo/ldap/setup-config'
-    )),
-    DemoSSOLogin: lazy(() => import(
-        /* webpackChunkName: "demo-sso-login-screen" */
-        '../screens/demo/sso/login'
-    ))
 };
 
 // Mapping of lookup id's against lazy loaded sub-screens (chunks)
 const SUB_SCREENS = {
-    UsersList: lazy(() => import(
-        /* webpackChunkName: "users-list-subscreen" */
-        '../screens/dashboard/sections/users'
+    UsersMain: lazy(() => import(
+        /* webpackChunkName: "users-main-subscreen" */
+        '../screens/console/users'
     )),
     AddUser: lazy(() => import(
-        /* webpackChunkName: "add-users-subscreen" */
-        '../screens/dashboard/sections/users/add'
-    ))
+        /* webpackChunkName: "add-user-subscreen" */
+        '../screens/console/users/add'
+    )),
+    UserDetails: lazy(() => import(
+        /* webpackChunkName: "users-details-subscreen" */
+        '../screens/console/users/details'
+    )),
 };
 
 const context = React.createContext({});

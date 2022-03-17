@@ -10,10 +10,10 @@ const LAYOUTS = {
         /* webpackChunkName: "split-col-layout" */
         '../layout/split-col'
     )),
-    Dashboard: lazy(() => import(
-        /* webpackChunkName: "dashboard-layout" */
-        '../layout/dashboard'
-    ))
+    Console: lazy(() => import(
+        /* webpackChunkName: "console-layout" */
+        '../layout/console'
+    )),
 };
 
 const context = React.createContext({});
