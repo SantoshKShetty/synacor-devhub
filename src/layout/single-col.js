@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     })
 );
 
-export default function SingleColumnLayout({ logo, children }) {
+function SingleColumnLayout({ logo, children }) {
     const classes = useStyles();
 
     return (
@@ -35,3 +35,5 @@ export default function SingleColumnLayout({ logo, children }) {
         </Box>
     );
 }
+
+export default React.memo(SingleColumnLayout);

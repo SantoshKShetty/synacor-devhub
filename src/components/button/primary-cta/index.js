@@ -17,12 +17,15 @@ const styles = makeStyles(
     })
 )
 
-export default function PrimaryCTABtn({ routeTo, ...props }) {
+export default function PrimaryCTABtn({ routeTo, onClick, ...props }) {
     const classes = styles();
 
     // Temporary logic to move from flow to flow.
     const history = useHistory();
-    const handleClick = () => history.push(routeTo);
+    const handleClick = () => {
+        onClick && onClick();
+        routeTo && history.push(routeTo);
+    }
 
-    return <Button {...props} className={classes.primaryCta} {...routeTo && { onClick: handleClick }} />
+    return <Button {...props} className={classes.primaryCta} onClick={handleClick } />
 }

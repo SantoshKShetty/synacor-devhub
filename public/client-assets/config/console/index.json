@@ -1,0 +1,116 @@
+{
+    "header": [
+        { "type": "box", "direction": "row", "children": [
+            { "type": "headerMenu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "icon", "icon": "HelpOutlineIcon" }
+                    ]
+                },
+                "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                },
+                "children": [
+                    { "type": "link", "href": "", "label": "Help Center" },
+                    { "type": "link", "href": "", "label": "Developer Documentation" },
+                    { "type": "link", "href": "", "label": "Training" }
+                ]
+            },
+            { "type": "headerMenu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "icon", "icon": "AppsIcon" }
+                    ]
+                },
+                "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                },
+                "children": [
+                    { "type": "link", "href": "", "label": "End-user dashboard" }
+                ]
+            },
+            { "type": "headerMenu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "avatar", "label": "JD" },
+                        { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
+                    ]
+                }, "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                }, "children": [
+                    { "type": "link", "href": "", "label": "joe.doe@hbo.com" },
+                    { "type": "link", "href": "", "label": "hbo.bonafid.com" },
+                    { "type": "link", "href": "", "label": "My Settings" },
+                    { "type": "link", "href": "", "label": "Sign Out" }
+                ]
+            }], "styles": { "alignItems": "center" }
+        }
+    ],
+    "leftCol": [
+        { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "/dashboard", "label": "Dashboard" },
+                    { "type": "link", "href": "", "label": "Tasks" },
+                    { "type": "link", "href": "", "label": "Notifications" },
+                    { "type": "link", "href": "", "label": "Getting Started" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Directory", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "/users", "label": "Users" },
+                    { "type": "link", "href": "", "label": "Groups" },
+                    { "type": "link", "href": "", "label": "Attributes" },
+                    { "type": "link", "href": "", "label": "Directory Integrations" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Customization", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "", "label": "Brading" },
+                    { "type": "link", "href": "", "label": "Sign-in page editor" },
+                    { "type": "link", "href": "", "label": "Email" },
+                    { "type": "link", "href": "", "label": "SMS" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Applications", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "", "label": "Applications" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Security", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "", "label": "Authentication" },
+                    { "type": "link", "href": "", "label": "Multifactor" },
+                    { "type": "link", "href": "", "label": "Administrators" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Reports", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "", "label": "Reports" },
+                    { "type": "link", "href": "", "label": "Logs" }
+                ]}
+            ]
+        },
+        { "type": "accordionMenu", "label": "Settings", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "", "label": "Account" },
+                    { "type": "link", "href": "", "label": "Downloads" }
+                ]}
+            ]
+        }
+    ]
+}
