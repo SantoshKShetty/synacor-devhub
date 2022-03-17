@@ -3,7 +3,6 @@ import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
 import Box, { HORIZONTAL } from '../../../../components/containers/box';
 import Text from '../../../../components/text';
-import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
 import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
@@ -13,6 +12,7 @@ import { isEmail, exists } from '../../../../utils/basics';
 import CheckBox from '../../../../components/checkbox';
 import IconButton from '../../../../components/button/icon-button';
 import SearchIcon from '@material-ui/icons/Search';
+import PrimaryCTABtn from '../../../../components/button/primary-cta';
 
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
@@ -214,8 +214,8 @@ export default function Users({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <Button label="Add User" style={{ marginRight: '1rem' }} />
-                    <Button label="Import from CSV" />
+                    <PrimaryCTABtn routeTo="/dashboard/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
             <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>

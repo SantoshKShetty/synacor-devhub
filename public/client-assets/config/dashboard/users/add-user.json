@@ -1,1 +1,40 @@
-{}
+{
+    "form": {
+        "controls": [
+            { "type": "box", "children": [
+                { "type": "heading", "variant": "sectionTitle", "label": "Add User", "color": "textPrimary" }
+            ], "styles": { "mb": 2 }},
+            { "type": "box", "children": [
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "fname", "label": "First Name" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "lname", "label": "Last Name" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "usrname", "label": "Username" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Primary email" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "phone", "label": "Phone Number" }
+                ], "styles": { "mb": 4 }},
+                { "type": "box", "children": [
+                    { "type": "text", "variant": "body2", "label": "You don’t have any group. Add ", "children": [
+                        { "type": "link", "href": "#", "label": "Groups" },
+                        { "type": "text", "variant": "body2", "label": " (optional)", "component": "span", "color": "textSecondary" }
+                    ]}
+                ], "styles": { "mb": 2 }},
+                { "type": "box", "children": [
+                    { "type": "checkbox", "label": "Send user activation email now" }
+                ], "styles": { "mb": 3 }}
+            ], "styles": { "maxWidth": 470 }},
+            { "type": "box", "direction": "row", "children": [
+                { "type": "button", "variant": "primary", "label": "Save", "routeTo": "/dashboard/users" },
+                { "type": "button", "variant": "primary", "label": "Save and Add More", "routeTo": "#" },
+                { "type": "button", "variant": "primary", "label": "Cancel", "routeTo": "/dashboard/users" }
+            ], "styles": { "justifyContent": "space-between" }}
+        ]
+    }
+}

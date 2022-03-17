@@ -50,7 +50,7 @@
         }
     ],
     "leftCol": [
-        { "type": "accordionMenu", "label": "Dashboard", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+        { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
                     { "type": "link", "href": "/dashboard", "label": "Dashboard" },

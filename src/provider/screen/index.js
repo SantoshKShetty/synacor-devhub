@@ -37,6 +37,10 @@ const SUB_SCREENS = {
     UsersList: lazy(() => import(
         /* webpackChunkName: "users-list-subscreen" */
         '../../screens/dashboard/sections/users'
+    )),
+    AddUser: lazy(() => import(
+        /* webpackChunkName: "add-users-subscreen" */
+        '../../screens/dashboard/sections/users/add'
     ))
 };
 
