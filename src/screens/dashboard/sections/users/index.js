@@ -1,16 +1,18 @@
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
-import Box, { HORIZONTAL } from '../../../../components/box';
+import Box, { HORIZONTAL } from '../../../../components/containers/box';
 import Text from '../../../../components/text';
-import Button from '../../../../components/button';
 import { generateComponent } from '../../../../utils/component';
-import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles } from '@material-ui/core';
+import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
 import TransferList from '../../../../components/transfer-list';
 import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
 import { isEmail, exists } from '../../../../utils/basics';
 import CheckBox from '../../../../components/checkbox';
+import IconButton from '../../../../components/button/icon-button';
+import SearchIcon from '@material-ui/icons/Search';
+import PrimaryCTABtn from '../../../../components/button/primary-cta';
 
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
@@ -36,7 +38,7 @@ const HEADER_FIELD_DATA_MAP = [
         dataKey: "userId"
     },
     {
-        label: "EMAIL",
+        label: "PRIMARY EMAIL",
         sortKey: "CONTACT_EMAIL",
         dataKey: "contactEmail"
     },
@@ -45,6 +47,21 @@ const HEADER_FIELD_DATA_MAP = [
         sortKey: "USER_STATUS",
         dataKey: "userStatus"
     },
+    {
+        label: "USER UPDATE DATE",
+        sortKey: "USER_UPD_DATE",
+        dataKey: "userUpdateDate"
+    },
+    {
+        label: "PASSWORD STATUS",
+        sortKey: "PWD_STATUS",
+        dataKey: "passwordStatus"
+    },
+    {
+        label: "PASSWORD UPDATE DATE",
+        sortKey: "PWD_UPD_DATE",
+        dataKey: "passwordUpdateDate"
+    }
 ];
 
 const DEFAULT_COLUMNS = ['FULL_NAME', 'CONTACT_EMAIL', 'USER_STATUS'];
@@ -197,13 +214,18 @@ export default function Users({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <Button label="Add User" style={{ marginRight: '1rem' }} />
-                    <Button label="Import from CSV" />
+                    <PrimaryCTABtn routeTo="/dashboard/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
             <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>
                 <Box style={{ marginRight: '1rem' }}>
-                    <TextField label="Search" variant="outlined" size="small" onKeyUp={handleUserSearch} />
+                    <TextField label="Search" variant="outlined" size="small" onKeyUp={handleUserSearch} InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton style={{padding: 0}}><SearchIcon /></IconButton>
+                            </InputAdornment>
+                        )}}/>
                 </Box>
                 {filter && filter.map((item, key) => (
                     <Box style={{ marginRight: '1rem' }} key={`filter-item-${key}`}>
@@ -262,7 +284,7 @@ export default function Users({ info: { filter } = {} }) {
                                             return (
                                                 <TableCell key={`tbody-cell-${i}`}>
                                                     <Text>{d[t.dataKey]}</Text>
-                                                    {c === 'FULL_NAME' && <Text color="secondary" style={{ fontSize: '12px' }}>{d['userId']}</Text>}
+                                                    {c === 'FULL_NAME' && <Text style={{ fontSize: '12px', color: '#888888' }}>{d['userId']}</Text>}
                                                 </TableCell>
                                             )
                                         })}

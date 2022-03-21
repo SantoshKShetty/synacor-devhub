@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '../provider/theme';
-import Box from '../components/box';
+import Box from '../components/containers/box';
 import { generateComponent } from '../utils/component';
 
 const useStyles = makeStyles(

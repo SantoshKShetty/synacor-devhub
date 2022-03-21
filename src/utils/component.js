@@ -1,7 +1,7 @@
 import React from 'react';
 import { isArray, exists } from "./basics";
 import Text from '../components/text';
-import Box from '../components/box';
+import Box from '../components/containers/box';
 import Divider from '../components/divider';
 import TextField from '../components/textfield';
 import EmailField from '../components/textfield/email';
@@ -27,6 +27,7 @@ import IconButton from '../components/button/icon-button';
 import Heading from '../components/custom/heading';
 import HeaderMenu from '../components/custom/header-menu';
 import AccordionMenu from '../components/custom/accordion-menu';
+import Grid from '../components/containers/grid';
 
 
 /**
@@ -193,5 +194,7 @@ export function generateComponent(componentData) {
 			return <HeaderMenu {...componentProps} baseKey={key} items={children} />
 		case 'accordionMenu':
 			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
+		case 'grid':
+			return <Grid {...componentProps} baseKey={key} items={children} />
 	}
 }

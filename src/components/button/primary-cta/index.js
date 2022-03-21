@@ -9,7 +9,6 @@ const styles = makeStyles(
             backgroundColor: palette.custom.button.primaryCTA.bgColor,
             width: '190px',
             height: '32px',
-            maxWidth: 'revert',
 
             '&:hover': {
                 backgroundColor: palette.custom.button.primaryCTA.bgColorHover

@@ -1,5 +1,5 @@
 import React from 'react';
-import Box, { HORIZONTAL } from '../components/box';
+import Box, { HORIZONTAL } from '../components/containers/box';
 import { makeStyles } from '../provider/theme';
 import { generateComponent } from '../utils/component';
 
