@@ -14,6 +14,10 @@ export function isString(val) {
     return exists(val) && typeof val === 'string';
 }
 
+export function isBoolean(val) {
+    return exists(val) && typeof val === 'boolean';
+}
+
 export function isReactComponent(val) {
 	return exists(val) && isObject(val) && (val['$$typeof'] ||'').toString() === 'Symbol(react.element)';
 }
