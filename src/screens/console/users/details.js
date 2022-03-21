@@ -7,6 +7,9 @@ import { Box, TextField } from '@material-ui/core';
 import Text from '../../../components/text';
 import { makeStyles } from '../../../provider/theme';
 import PrimaryCTABtn from '../../../components/button/primary-cta';
+import { exists, isBoolean } from '../../../utils/basics';
+import CheckBox from '../../../components/checkbox';
+import Heading from '../../../components/custom/heading';
 
 const USER_DETAILS_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users';
 
@@ -51,6 +54,12 @@ const styles = makeStyles({
         padding: '24px 0 8px',
         display: 'flex',
         justifyContent: 'flex-end'
+    },
+    selectedTab: {
+        backgroundColor: '#CEE7FF'
+    },
+    selectedTabHighliter: {
+        backgroundColor: '#50667c'
     }
 })
 
@@ -64,8 +73,8 @@ export default function UserDetails(props) {
     const { userid } = useParams();
     const [user, setUser] = React.useState(null);
     const {
-        firstName = 'N/A',
-        lastName = 'N/A',
+        firstName,
+        lastName,
         userId,
         contactEmail,
         userStatus,
@@ -101,10 +110,11 @@ export default function UserDetails(props) {
 
     return user && (
         <Box>
-
-            <Tabs value={tab} onChange={handleTabChange}>
+            <Box><Heading variant="sectionTitle" label={firstName && lastName && `${firstName} ${lastName}` || userId} /></Box>
+            <Box mb={3}><Text color="textSecondary">{contactEmail}</Text></Box>
+            <Tabs value={tab} onChange={handleTabChange} TabIndicatorProps={{ className: classes.selectedTabHighliter }}>
                 {TABS.map((t, i) => (
-                    <Tab label={t} key={`tab-${i}`} />
+                    <Tab label={t} key={`tab-${i}`} {...tab === i && { className: classes.selectedTab }} />
                 ))}
             </Tabs>
             <Box className={classes.btnContainer}>
@@ -118,26 +128,22 @@ export default function UserDetails(props) {
                 )}
             </Box>
             <TabPanel className={cn(classes.fieldSpacer, tab !== 0 && classes.hide)}>
-                {firstName && (
-                    <Box>
-                        <Text className={classes.fieldLabel}>First Name</Text>
-                        {edit ? (
-                            <TextField value={firstName} />
-                        ) : (
-                            <Text>{firstName}</Text>
-                        )}
-                    </Box>
-                )}
-                {lastName && (
-                    <Box>
-                        <Text className={classes.fieldLabel}>Last Name</Text>
-                        {edit ? (
-                            <TextField value={lastName} />
-                        ) : (
-                            <Text>{lastName}</Text>
-                        )}
-                    </Box>
-                )}
+                <Box>
+                    <Text className={classes.fieldLabel}>First Name</Text>
+                    {edit ? (
+                        <TextField value={firstName} />
+                    ) : (
+                        <Text>{exists(firstName) ? firstName : 'N/A'}</Text>
+                    )}
+                </Box>
+                <Box>
+                    <Text className={classes.fieldLabel}>Last Name</Text>
+                    {edit ? (
+                        <TextField value={lastName} />
+                    ) : (
+                        <Text>{exists(lastName) ? lastName : 'N/A'}</Text>
+                    )}
+                </Box>
                 {userId && (
                     <Box>
                         <Text className={classes.fieldLabel}>User ID</Text>
@@ -187,9 +193,9 @@ export default function UserDetails(props) {
                                     {PARENTAL_CONTROLS_TITLE[key] || key}
                                 </Text>
                                 {edit ? (
-                                    <TextField value={value} />
+                                    isBoolean(value) ? <CheckBox value={value} defaultChecked={value} /> : <TextField value={value} />
                                 ) : (
-                                    <Text>{value || 'N/A'}</Text>
+                                    isBoolean(value) ? <CheckBox value={value} defaultChecked={value} disabled /> : <Text>{exists(value) ? value : 'N/A'}</Text>
                                 )}
                             </Box>
                         ))}
