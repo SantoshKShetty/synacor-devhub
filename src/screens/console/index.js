@@ -33,7 +33,7 @@ const RightCol = ({ subScreens = {} }) => {
     return null;
 }
 
-function DashboardScreen({ info, Layout, subScreens }) {
+function ConsoleScreen({ info, Layout, subScreens }) {
     const { logo, header, leftCol } = info;
 
     return (
@@ -43,4 +43,4 @@ function DashboardScreen({ info, Layout, subScreens }) {
     );
 };
 
-export default React.memo(DashboardScreen);
+export default React.memo(ConsoleScreen);
