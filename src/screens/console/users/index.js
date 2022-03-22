@@ -13,8 +13,8 @@ import { isEmail, exists } from '../../../utils/basics';
 import CheckBox from '../../../components/checkbox';
 import IconButton from '../../../components/button/icon-button';
 import SearchIcon from '@material-ui/icons/Search';
-import PrimaryCTABtn from '../../../../components/button/primary-cta';
-import CLIENTS from '../../../../constants/clients';
+import PrimaryCTABtn from '../../../components/button/primary-cta';
+import CLIENTS from '../../../constants/clients';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
