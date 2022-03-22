@@ -11,7 +11,7 @@ import { exists, isBoolean } from '../../../utils/basics';
 import CheckBox from '../../../components/checkbox';
 import Heading from '../../../components/custom/heading';
 
-const USER_DETAILS_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users';
+const USER_DETAILS_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
 
 const TABS = ['Profile', 'Account Info', 'Credentials'];
 
@@ -101,6 +101,7 @@ export default function UserDetails(props) {
             if (res.ok) {
                 return res.json()
             }
+            throw Error(res.statusText);
         }).then(data => {
             setUser(data);
         }).catch(e => {
