@@ -13,7 +13,7 @@ import CheckBox from '../../../../components/checkbox';
 import IconButton from '../../../../components/button/icon-button';
 import SearchIcon from '@material-ui/icons/Search';
 import PrimaryCTABtn from '../../../../components/button/primary-cta';
-
+import CLIENTS from '../../../../constants/clients';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -159,7 +159,7 @@ export default function Users({ info: { filter } = {} }) {
 
         if (!value) {
             setSearchParams({ username: null, contactEmail: null })
-        } else if (isEmail(value)) {
+        } else if ('{{CLIENT}}' !== CLIENTS.SXM.NAME && isEmail(value)) {
             setSearchParams({ username: null, contactEmail: value })
         } else {
             setSearchParams({ username: value, contactEmail: null })
@@ -169,18 +169,20 @@ export default function Users({ info: { filter } = {} }) {
     React.useEffect(() => {
         setError(null);
 
+        const paginationParams = '{{CLIENT}}' !== CLIENTS.SXM.NAME ? [
+            !searchParams.username && !searchParams.contactEmail && `index=${page}`,
+            !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
+        ].filter(Boolean) : [];
+
         const params = [
-            ...[
-                !searchParams.username && !searchParams.contactEmail && `index=${page}`,
-                !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
-            ].filter(Boolean),
+            ...paginationParams,
             searchParams.username && `username=${searchParams.username}`,
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/cableco_rt/users?${params}`;
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users?${params}`;
 
-        fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
+        params && fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
             setTotal(totalNumberOfRecords);
 
             if (message) {
@@ -194,7 +196,9 @@ export default function Users({ info: { filter } = {} }) {
                     )
                 );
             }
-        }).catch(e => console.log(e))
+        }).catch(e => {
+            setError(e.message)
+        })
     }, [page, perPage, searchParams]);
 
     return (
@@ -235,8 +239,12 @@ export default function Users({ info: { filter } = {} }) {
             </Box>
             <Box>
                 {error ? (
-                    <Box>
-                        <Text color="error">{error}</Text>
+                    <Box style={{ padding: '0 0 0 60px' }}>
+                        <Text color="error" variant="body2">{error}</Text>
+                    </Box>
+                ) : !exists(data) && '{{CLIENT}}' === CLIENTS.SXM.NAME ? (
+                    <Box style={{ padding: '0 0 0 60px' }}>
+                        <Text color="textSecondary" variant="body2">Enter something to find the user</Text>
                     </Box>
                 ) : (
                     <TableContainer className={classes.userTable}>
