@@ -4,9 +4,9 @@ import dlv from 'dlv';
 import { dset } from 'dset';
 import { makeStyles } from '../../provider/theme';
 import { generateComponent } from '../../utils/component';
-import { TYPE_TEXTFIELD, TYPE_SUBMIT, TYPE_TOGGLE_BTN_GROUP } from '../../constants/fields';
 import { createObjPath, exists } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
+import { ACTION_TYPES, USER_INPUT_TYPES } from '../../constants/field-types';
 
 const EVENT_HANDLER_RETURN_TYPE = {
     DEFAULT: 'DEFAULT',
@@ -83,19 +83,19 @@ const Form = ({ form: { controls } = {}, className, onSubmit, ...props }) => {
 
 
     const formEvents = React.useMemo(() => ({
-        [TYPE_TEXTFIELD]: {
+        [USER_INPUT_TYPES.TEXT_FIELD]: {
             onChange: {
                 type: EVENT_HANDLER_RETURN_TYPE.EXEC,
                 fn: handleTextFieldOrAreaInput
             }
         },
-        [TYPE_TOGGLE_BTN_GROUP]: {
+        [ACTION_TYPES.TOGGLE_BTN_GROUP]: {
             onChange: {
                 type: EVENT_HANDLER_RETURN_TYPE.EXEC,
                 fn: handleToggleBtnChange
             }
         },
-        [TYPE_SUBMIT]: {
+        [ACTION_TYPES.BUTTON.SUBMIT]: {
             onClick: {
                 type: EVENT_HANDLER_RETURN_TYPE.DEFAULT,
                 fn: handleSubmit
@@ -104,13 +104,29 @@ const Form = ({ form: { controls } = {}, className, onSubmit, ...props }) => {
     }), [formData, formError]);
 
 
-    // Main Single event binder used by the Form Controls. Make sure the field has `name` attribute.
+    /**
+     * Main Single event binder used by the Form Controls. Make sure the field has `name` attribute.
+     * 
+     * @param fieldType - input types like textfield, checkbox, radio etc.
+     * @param fieldName - HTML `name` attribute
+     * @param defaultValue - Default value set for the field
+     * @param relatesToField - To which data set, the field belongs to.
+     *      This is useful in case of `Toggle Buttons` which usually have multiple user input fields under them.
+     *      E.g.:- consider every Toggle button as tab showing different input elements. So those input elements belong to one data set under `relatesToField`.
+     */
     const bindFormEvents = React.useCallback(
-        (fieldType, fieldName, fieldValue = '', relatesToField) => {
+        (fieldType, fieldName, defaultValue = '', relatesToField) => {
+            // Create save path using both `relatesToField` and `fieldName`. In case, `relatesToField` present, data is stored under child object.
             const savePath = createObjPath(relatesToField, fieldName);
 
             if (exists(fieldName)) {
-                const value = dlv(formData, savePath, fieldType === TYPE_TOGGLE_BTN_GROUP ? { value: fieldValue } : fieldValue);
+                /**
+                 * Toggle Buttons will have complex input structure.
+                 * E.g:- Under different buttons, there could be multiple child user inputs.
+                 * Hence, such user inputs are stored as objects under `relatesToField` parameter.
+                 * E.g:
+                 */
+                const value = dlv(formData, savePath, fieldType === ACTION_TYPES.TOGGLE_BTN_GROUP ? { value: defaultValue } : defaultValue);
 
                 // Make an entry for fieldName.
                 dset(initialFormData, savePath, value);
