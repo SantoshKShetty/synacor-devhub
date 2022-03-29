@@ -85,21 +85,6 @@ export function generateKey(prefix = 'component', suffix = '', randomize = false
 
 
 /**
- * Function returns collection of events to be bound.
- *
- * @param {Object} events - collection of callbacks.
- * @param {String} eventName - key (name) in events
- * @param {String} type - component type (which is also a key in events)
- */
-const getEvents = (events, eventName, type) => {
-	return isObject(events) && {
-		...type && events[type],
-		...eventName && events[eventName]
-	}
-}
-
-
-/**
  * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
  * 
  * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
@@ -126,17 +111,19 @@ export function generateComponent(componentData) {
 		children,
 		styles,
 		icon,
-		eventName,
+		name,
+		relatesToField,
 		...props
 	} = componentData;
 
-	const { formEvents } = useForm()
+	const { bindFormEvents } = useForm()
 
 	const componentProps = {
 		key,
+		name,
 		...props,
 		...styles,
-		...getEvents(formEvents, eventName, type)
+		...bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField)
 	};
 
 	switch(type) {

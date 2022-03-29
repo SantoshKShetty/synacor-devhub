@@ -5,10 +5,10 @@
                 { "type": "heading", "variant": "screenTitle", "label": "Login", "color": "textPrimary" }
             ], "styles": { "mb": 2, "mt": 4 }},
             { "type": "box", "children": [
-                { "type": "textfield", "variant": "email", "label": "Email", "name": "loginEmail" }
+                { "type": "textfield", "variant": "email", "label": "Email", "name": "email" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "textfield", "variant": "password", "label": "Password", "name": "loginPassword" }
+                { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "submit", "variant": "primary", "label": "Sign In", "routeTo": "/dashboard" },

@@ -14,6 +14,14 @@ export function isString(val) {
     return exists(val) && typeof val === 'string';
 }
 
+export function isBoolean(val) {
+    return exists(val) && typeof val === 'boolean';
+}
+
+export function isNumeric(val) {
+    return exists(val) && !isBoolean(val) && !isNaN(val);
+}
+
 export function isReactComponent(val) {
 	return exists(val) && isObject(val) && (val['$$typeof'] ||'').toString() === 'Symbol(react.element)';
 }
@@ -28,4 +36,8 @@ export function deepClone(val) {
 
 export function isEmail(val) {
     return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(val)
+}
+
+export function createObjPath() {
+    return [...arguments].filter(val => isString(val) || isNumeric(val)).join('.');
 }
