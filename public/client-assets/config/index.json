@@ -24,26 +24,27 @@
             "screen": "Login", "layout": "SingleColumn"
         },
         {
-            "path": "/dashboard/:section?/:action?/:item?", "descriptor": "dashboard/index.json",
-            "screen": "Dashboard", "layout": "Dashboard",
+            "path": [
+                "/dashboard",
+                "/users/:userid?",
+                "/users/add"
+            ],
+            "descriptor": "console/index.json",
+            "screen": "Console", "layout": "Console",
             "subScreens": {
-                "/dashboard/users": {
-                    "component": "UsersList",
-                    "descriptor": "dashboard/users/index.json"
+                "/users": {
+                    "component": "UsersMain",
+                    "descriptor": "console/users/index.json"
                 },
-                "/dashboard/users/add": {
+                "/users/add": {
                     "component": "AddUser",
-                    "descriptor": "dashboard/users/add-user.json"
+                    "descriptor": "console/users/add.json"
+                },
+                "/users/:userid": {
+                    "component": "UserDetails",
+                    "descriptor": "console/users/details.json"
                 }
             }
-        },
-        {
-            "path": "/demo/ldap/setup-config", "descriptor": "demo/ldap/setup-config/index.json",
-            "screen": "DemoSetupLDAPConfig", "layout": "SingleColumn"
-        },
-        {
-            "path": "/demo/sso/login", "descriptor": "demo/sso/login/index.json",
-            "screen": "DemoSSOLogin", "layout": "SingleColumn"
         }
     ]
 }

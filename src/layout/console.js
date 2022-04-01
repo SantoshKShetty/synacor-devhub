@@ -6,7 +6,7 @@ import { generateComponent } from '../utils/component';
 const useStyles = makeStyles(
     ({ spacing, palette }) => {
         const headerHeight = 56;
-        const borderColor = palette.custom.layout.dashboard.borderColor;
+        const borderColor = palette.custom.layout.console.borderColor;
 
         return {
             headerContainer: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(
     }
 );
 
-function DashboardLayout({ logo, header, leftCol, children }) {
+function ConsoleLayout({ logo, header, leftCol, children }) {
     const classes = useStyles();
 
     return (
@@ -58,4 +58,4 @@ function DashboardLayout({ logo, header, leftCol, children }) {
     );
 }
 
-export default React.memo(DashboardLayout);
+export default React.memo(ConsoleLayout);
