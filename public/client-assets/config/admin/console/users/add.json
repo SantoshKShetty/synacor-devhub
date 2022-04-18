@@ -31,9 +31,9 @@
                 ], "styles": { "mb": 3 }}
             ], "styles": { "maxWidth": 470 }},
             { "type": "box", "direction": "row", "children": [
-                { "type": "button", "variant": "primary", "label": "Save", "routeTo": "/users" },
+                { "type": "button", "variant": "primary", "label": "Save", "routeTo": "/admin/users" },
                 { "type": "button", "variant": "primary", "label": "Save and Add More", "routeTo": "#" },
-                { "type": "button", "variant": "primary", "label": "Cancel", "routeTo": "/users" }
+                { "type": "button", "variant": "primary", "label": "Cancel", "routeTo": "/admin/users" }
             ], "styles": { "justifyContent": "space-between" }}
         ]
     }

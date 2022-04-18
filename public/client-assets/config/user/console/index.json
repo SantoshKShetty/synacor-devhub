@@ -1,0 +1,29 @@
+{
+    "header": [
+        { "type": "box", "direction": "row", "children": [
+            { "type": "headerMenu", "opensBy": {
+                    "type": "iconButton",
+                    "children": [
+                        { "type": "avatar", "label": "JD" },
+                        { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
+                    ]
+                }, "position": {
+                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
+                }, "children": [
+                    { "type": "link", "href": "", "label": "My Settings" },
+                    { "type": "link", "href": "", "label": "Sign Out" }
+                ]
+            }], "styles": { "alignItems": "center" }
+        }
+    ],
+    "leftCol": [
+        { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
+            "children": [
+                { "type": "list", "children": [
+                    { "type": "link", "href": "/user/dashboard", "label": "Dashboard" }
+                ]}
+            ]
+        }
+    ]
+}

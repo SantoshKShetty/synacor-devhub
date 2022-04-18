@@ -78,7 +78,7 @@ const Form = ({ form: { controls } = {}, className, onSubmit, ...props }) => {
 
     const handleSubmit = () => {
         console.log('Data submitted: ', formData);
-        onSubmit && onSubmit();
+        onSubmit && onSubmit(formData);
     }
 
 
