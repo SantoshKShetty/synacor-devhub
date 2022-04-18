@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '../provider/theme';
 import Box, { HORIZONTAL } from '../components/containers/box';
+import { generateComponent } from '../utils/component';
 
 const useStyles = makeStyles(
     ({ spacing, palette }) => {
         const headerHeight = 56;
-        const borderColor = palette.custom.layout.dashboard.borderColor;
+        const borderColor = palette.custom.layout.console.borderColor;
 
         return {
             headerContainer: {
@@ -36,23 +37,25 @@ const useStyles = makeStyles(
     }
 );
 
-export default function DashboardLayout({ children }) {
+function ConsoleLayout({ logo, header, leftCol, children }) {
     const classes = useStyles();
-    const [Header = null, LeftCol = null, RightCol = null] = children;
 
     return (
         <React.Fragment>
             <Box className={classes.headerContainer} direction={HORIZONTAL}>
-                {Header}
+                {logo && generateComponent(logo)}
+                {header && generateComponent(header)}
             </Box>
             <Box className={classes.bodyContainer} direction={HORIZONTAL}>
                 <Box className={classes.leftColContainer}>
-                    {LeftCol}
+                    {generateComponent(leftCol)}
                 </Box>
                 <Box className={classes.rightColContainer}>
-                    {RightCol}
+                    {children}
                 </Box>
             </Box>
         </React.Fragment>
     );
 }
+
+export default React.memo(ConsoleLayout);

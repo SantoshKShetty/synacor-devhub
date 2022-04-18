@@ -28,7 +28,7 @@ const styles = makeStyles(
                 '& > .MuiAccordionSummary-content': {
                     fontSize: typography.fontSize,
                     fontWeight: typography.fontWeightRegular,
-                    color: palette.custom.layout.dashboard.leftCol.accordion.summary.color,
+                    color: palette.custom.layout.console.leftCol.accordion.summary.color,
 
                     '& > .MuiTypography-body1': {
                         fontSize: 'inherit',
@@ -57,11 +57,11 @@ const styles = makeStyles(
                             textDecoration: 'none',
 
                             '&:hover': {
-                                backgroundColor: palette.custom.layout.dashboard.leftCol.accordion.content.bgColorHover
+                                backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorHover
                             },
 
                             '&.activeLink': {
-                                backgroundColor: palette.custom.layout.dashboard.leftCol.accordion.content.bgColorActive
+                                backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorActive
                             }
                         }
                     }

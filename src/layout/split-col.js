@@ -56,9 +56,8 @@ const useStyles = makeStyles(
     })
 );
 
-export default function SplitColumnLayout({ logo, children }) {
+function SplitColumnLayout({ logo, screenInfo, children }) {
     const classes = useStyles();
-    const [LeftColComponent = null, RightColComponent = null] = children;
 
     return (
         <Box direction={HORIZONTAL} className={classes.splitColLayout}>
@@ -66,14 +65,16 @@ export default function SplitColumnLayout({ logo, children }) {
                 <Box className={classes.nonMobileLogo}>
                     {generateComponent(logo)}
                 </Box>
-                {LeftColComponent}
+                {generateComponent(screenInfo)}
             </Box>
             <Box className={classes.rightCol}>
                 <Box className={classes.mobileLogo}>
                     {generateComponent(logo)}
                 </Box>
-                {RightColComponent}
+                {children}
             </Box>
         </Box>
     );
 }
+
+export default React.memo(SplitColumnLayout);

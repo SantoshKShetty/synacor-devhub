@@ -26,13 +26,20 @@ const styles = makeStyles(
     })
 );
 
-export default function ToggleButtonGroup({ items, defaultValue, baseKey, ...props }) {
+export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChange, ...props }) {
     const classes = styles();
     const [selected, setSelected] = React.useState(defaultValue);
 
-    const handleChange = (event, val) => setSelected(val);
+    // On Select, render the children who belong to that specific selected button.
+    const onSelectRender = dlv(items.find(({ value }) => value === selected), 'onSelectRender', []).map(item => ({
+        ...item,
+        key: `${baseKey}-ontoggle-render`
+    }));
 
-    const onSelectRender = dlv(items.find(({ value }) => value === selected), 'onSelectRender');
+    const handleChange = (event, val) => {
+        setSelected(val);
+        onChange(val);
+    }
 
     return (
         <React.Fragment>
@@ -46,9 +53,7 @@ export default function ToggleButtonGroup({ items, defaultValue, baseKey, ...pro
                     )
                 )}
             </ReactToggleButtonGroup>
-            {onSelectRender && onSelectRender.map(
-                (item, i) => generateComponent({ ...item, key: `${baseKey}-ontoggle-render-${i}` })
-            )}
+            {generateComponent(onSelectRender)}
         </React.Fragment>
     );
 }

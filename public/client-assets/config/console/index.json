@@ -63,7 +63,7 @@
         { "type": "accordionMenu", "label": "Directory", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
-                    { "type": "link", "href": "/dashboard/users", "label": "Users" },
+                    { "type": "link", "href": "/users", "label": "Users" },
                     { "type": "link", "href": "", "label": "Groups" },
                     { "type": "link", "href": "", "label": "Attributes" },
                     { "type": "link", "href": "", "label": "Directory Integrations" }

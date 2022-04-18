@@ -13,7 +13,7 @@
                 { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "toggleBtnGroup", "exclusive": true, "children": [
+                { "type": "toggleBtnGroup", "exclusive": true, "name": "accountType", "children": [
                     { "type": "toggleBtn", "label": "Company", "value": "company",
                         "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
                             { "type": "box", "children": [
@@ -21,7 +21,7 @@
                                     { "type": "text", "label": "Company Name", "color": "textPrimary" }
                                 ], "styles": { "mt": 6 }},
                                 { "type": "box", "children": [
-                                    { "type": "textfield", "label": "Your company name" }
+                                    { "type": "textfield", "label": "Your company name", "name": "companyName", "relatesToField": "accountType" }
                                 ]}
                             ]},
                             { "type": "box", "children": [
@@ -29,12 +29,14 @@
                                     { "type": "text", "label": "Company Size", "color": "textPrimary" }
                                 ], "styles": { "mt": 6, "mb": 3 }},
                                 { "type": "box", "children": [
-                                    { "type": "toggleBtnGroup", "exclusive": true, "children": [
-                                        { "type": "toggleBtn", "label": "1-49", "value": "50" },
-                                        { "type": "toggleBtn", "label": "50-200", "value": "200" },
-                                        { "type": "toggleBtn", "label": "201-999", "value": "999" },
-                                        { "type": "toggleBtn", "label": "1000+", "value": "1000" }
-                                    ], "defaultValue": "200"}
+                                    { "type": "toggleBtnGroup", "exclusive": true, "name": "companySize", "relatesToField": "accountType",
+                                        "children": [
+                                            { "type": "toggleBtn", "label": "1-49", "value": "50" },
+                                            { "type": "toggleBtn", "label": "50-200", "value": "200" },
+                                            { "type": "toggleBtn", "label": "201-999", "value": "999" },
+                                            { "type": "toggleBtn", "label": "1000+", "value": "1000" }
+                                        ], "defaultValue": "200"
+                                    }
                                 ]}
                             ]}
                         ]
@@ -61,7 +63,7 @@
                 { "type": "text", "label": "Region", "color": "textPrimary" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "toggleBtnGroup", "exclusive": true, "children": [
+                { "type": "toggleBtnGroup", "exclusive": true, "name": "region", "children": [
                     { "type": "toggleBtn", "label": "AU", "value": "au", "icon": {
                         "type": "image", "src": "country-flags/au.svg", "width": "28", "height": "21"
                     }},
@@ -80,7 +82,7 @@
                 { "type": "text", "variant": "body2", "color": "textPrimary", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "button", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }
+                { "type": "submit", "variant": "primary", "label": "Create Account", "routeTo": "/dashboard" }
             ]}
         ]
     }

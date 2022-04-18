@@ -1,19 +1,20 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
-import Box, { HORIZONTAL } from '../../../../components/containers/box';
-import Text from '../../../../components/text';
-import { generateComponent } from '../../../../utils/component';
+import Box, { HORIZONTAL } from '../../../components/containers/box';
+import Text from '../../../components/text';
+import { generateComponent } from '../../../utils/component';
 import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
-import TransferList from '../../../../components/transfer-list';
-import TextField from '../../../../components/textfield';
+import TransferList from '../../../components/transfer-list';
+import TextField from '../../../components/textfield';
 import { debounce } from "debounce";
-import { isEmail, exists } from '../../../../utils/basics';
-import CheckBox from '../../../../components/checkbox';
-import IconButton from '../../../../components/button/icon-button';
+import { isEmail, exists } from '../../../utils/basics';
+import CheckBox from '../../../components/checkbox';
+import IconButton from '../../../components/button/icon-button';
 import SearchIcon from '@material-ui/icons/Search';
-import PrimaryCTABtn from '../../../../components/button/primary-cta';
-import CLIENTS from '../../../../constants/clients';
+import PrimaryCTABtn from '../../../components/button/primary-cta';
+import CLIENTS from '../../../constants/clients';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -117,6 +118,9 @@ const styles = makeStyles(
                 padding: 8
             }
         },
+        usrRow: {
+            cursor: 'pointer'
+        },
         firstCell: {
             border: 'none',
             width: 42
@@ -124,7 +128,7 @@ const styles = makeStyles(
     })
 )
 
-export default function Users({ info: { filter } = {} }) {
+export default function UsersMain({ info: { filter } = {} }) {
     const classes = styles();
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);
@@ -135,6 +139,7 @@ export default function Users({ info: { filter } = {} }) {
     const [total, setTotal] = React.useState(0);
     const [searchParams, setSearchParams] = React.useState({ username: null, contactEmail: null });
     const [error, setError] = React.useState(null);
+    const history = useHistory();
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
@@ -165,6 +170,14 @@ export default function Users({ info: { filter } = {} }) {
             setSearchParams({ username: value, contactEmail: null })
         }
     }, 1000);
+
+    const handleUserClick = userid => () => {
+        history.push(`/users/${userid}`);
+    }
+
+    const handleSelectUser = event => {
+        event.stopPropagation()
+    }
 
     React.useEffect(() => {
         setError(null);
@@ -218,7 +231,7 @@ export default function Users({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <PrimaryCTABtn routeTo="/dashboard/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryCTABtn routeTo="/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
                     <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
@@ -282,9 +295,9 @@ export default function Users({ info: { filter } = {} }) {
                             </TableHead>
                             <TableBody>
                                 {data ? data.map((d, i) => (
-                                    <TableRow key={`tbody-row-${i}`} hover>
+                                    <TableRow key={`tbody-row-${i}`} hover onClick={handleUserClick(d['userId'])} className={classes.usrRow}>
                                         <TableCell className={classes.firstCell}>
-                                            <CheckBox color="primary" />
+                                            <CheckBox color="primary" onClick={handleSelectUser} />
                                         </TableCell>
                                         {columns.map((c, i) => {
                                             const t = getColumnDetails(c);

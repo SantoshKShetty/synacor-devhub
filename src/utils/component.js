@@ -28,6 +28,20 @@ import Heading from '../components/custom/heading';
 import HeaderMenu from '../components/custom/header-menu';
 import AccordionMenu from '../components/custom/accordion-menu';
 import Grid from '../components/containers/grid';
+import {
+	ACCORDION_TYPE,
+	ACTION_TYPES,
+	AVATAR_TYPE,
+	CONTAINER_TYPES,
+	DISPLAY_TYPES,
+	ICON_TYPE,
+	IMAGE_TYPE,
+	LINK_TYPE,
+	LIST_TYPES,
+	MENU_TYPES,
+	USER_INPUT_TYPES
+} from '../constants/field-types';
+import { useForm } from '../components/form';
 
 
 /**
@@ -72,17 +86,30 @@ export function composeComponents() {
 
 
 /**
+ * Function returns a random key attaching prefix and suffix (if passed).
+ *
+ * @param {String} prefix
+ * @param {String} suffix
+ */
+export function generateKey(prefix = 'component', suffix = '', randomize = false) {
+	return `${prefix}-${randomize ? Math.random() * 1000000 : ''}-${suffix}`;
+}
+
+
+/**
  * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
  * 
  * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
  */
 export function generateComponent(componentData) {
+	if (!exists(componentData)) return null;
+
 	// If incoming `componentData` is array, loop over them.
 	if (isArray(componentData)) {
 		return componentData.map(
 			(c, i) => generateComponent({
 				...c,
-				key: componentData?.key || `component-${Math.random() * 100000}-${i}`
+				key: generateKey(c.name || c.key, i)
 			})
 		);
 	}
@@ -96,105 +123,106 @@ export function generateComponent(componentData) {
 		children,
 		styles,
 		icon,
-		events,
-		fieldName,
-		handleChange,
+		name,
+		relatesToField,
 		...props
 	} = componentData;
 
-	const tempChangeEvent = handleChange && { onChange: handleChange(fieldName) };
+	const { bindFormEvents } = useForm()
 
 	const componentProps = {
 		key,
+		name,
 		...props,
 		...styles,
-		...events,
-		...tempChangeEvent
+		...bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField)
 	};
 
 	switch(type) {
-		case 'box':
+		case CONTAINER_TYPES.BOX :
 			return (
 				<Box {...componentProps}>
 					{children && generateComponent(children)}
 				</Box>
 			);
-		case 'text':
+		case DISPLAY_TYPES.TEXT :
 			return (
 				<Text {...componentProps} variant={variant}>
 					{label}
 					{children && generateComponent(children)}
 				</Text>
 			);
-		case 'textfield':
+		case USER_INPUT_TYPES.TEXT_FIELD :
 			switch(variant) {
-				case 'email':
+				case USER_INPUT_TYPES.EMAIL_FIELD :
 					return <EmailField {...componentProps} label={label} />
-				case 'password':
+				case USER_INPUT_TYPES.PASSWORD_FIELD :
 					return <PasswordField {...componentProps} label={label} />
-				default:
+				default :
 					return <TextField {...componentProps} label={label} />
 			}
-		case 'button':
+		case ACTION_TYPES.BUTTON.GENERIC :
 			switch(variant) {
-				case 'primary':
+				case ACTION_TYPES.BUTTON.PRIMARY :
 					return <PrimaryCTABtn {...componentProps} label={label} />
-				case 'secondary':
+				case ACTION_TYPES.BUTTON.SECONDARY :
 					return <SecondaryCTABtn {...componentProps} label={label} />
-				case 'socialGoogle':
+				case ACTION_TYPES.BUTTON.SOCIAL.GOOGLE :
 					return <GoogleSignBtn {...componentProps} label={label} />
-				case 'socialMicrosoft':
+				case ACTION_TYPES.BUTTON.SOCIAL.MICROSOFT :
 					return <MicrosoftSignBtn {...componentProps} label={label} />
-				case 'socialGithub':
+				case ACTION_TYPES.BUTTON.SOCIAL.GITHUB :
 					return <GithubSignBtn {...componentProps} label={label} />
-				default:
+				default :
 					return <Button {...componentProps} label={label} />
 			}
-		case 'divider':
+		case ACTION_TYPES.BUTTON.SUBMIT :
+			return <PrimaryCTABtn {...componentProps} label={label} />
+		case DISPLAY_TYPES.DIVIDER :
 			return <Divider {...componentProps} />
-		case 'list':
+		case LIST_TYPES.GENERIC :
 			switch(variant) {
-				case 'ordered':
+				case LIST_TYPES.ORDERED :
 					return <OrderedList {...componentProps} baseKey={key} items={children} />
-				case 'unordered':
+				case LIST_TYPES.UNORDERED :
 					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
-				case 'advanced':
+				case LIST_TYPES.ADVANCED :
 					return <AdvancedList {...componentProps} baseKey={key} items={children} />
-				default:
+				default :
 					return <UnOrderedList {...componentProps} baseKey={key} items={children} />
 			}
-		case 'link':
+		case LINK_TYPE:
 			return <Link {...componentProps} label={label} />
-		case 'toggleBtnGroup':
+		case ACTION_TYPES.TOGGLE_BTN_GROUP:
 			return <ToggleButtonGroup {...componentProps} baseKey={key} items={children} defaultValue={defaultValue} />
-		case 'image':
+		case IMAGE_TYPE:
 			return <Image {...componentProps} />
-		case 'accordion':
+		case ACCORDION_TYPE:
 			return <Accordion {...componentProps} baseKey={key} label={label} items={children} />
-		case 'menu':
+		case MENU_TYPES.GENERIC:
 			return <Menu {...componentProps} baseKey={key} items={children} />
-		case 'iconButton':
+		case ACTION_TYPES.BUTTON.ICON:
 			return (
 				<IconButton {...componentProps}>
 					{children && generateComponent(children)}
 				</IconButton>
 			);
-		case 'icon':
+		case ICON_TYPE:
 			const Icon = Icons[icon];
 			return <Icon {...componentProps} />
-		case 'avatar':
+		case AVATAR_TYPE:
 			return <Avatar {...componentProps} label={label} />
-		case 'checkbox':
+		case USER_INPUT_TYPES.CHECKBOX:
 			return <CheckBox {...componentProps} label={label} />
-		case 'multiChoiceMenu':
+		case MENU_TYPES.MULTI_CHOICE:
 			return <MultiChoiceMenu {...componentProps} baseKey={key} items={children} />
 		case 'heading':
 			return <Heading {...componentProps} label={label} variant={variant} />
 		case 'headerMenu':
 			return <HeaderMenu {...componentProps} baseKey={key} items={children} />
-		case 'accordionMenu':
+		case MENU_TYPES.ACCORDION:
 			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
-		case 'grid':
+		case CONTAINER_TYPES.GRID:
 			return <Grid {...componentProps} baseKey={key} items={children} />
 	}
 }
