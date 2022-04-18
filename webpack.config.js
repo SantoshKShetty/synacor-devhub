@@ -61,6 +61,11 @@ module.exports = {
                 {
                     from: path.resolve(__dirname, 'public', 'client-assets'),
                     to: path.resolve(__dirname, 'build', 'client-assets')
+                },
+                {
+                    // Copy Netlify Redirects file.
+                    from: path.resolve(__dirname, 'public', '_redirects'),
+                    to: path.resolve(__dirname, 'build')
                 }
             ]
         })
