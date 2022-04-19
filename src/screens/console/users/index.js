@@ -231,7 +231,7 @@ export default function UsersMain({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <PrimaryCTABtn routeTo="/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryCTABtn routeTo="/admin/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
                     <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
