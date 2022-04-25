@@ -13,7 +13,7 @@
                 { "type": "text", "variant": "body2", "label": "Are you creating this account for yourself or on behalf of a company?", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
-                { "type": "toggleBtnGroup", "exclusive": true, "name": "accountType", "children": [
+                { "type": "toggleBtnGroup", "exclusive": true, "actAsRadioBtn": true, "name": "accountType", "children": [
                     { "type": "toggleBtn", "label": "Company", "value": "COMPANY",
                         "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
                             { "type": "box", "children": [
@@ -21,7 +21,7 @@
                                     { "type": "text", "label": "Company Size", "color": "textPrimary" }
                                 ], "styles": { "mt": 6, "mb": 3 }},
                                 { "type": "box", "children": [
-                                    { "type": "toggleBtnGroup", "exclusive": true, "name": "compSize", "relatesToField": "accountType",
+                                    { "type": "toggleBtnGroup", "exclusive": true, "actAsRadioBtn": true, "name": "compSize", "relatesToField": "accountType",
                                         "children": [
                                             { "type": "toggleBtn", "label": "1-49", "value": 50 },
                                             { "type": "toggleBtn", "label": "50-200", "value": 200 },
@@ -64,7 +64,7 @@
                 { "type": "text", "label": "Region", "color": "textPrimary" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
-                { "type": "toggleBtnGroup", "exclusive": true, "name": "region", "children": [
+                { "type": "toggleBtnGroup", "exclusive": true, "actAsRadioBtn": true, "name": "region", "children": [
                     { "type": "toggleBtn", "label": "AU", "value": "AU", "icon": {
                         "type": "image", "src": "country-flags/au.svg", "width": "28", "height": "21"
                     }},
