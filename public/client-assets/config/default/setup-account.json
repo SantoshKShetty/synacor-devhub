@@ -14,39 +14,40 @@
             ], "styles": { "mb": 4 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "name": "accountType", "children": [
-                    { "type": "toggleBtn", "label": "Company", "value": "company",
+                    { "type": "toggleBtn", "label": "Company", "value": "COMPANY",
                         "icon": { "type": "icon", "icon": "BusinessIcon" }, "onSelectRender": [
-                            { "type": "box", "children": [
-                                { "type": "box", "children": [
-                                    { "type": "text", "label": "Company Name", "color": "textPrimary" }
-                                ], "styles": { "mt": 6 }},
-                                { "type": "box", "children": [
-                                    { "type": "textfield", "label": "Your company name", "name": "companyName", "relatesToField": "accountType" }
-                                ]}
-                            ]},
                             { "type": "box", "children": [
                                 { "type": "box", "children": [
                                     { "type": "text", "label": "Company Size", "color": "textPrimary" }
                                 ], "styles": { "mt": 6, "mb": 3 }},
                                 { "type": "box", "children": [
-                                    { "type": "toggleBtnGroup", "exclusive": true, "name": "companySize", "relatesToField": "accountType",
+                                    { "type": "toggleBtnGroup", "exclusive": true, "name": "compSize", "relatesToField": "accountType",
                                         "children": [
-                                            { "type": "toggleBtn", "label": "1-49", "value": "50" },
-                                            { "type": "toggleBtn", "label": "50-200", "value": "200" },
-                                            { "type": "toggleBtn", "label": "201-999", "value": "999" },
-                                            { "type": "toggleBtn", "label": "1000+", "value": "1000" }
-                                        ], "defaultValue": "200"
+                                            { "type": "toggleBtn", "label": "1-49", "value": 50 },
+                                            { "type": "toggleBtn", "label": "50-200", "value": 200 },
+                                            { "type": "toggleBtn", "label": "201-999", "value": 999 },
+                                            { "type": "toggleBtn", "label": "1000+", "value": 1000 }
+                                        ], "defaultValue": 200
                                     }
                                 ]}
                             ]}
                         ]
                     },
                     {
-                        "type": "toggleBtn", "label": "Personal", "value": "personal",
+                        "type": "toggleBtn", "label": "Personal", "value": "PERSONAL",
                         "icon": { "type": "icon", "icon": "PersonIcon" }
                     }
-                ], "defaultValue": "company" }
+                ], "defaultValue": "COMPANY" }
             ], "styles": { "mb": 5 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Company Name", "color": "textPrimary" }
+            ]},
+            { "type": "box", "children": [
+                { "type": "textfield", "label": "Your company name", "name": "compName" }
+            ], "styles": { "mb": 6 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "color": "textPrimary", "label": "Company Name will help us creating tenant more easily" }
+            ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
                 { "type": "divider" }
             ], "styles": { "mb": 4 }},
@@ -54,7 +55,7 @@
                 { "type": "text", "label": "Tenant Domain", "color": "textPrimary" }
             ]},
             { "type": "box", "children": [
-                { "type": "textfield", "label": "Bonafied tenant domain", "disabled": true }
+                { "type": "textfield", "name": "tenantDomain", "label": "Your tenant domain" }
             ], "styles": { "mb": 6 }},
             { "type": "box", "children": [
                 { "type": "text", "variant": "body2", "color": "textPrimary", "label": "To help you easily explore our product, we’ve selected a tenant domain name for you. Although you can not rename a tenant, you can always add more tenants to your account (for testing or production environments) later." }
@@ -64,25 +65,25 @@
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "toggleBtnGroup", "exclusive": true, "name": "region", "children": [
-                    { "type": "toggleBtn", "label": "AU", "value": "au", "icon": {
+                    { "type": "toggleBtn", "label": "AU", "value": "AU", "icon": {
                         "type": "image", "src": "country-flags/au.svg", "width": "28", "height": "21"
                     }},
-                    { "type": "toggleBtn", "label": "EU", "value": "eu", "icon": {
+                    { "type": "toggleBtn", "label": "EU", "value": "EU", "icon": {
                         "type": "image", "src": "country-flags/eu.png", "width": "28", "height": "21"
                     }},
-                    { "type": "toggleBtn", "label": "Japan", "value": "jp", "icon": {
+                    { "type": "toggleBtn", "label": "Japan", "value": "JP", "icon": {
                         "type": "image", "src": "country-flags/jp.svg", "width": "28", "height": "21"
                     }},
-                    { "type": "toggleBtn", "label": "US", "value": "us", "icon": {
+                    { "type": "toggleBtn", "label": "US", "value": "US", "icon": {
                         "type": "image", "src": "country-flags/us.svg", "width": "28", "height": "21"
                     }}
-                ], "defaultValue": "us" }
+                ], "defaultValue": "US" }
             ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "text", "variant": "body2", "color": "textPrimary", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "submit", "variant": "primary", "label": "Create Account", "routeTo": "/admin/dashboard" }
+                { "type": "submit", "variant": "primary", "label": "Create Account" }
             ]}
         ]
     }

@@ -10,6 +10,10 @@ const SCREENS = {
         /* webpackChunkName: "registration-screen" */
         '../screens/registration'
     )),
+    RegisterSuccess: lazy(() => import(
+        /* webpackChunkName: "registration-success-screen" */
+        '../screens/registration-success'
+    )),
     AccountSetup: lazy(() => import(
         /* webpackChunkName: "setup-account-screen" */
         '../screens/setup-account'
