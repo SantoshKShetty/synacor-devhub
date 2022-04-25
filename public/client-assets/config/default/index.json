@@ -15,6 +15,10 @@
             "screen": "Register", "layout": "SplitColumn"
         },
         {
+            "path": "/register/success", "descriptor": "default/registration-success.json",
+            "screen": "RegisterSuccess", "layout": "SingleColumn"
+        },
+        {
             "path": "/setup", "descriptor": "default/setup-account.json",
             "screen": "AccountSetup", "layout": "SplitColumn"
         },
