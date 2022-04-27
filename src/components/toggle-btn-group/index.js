@@ -27,7 +27,7 @@ const styles = makeStyles(
     })
 );
 
-export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChange, actAsRadioBtn = false, ...props }) {
+export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChange, selfToggle = true, ...props }) {
     const classes = styles();
     const [selected, setSelected] = React.useState(defaultValue);
 
@@ -38,7 +38,7 @@ export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChan
     }));
 
     const handleChange = (event, val) => {
-        const shouldUpdate = !actAsRadioBtn || exists(val);
+        const shouldUpdate = selfToggle || exists(val);
 
         if (shouldUpdate) {
             setSelected(val);
