@@ -4,9 +4,10 @@ import dlv from 'dlv';
 import { dset } from 'dset';
 import { makeStyles } from '../../provider/theme';
 import { generateComponent } from '../../utils/component';
-import { createObjPath, exists } from '../../utils/basics';
+import { createObjPath, exists, isObject } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
 import { ACTION_TYPES, USER_INPUT_TYPES } from '../../constants/field-types';
+import { flattenFormData, validateForm } from './utils';
 
 const EVENT_HANDLER_RETURN_TYPE = {
     DEFAULT: 'DEFAULT',
@@ -52,7 +53,7 @@ const FormControls = ({ controls }) => generateComponent(controls);
 
 
 // Main `Form` Component
-const Form = ({ form: { controls } = {}, className, onSubmit, ...props }) => {
+const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...props }) => {
     const classes = styles();
 
     // State to maintain form data.
@@ -77,8 +78,15 @@ const Form = ({ form: { controls } = {}, className, onSubmit, ...props }) => {
     }
 
     const handleSubmit = () => {
-        console.log('Data submitted: ', formData);
-        onSubmit && onSubmit(formData);
+        const dataToSubmit = flattenFormData(formData);
+        const errors = validateForm(dataToSubmit, validations);
+
+        if (isObject(errors)) {
+            dispatchError({ type: INIT, payload: errors });
+        } else {
+            console.log('Data submitted: ', dataToSubmit);
+            onSubmit && onSubmit(dataToSubmit);
+        }
     }
 
 
