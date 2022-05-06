@@ -84,7 +84,6 @@ const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...pr
         if (isObject(errors)) {
             dispatchError({ type: INIT, payload: errors });
         } else {
-            console.log('Data submitted: ', dataToSubmit);
             onSubmit && onSubmit(dataToSubmit);
         }
     }

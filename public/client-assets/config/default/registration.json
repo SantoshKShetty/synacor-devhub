@@ -84,7 +84,9 @@
             ], "styles": { "mb": 5 }}
         ],
         "validations": [
-            { "field": "username", "rules": []},
+            { "field": "username", "rules": [
+                { "pattern": "^[a-zA-Z0-9]+$", "message": "Username can have only alpha numeric characters without space." }
+            ]},
             { "field": "password", "rules": [
                 { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
                 { "pattern": "\\d", "message": "Must contain a number." },
