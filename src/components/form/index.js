@@ -7,7 +7,7 @@ import { generateComponent } from '../../utils/component';
 import { createObjPath, exists, isObject } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
 import { ACTION_TYPES, USER_INPUT_TYPES } from '../../constants/field-types';
-import { flattenFormData, validateForm } from './utils';
+import { normalizeFormData, validateForm } from './utils';
 
 const EVENT_HANDLER_RETURN_TYPE = {
     DEFAULT: 'DEFAULT',
@@ -78,7 +78,7 @@ const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...pr
     }
 
     const handleSubmit = () => {
-        const dataToSubmit = flattenFormData(formData);
+        const dataToSubmit = normalizeFormData(formData);
         const errors = validateForm(dataToSubmit, validations);
 
         if (isObject(errors)) {
