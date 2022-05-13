@@ -1,0 +1,37 @@
+{
+    "genericInfo": {
+        "logo": {
+            "type": "box", "children": [{
+                "type": "image", "src": "logo.png", "width": 147, "alt": "Brand Logo"
+            }]
+        }
+    },
+    "routes": [
+        {
+            "path": [
+                "/admin/dashboard",
+                "/admin/users/:userid?",
+                "/admin/users/add"
+            ],
+            "descriptor": "admin/console/index.json",
+            "screen": "Console", "layout": "Console",
+            "subScreens": {
+                "/admin/users": {
+                    "component": "UsersMain",
+                    "descriptor": "admin/console/users/index.json"
+                },
+                "/admin/users/add": {
+                    "component": "AddUser",
+                    "descriptor": "admin/console/users/add.json"
+                },
+                "/admin/users/:userid": {
+                    "component": "UserDetails",
+                    "descriptor": "admin/console/users/details.json"
+                }
+            }
+        },
+        {
+            "path": "*", "redirectTo": "/admin/dashboard"
+        }
+    ]
+}

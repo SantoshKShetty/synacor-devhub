@@ -28,7 +28,7 @@
                     "transformOrigin": { "vertical": "top", "horizontal": "center" }
                 },
                 "children": [
-                    { "type": "link", "href": "", "label": "End-user dashboard" }
+                    { "type": "link", "href": "/user/dashboard", "label": "End-user dashboard" }
                 ]
             },
             { "type": "headerMenu", "opensBy": {
@@ -53,7 +53,7 @@
         { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
-                    { "type": "link", "href": "/dashboard", "label": "Dashboard" },
+                    { "type": "link", "href": "/admin/dashboard", "label": "Dashboard" },
                     { "type": "link", "href": "", "label": "Tasks" },
                     { "type": "link", "href": "", "label": "Notifications" },
                     { "type": "link", "href": "", "label": "Getting Started" }
@@ -63,7 +63,7 @@
         { "type": "accordionMenu", "label": "Directory", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
-                    { "type": "link", "href": "/users", "label": "Users" },
+                    { "type": "link", "href": "/admin/users", "label": "Users" },
                     { "type": "link", "href": "", "label": "Groups" },
                     { "type": "link", "href": "", "label": "Attributes" },
                     { "type": "link", "href": "", "label": "Directory Integrations" }
