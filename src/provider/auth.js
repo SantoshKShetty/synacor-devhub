@@ -30,12 +30,14 @@ export default function AuthProvider(props) {
 
     const hasUserLoggedIn = () => Boolean(user)
 
-    const isAdminUser = () => user.email !== 'user'
+    const isAdminUser = () => user.isAdmin
 
-    const isNormalUser = () => user.email === 'user'
+    const isNormalUser = () => !user.isAdmin
+
+    const getAccessToken = () => hasUserLoggedIn() && user.access_token
 
     const contextData = React.useMemo(() => ({
-        signIn, signOut, hasUserLoggedIn, isAdminUser, isNormalUser
+        signIn, signOut, hasUserLoggedIn, isAdminUser, isNormalUser, getAccessToken
     }), [user]);
 
     return <context.Provider {...props} value={contextData} />
