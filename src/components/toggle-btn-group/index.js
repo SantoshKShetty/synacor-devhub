@@ -5,6 +5,7 @@ import dlv from 'dlv';
 import Text from '../text';
 import { generateComponent } from '../../utils/component';
 import { makeStyles } from '../../provider/theme';
+import { exists } from '../../utils/basics';
 
 const styles = makeStyles(
     ({ palette, shape, spacing }) => ({
@@ -26,7 +27,7 @@ const styles = makeStyles(
     })
 );
 
-export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChange, ...props }) {
+export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChange, selfToggle = true, ...props }) {
     const classes = styles();
     const [selected, setSelected] = React.useState(defaultValue);
 
@@ -37,8 +38,12 @@ export default function ToggleButtonGroup({ items, defaultValue, baseKey, onChan
     }));
 
     const handleChange = (event, val) => {
-        setSelected(val);
-        onChange(val);
+        const shouldUpdate = selfToggle || exists(val);
+
+        if (shouldUpdate) {
+            setSelected(val);
+            onChange(val);
+        }
     }
 
     return (
