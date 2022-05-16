@@ -10,8 +10,10 @@ import PrimaryCTABtn from '../../../components/button/primary-cta';
 import { exists, isBoolean } from '../../../utils/basics';
 import CheckBox from '../../../components/checkbox';
 import Heading from '../../../components/custom/heading';
+import { useAuth } from '../../../provider/auth';
 
-const USER_DETAILS_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
+// 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
+const USER_DETAILS_API = `http://localhost:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
 
 const TABS = ['Profile', 'Account Info', 'Credentials'];
 
@@ -85,6 +87,8 @@ export default function UserDetails(props) {
         passwordUpdateDate
     } = user || {};
 
+    const { getAccessToken } = useAuth();
+
     const [edit, setEdit] = React.useState(false);
     const [tab, setTab] = React.useState(0);
 
@@ -97,7 +101,12 @@ export default function UserDetails(props) {
     const handleTabChange = (event, val) => setTab(val);
 
     React.useEffect(() => {
-        fetch(`${USER_DETAILS_API}/${userid}`).then(res => {
+        fetch(`${USER_DETAILS_API}/${userid}`, {
+            method: 'GET',
+            headers: {
+                Bearer: getAccessToken()
+            }
+        }).then(res => {
             if (res.ok) {
                 return res.json()
             }
