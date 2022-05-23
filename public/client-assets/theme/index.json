@@ -11,16 +11,16 @@
                     "bgColorHover": "#EEEEEE",
                     "borderColor": "#CCCCCC"
                 },
-                "primaryCTA": {
+                "primaryBtn": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#CEE7FF"
                 },
-                "secondaryCTA": {
+                "secondaryBtn": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#FFFFFF",
                     "borderColor": "#CCCCCC"
                 },
-                "socialSign": {
+                "socialSigningBtn": {
                     "bgColor": "#FFFFFF",
                     "bgColorHover": "#FFFFFF",
                     "shadow": "0 2px 16px rgba(0, 0, 0, 0.16)"

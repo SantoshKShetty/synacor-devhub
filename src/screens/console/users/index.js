@@ -11,9 +11,9 @@ import TextField from '../../../components/textfield';
 import { debounce } from "debounce";
 import { isEmail, exists } from '../../../utils/basics';
 import CheckBox from '../../../components/checkbox';
-import IconButton from '../../../components/button/icon-button';
+import IconButton from '../../../components/button/icon';
 import SearchIcon from '@material-ui/icons/Search';
-import PrimaryCTABtn from '../../../components/button/primary-cta';
+import PrimaryBtn from '../../../components/button/primary';
 import CLIENTS from '../../../constants/clients';
 import { useAuth } from '../../../provider/auth';
 
@@ -250,8 +250,8 @@ export default function UsersMain({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <PrimaryCTABtn routeTo="/admin/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
-                    <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
+                    <PrimaryBtn routeTo="/admin/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryBtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
             <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>

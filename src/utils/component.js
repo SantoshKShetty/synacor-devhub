@@ -6,12 +6,10 @@ import Divider from '../components/divider';
 import TextField from '../components/textfield';
 import EmailField from '../components/textfield/email';
 import PasswordField from '../components/textfield/password';
-import PrimaryCTABtn from '../components/button/primary-cta';
-import SecondaryCTABtn from '../components/button/secondary-cta';
-import GithubSignBtn from '../components/button/social-signing/github';
-import GoogleSignBtn from '../components/button/social-signing/google';
-import MicrosoftSignBtn from '../components/button/social-signing/microsoft';
+import PrimaryBtn from '../components/button/primary';
+import SecondaryBtn from '../components/button/secondary';
 import Button from '../components/button';
+import { GithubSigningBtn, GoogleSigningBtn, MicrosoftSigningBtn } from '../components/button/social';
 import ToggleButtonGroup from '../components/toggle-btn-group';
 import Link from '../components/link';
 import { UnOrderedList, OrderedList } from '../components/list';
@@ -23,7 +21,7 @@ import * as Icons from '../components/icons';
 import Avatar from '../components/avatar';
 import CheckBox from '../components/checkbox';
 import MultiChoiceMenu from '../components/menu/multi-choice';
-import IconButton from '../components/button/icon-button';
+import IconButton from '../components/button/icon';
 import Heading from '../components/custom/heading';
 import HeaderMenu from '../components/custom/header-menu';
 import AccordionMenu from '../components/custom/accordion-menu';
@@ -174,20 +172,20 @@ export function generateComponent(componentData) {
 		case ACTION_TYPES.BUTTON.GENERIC :
 			switch(variant) {
 				case ACTION_TYPES.BUTTON.PRIMARY :
-					return <PrimaryCTABtn {...componentProps} label={label} />
+					return <PrimaryBtn {...componentProps} label={label} />
 				case ACTION_TYPES.BUTTON.SECONDARY :
-					return <SecondaryCTABtn {...componentProps} label={label} />
+					return <SecondaryBtn {...componentProps} label={label} />
 				case ACTION_TYPES.BUTTON.SOCIAL.GOOGLE :
-					return <GoogleSignBtn {...componentProps} label={label} />
+					return <GoogleSigningBtn {...componentProps} label={label} />
 				case ACTION_TYPES.BUTTON.SOCIAL.MICROSOFT :
-					return <MicrosoftSignBtn {...componentProps} label={label} />
+					return <MicrosoftSigningBtn {...componentProps} label={label} />
 				case ACTION_TYPES.BUTTON.SOCIAL.GITHUB :
-					return <GithubSignBtn {...componentProps} label={label} />
+					return <GithubSigningBtn {...componentProps} label={label} />
 				default :
 					return <Button {...componentProps} label={label} />
 			}
 		case ACTION_TYPES.BUTTON.SUBMIT :
-			return <PrimaryCTABtn {...componentProps} label={label} />
+			return <PrimaryBtn {...componentProps} label={label} />
 		case DISPLAY_TYPES.DIVIDER :
 			return <Divider {...componentProps} />
 		case LIST_TYPES.GENERIC :

@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import { Box, TextField } from '@material-ui/core';
 import Text from '../../../components/text';
 import { makeStyles } from '../../../provider/theme';
-import PrimaryCTABtn from '../../../components/button/primary-cta';
+import PrimaryBtn from '../../../components/button/primary';
 import { exists, isBoolean } from '../../../utils/basics';
 import CheckBox from '../../../components/checkbox';
 import Heading from '../../../components/custom/heading';
@@ -130,11 +130,11 @@ export default function UserDetails(props) {
             <Box className={classes.btnContainer}>
                 {edit ? (
                     <React.Fragment>
-                        <PrimaryCTABtn label="Save" onClick={handleSave} style={{ maxWidth: '120px', marginRight: 8 }} />
-                        <PrimaryCTABtn label="Cancel" onClick={handleCancel} style={{ maxWidth: '120px' }} />
+                        <PrimaryBtn label="Save" onClick={handleSave} style={{ maxWidth: '120px', marginRight: 8 }} />
+                        <PrimaryBtn label="Cancel" onClick={handleCancel} style={{ maxWidth: '120px' }} />
                     </React.Fragment>
                 ) : (
-                    <PrimaryCTABtn label="Edit" onClick={handleEdit} style={{ maxWidth: '120px' }} />
+                    <PrimaryBtn label="Edit" onClick={handleEdit} style={{ maxWidth: '120px' }} />
                 )}
             </Box>
             <TabPanel className={cn(classes.fieldSpacer, tab !== 0 && classes.hide)}>
