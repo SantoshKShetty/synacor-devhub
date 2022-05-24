@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGrid from '@material-ui/core/Grid';
-import { generateComponent } from '../../../utils/component';
+import { generateComponent } from '../../utils/component';
 
 // Constants defining the Grid container types.
 export const GRID_CONTAINER = 'container';
