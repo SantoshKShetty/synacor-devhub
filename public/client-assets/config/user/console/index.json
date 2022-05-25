@@ -18,12 +18,10 @@
         }
     ],
     "leftCol": [
-        { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
-            "children": [
-                { "type": "list", "children": [
-                    { "type": "link", "href": "/user/dashboard", "label": "Dashboard" }
-                ]}
-            ]
-        }
+        { "type": "list", "children": [
+            { "type": "link", "href": "/user/applications", "label": "Applications" },
+            { "type": "link", "href": "/user/profile", "label": "Profile" },
+            { "type": "link", "href": "/user/security", "label": "Security" }
+        ]}
     ]
 }

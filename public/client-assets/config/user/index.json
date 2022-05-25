@@ -9,15 +9,29 @@
     "routes": [
         {
             "path": [
-                "/user/dashboard",
+                "/user/applications",
                 "/user/profile",
-                "/user/applications"
+                "/user/security"
             ],
             "descriptor": "user/console/index.json",
-            "screen": "Console", "layout": "Console"
+            "screen": "Console", "layout": "Console",
+            "subScreens": {
+                "/user/applications": {
+                    "component": "UserApplications",
+                    "descriptor": "user/console/applications.json"
+                },
+                "/user/profile": {
+                    "component": "UserProfile",
+                    "descriptor": "user/console/profile.json"
+                },
+                "/user/security": {
+                    "component": "UserSecurity",
+                    "descriptor": "user/console/security.json"
+                }
+            }
         },
         {
-            "path": "*", "redirectTo": "/user/dashboard"
+            "path": "*", "redirectTo": "/user/applications"
         }
     ]
 }

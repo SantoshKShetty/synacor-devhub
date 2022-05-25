@@ -42,6 +42,18 @@ const SUB_SCREENS = {
         /* webpackChunkName: "users-details-subscreen" */
         '../screens/console/users/details'
     )),
+    UserApplications: lazy(() => import(
+        /* webpackChunkName: "user-apps-subscreen" */
+        '../screens/console/user/apps'
+    )),
+    UserProfile: lazy(() => import(
+        /* webpackChunkName: "user-profile-subscreen" */
+        '../screens/console/user/profile'
+    )),
+    UserSecurity: lazy(() => import(
+        /* webpackChunkName: "user-security-subscreen" */
+        '../screens/console/user/security'
+    )),
 };
 
 const context = React.createContext({});

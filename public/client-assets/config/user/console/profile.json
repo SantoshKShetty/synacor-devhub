@@ -1,0 +1,57 @@
+{ "type": "box", "children": [
+    { "type": "grid", "spacing": 4, "children": [
+        { "type": "grid", "variant": "item", "xs": true, "children": [
+            { "type": "box", "children": [
+                { "type": "heading", "variant": "sectionTitle", "label": "Profile Details", "color": "textPrimary" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "fname", "label": "First Name" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "lname", "label": "Last Name" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "usrname", "label": "Username" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Primary email" }
+                ], "styles": { "mb": 3 }}
+            ]}
+        ]},
+        { "type": "grid", "variant": "item", "xs": true, "children": [
+            { "type": "box", "children": [
+                { "type": "heading", "variant": "sectionTitle", "label": "Personal Information", "color": "textPrimary" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "fname", "label": "Home Phone" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "lname", "label": "Mobile" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "usrname", "label": "Work Fax" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Street Address" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "P.O Box" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "City" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "State" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Zipcode" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Country" }
+                ], "styles": { "mb": 3 }}
+            ]}
+        ]}
+    ]}
+], "styles": { "width": "100%" }}

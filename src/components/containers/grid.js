@@ -13,7 +13,7 @@ export const GRID_ITEM = 'item';
  * @param {Numeric} spacing - Gap between Grid items.
  * @param {Array} items - Children
  */
-export default function Grid({ variant = GRID_CONTAINER, spacing = 0, items, children, ...props }) {
+export default function Grid({ variant = GRID_CONTAINER, spacing = 0, items, children, baseKey, ...props }) {
     return (
         <ReactGrid {...props} {...{ [variant]: true, ...variant === GRID_CONTAINER && { spacing } }}>
             {items && generateComponent(items)}

@@ -231,6 +231,6 @@ export function generateComponent(componentData) {
 		case MENU_TYPES.ACCORDION:
 			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
 		case CONTAINER_TYPES.GRID:
-			return <Grid {...componentProps} baseKey={key} items={children} />
+			return <Grid {...componentProps} baseKey={key} variant={variant} items={children} />
 	}
 }
