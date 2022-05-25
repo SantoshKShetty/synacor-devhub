@@ -30,17 +30,17 @@ const SCREENS = {
 
 // Mapping of lookup id's against lazy loaded sub-screens (chunks)
 const SUB_SCREENS = {
-    UsersMain: lazy(() => import(
-        /* webpackChunkName: "users-main-subscreen" */
-        '../screens/console/users'
+    AdminUsersList: lazy(() => import(
+        /* webpackChunkName: "admin-users-list-subscreen" */
+        '../screens/console/admin/users'
     )),
-    AddUser: lazy(() => import(
-        /* webpackChunkName: "add-user-subscreen" */
-        '../screens/console/users/add'
+    AdminAddUser: lazy(() => import(
+        /* webpackChunkName: "admin-add-user-subscreen" */
+        '../screens/console/admin/users/add'
     )),
-    UserDetails: lazy(() => import(
-        /* webpackChunkName: "users-details-subscreen" */
-        '../screens/console/users/details'
+    AdminUsersDetails: lazy(() => import(
+        /* webpackChunkName: "admin-users-details-subscreen" */
+        '../screens/console/admin/users/details'
     )),
     UserApplications: lazy(() => import(
         /* webpackChunkName: "user-apps-subscreen" */

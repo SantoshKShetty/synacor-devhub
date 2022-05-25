@@ -2,20 +2,20 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
-import Box, { HORIZONTAL } from '../../../components/containers/box';
-import Text from '../../../components/text';
-import { generateComponent } from '../../../utils/component';
+import Box, { HORIZONTAL } from '../../../../components/containers/box';
+import Text from '../../../../components/text';
+import { generateComponent } from '../../../../utils/component';
 import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
-import TransferList from '../../../components/transfer-list';
-import TextField from '../../../components/textfield';
+import TransferList from '../../../../components/transfer-list';
+import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
-import { isEmail, exists } from '../../../utils/basics';
-import CheckBox from '../../../components/checkbox';
-import IconButton from '../../../components/button/icon';
+import { isEmail, exists } from '../../../../utils/basics';
+import CheckBox from '../../../../components/checkbox';
+import IconButton from '../../../../components/button/icon';
 import SearchIcon from '@material-ui/icons/Search';
-import PrimaryBtn from '../../../components/button/primary';
-import CLIENTS from '../../../constants/clients';
-import { useAuth } from '../../../provider/auth';
+import PrimaryBtn from '../../../../components/button/primary';
+import CLIENTS from '../../../../constants/clients';
+import { useAuth } from '../../../../provider/auth';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -138,7 +138,7 @@ const styles = makeStyles(
     })
 )
 
-export default function UsersMain({ info: { filter } = {} }) {
+export default function AdminUsersList({ info: { filter } = {} }) {
     const classes = styles();
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);

@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Box, TextField } from '@material-ui/core';
-import Text from '../../../components/text';
-import { makeStyles } from '../../../provider/theme';
-import PrimaryBtn from '../../../components/button/primary';
-import { exists, isBoolean } from '../../../utils/basics';
-import CheckBox from '../../../components/checkbox';
-import Heading from '../../../components/custom/heading';
-import { useAuth } from '../../../provider/auth';
+import Text from '../../../../components/text';
+import { makeStyles } from '../../../../provider/theme';
+import PrimaryBtn from '../../../../components/button/primary';
+import { exists, isBoolean } from '../../../../utils/basics';
+import CheckBox from '../../../../components/checkbox';
+import Heading from '../../../../components/custom/heading';
+import { useAuth } from '../../../../provider/auth';
 
 // 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
 const USER_DETAILS_API = `http://localhost:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
@@ -69,7 +69,7 @@ const TabPanel = ({ children, ...props }) => {
     return <Box {...props}>{children}</Box>
 }
 
-export default function UserDetails(props) {
+export default function AdminUsersDetails(props) {
     const classes = styles();
 
     const { userid } = useParams();

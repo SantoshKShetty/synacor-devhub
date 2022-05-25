@@ -28,9 +28,9 @@ export default function AuthProvider(props) {
         setUser(null);
     }
 
-    const hasUserLoggedIn = () => true//Boolean(user)
+    const hasUserLoggedIn = () => Boolean(user)
 
-    const isAdminUser = () => true//user.isAdmin
+    const isAdminUser = () => user.isAdmin
 
     const isNormalUser = () => !user.isAdmin
 
