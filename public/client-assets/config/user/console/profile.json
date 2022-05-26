@@ -1,9 +1,9 @@
 { "type": "box", "children": [
+    { "type": "box", "children": [
+        { "type": "heading", "variant": "sectionTitle", "label": "Profile Details", "color": "textPrimary" }
+    ], "styles": { "mb": 3 }},
     { "type": "grid", "spacing": 4, "children": [
         { "type": "grid", "variant": "item", "xs": true, "children": [
-            { "type": "box", "children": [
-                { "type": "heading", "variant": "sectionTitle", "label": "Profile Details", "color": "textPrimary" }
-            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "fname", "label": "First Name" }
@@ -20,9 +20,6 @@
             ]}
         ]},
         { "type": "grid", "variant": "item", "xs": true, "children": [
-            { "type": "box", "children": [
-                { "type": "heading", "variant": "sectionTitle", "label": "Personal Information", "color": "textPrimary" }
-            ], "styles": { "mb": 3 }},
             { "type": "box", "children": [
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "fname", "label": "Home Phone" }
