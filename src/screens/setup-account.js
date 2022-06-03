@@ -4,8 +4,7 @@ import Form from "../components/form";
 import Text from "../components/text";
 import { exists } from "../utils/basics";
 
-// http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants
-const TENANT_REGISTER_API = 'http://localhost:4080/tenants';
+const TENANT_REGISTER_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants';
 
 function SetupAccountScreen({ info, Layout }) {
     const { logo, screenInfo, form } = info;

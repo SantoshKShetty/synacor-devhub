@@ -12,8 +12,7 @@ import CheckBox from '../../../../components/checkbox';
 import Heading from '../../../../components/custom/heading';
 import { useAuth } from '../../../../provider/auth';
 
-// 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
-const USER_DETAILS_API = `http://localhost:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
+const USER_DETAILS_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
 
 const TABS = ['Profile', 'Account Info', 'Credentials'];
 

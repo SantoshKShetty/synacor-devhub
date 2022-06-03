@@ -206,8 +206,7 @@ export default function AdminUsersList({ info: { filter } = {} }) {
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        // http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users?${params}
-        const apiUrl = `http://localhost:4080/orgs/${ORG}/keycloak/users?${params}`;
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${ORG}/keycloak/users?${params}`;
 
         params && fetch(apiUrl, {
             method: 'POST',
