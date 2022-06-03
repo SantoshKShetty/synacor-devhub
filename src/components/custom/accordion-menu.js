@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '../../../provider/theme';
-import Accordion from '../../accordion';
+import { makeStyles } from '../../provider/theme';
+import Accordion from '../accordion';
 
 const styles = makeStyles(
     ({ palette, spacing, typography }) => ({

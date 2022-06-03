@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import { makeStyles } from '../../../provider/theme';
-import Menu from '../../menu';
+import { makeStyles } from '../../provider/theme';
+import Menu from '../menu';
 
 const styles = makeStyles(
     ({ shape, spacing }) => ({

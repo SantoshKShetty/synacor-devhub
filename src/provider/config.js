@@ -4,6 +4,7 @@ import { getConfigResource } from '../utils/resource-path';
 import { useAuth } from './auth';
 import { exists, isArray, isString } from '../utils/basics';
 import DESCRIPTOR_FOLDERS from '../constants/descriptor-folders';
+import { fetchJsonResource } from '../utils/fetch';
 
 const downloadConfigs = (configPaths, entryFile) => {
     if (!isArray(configPaths)) return Promise.reject('`configPaths` must be an array of string of folder paths');
@@ -12,13 +13,7 @@ const downloadConfigs = (configPaths, entryFile) => {
 
     return Promise.all(configPaths.map(path => {
         const resource = `${path}/${entryFile}`;
-
-        return fetch(
-            getConfigResource(resource)
-        ).then(res => {
-            if (!res.ok) return Promise.reject(`${res.statusText}, resource: ${resource}`);
-            return res.json();
-        }).catch(e => console.log(`Error occured due to: ${e}`))
+        return fetchJsonResource(getConfigResource(resource)).catch(e => console.log(e))
     }));
 }
 

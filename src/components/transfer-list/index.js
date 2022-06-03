@@ -3,7 +3,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import dlv from 'dlv';
 import Text from '../text';
-import IconButton from '../button/icon-button';
+import IconButton from '../button/icon';
 import { MoreVertIcon, CloseIcon } from '../icons';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@material-ui/core';
 import CheckBox from '../checkbox';
@@ -11,7 +11,7 @@ import Box, { HORIZONTAL } from '../containers/box';
 import { exists } from '../../utils/basics';
 import Grid, { GRID_CONTAINER, GRID_ITEM } from '../containers/grid';
 import { makeStyles } from '../../provider/theme';
-import PrimaryCTABtn from '../button/primary-cta';
+import PrimaryBtn from '../button/primary';
 
 const styles = makeStyles(
     () => ({
@@ -143,9 +143,9 @@ export default function TransferList({ title, items, selected, defaultValue, onA
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <PrimaryCTABtn onClick={handleClose} label="Cancel" style={{ width: 140 }} />
-                    <PrimaryCTABtn label="Reset to Default" onClick={handleResetToDefault} style={{ width: 140 }} />
-                    <PrimaryCTABtn label="Apply" onClick={handleApply} style={{ width: 140 }} />
+                    <PrimaryBtn onClick={handleClose} label="Cancel" style={{ width: 140 }} />
+                    <PrimaryBtn label="Reset to Default" onClick={handleResetToDefault} style={{ width: 140 }} />
+                    <PrimaryBtn label="Apply" onClick={handleApply} style={{ width: 140 }} />
                 </DialogActions>
             </Dialog>
         </React.Fragment>

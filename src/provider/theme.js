@@ -2,6 +2,7 @@ import React from 'react';
 import mergeOptions from 'merge-options';
 import { createTheme, makeStyles, ThemeProvider as ReactThemeProvider } from '@material-ui/core/styles';
 import { getThemeResource } from '../utils/resource-path';
+import { fetchJsonResource } from '../utils/fetch';
 
 // Default theme settings can be provided here which can be then overridden by client specific theme settings.
 const DEFAULT_THEME = {
@@ -19,8 +20,7 @@ export default function ThemeProvider(props) {
     const [theme, setTheme] = React.useState();
 
     React.useEffect(() => {
-        fetch(getThemeResource())
-            .then(r => r.json())
+        fetchJsonResource(getThemeResource())
             .then(overrides => {
                 setTheme(mergeOptions(DEFAULT_THEME, overrides))
             }).catch(e => {
