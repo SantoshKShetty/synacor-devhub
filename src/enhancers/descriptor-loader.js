@@ -1,6 +1,7 @@
 import React from 'react';
 import mergeOptions from 'merge-options';
 import { getConfigResource } from '../utils/resource-path';
+import { fetchJsonResource } from '../utils/fetch';
 
 /**
  * Component `DescriptorLoader` is a thin wrapper that wraps around every screen component given for a route.
@@ -15,10 +16,9 @@ export default function DescriptorLoader({ descriptor, children, genericInfo }) 
     const [desc, setDesc] = React.useState(null);
 
     React.useEffect(() => {
-        fetch(getConfigResource(descriptor))
-            .then(d => d.json())
+        fetchJsonResource(getConfigResource(descriptor))
             .then(d => setDesc(d))
-            .catch(e => console.log(`Error downloading descriptor ${descriptor} due to: ${e}`));
+            .catch(e => console.log(e));
     }, []);
 
     return desc && React.cloneElement(

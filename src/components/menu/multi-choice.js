@@ -1,10 +1,10 @@
 import React from 'react';
-import Popover from '../../popover';
-import Box, { HORIZONTAL } from '../../containers/box';
-import { createMenuOpener } from '../utils';
-import { generateComponent } from '../../../utils/component';
-import Link from '../../link';
-import { exists } from '../../../utils/basics';
+import Popover from '../popover';
+import Box, { HORIZONTAL } from '../containers/box';
+import { createMenuOpener } from './utils';
+import { generateComponent } from '../../utils/component';
+import Link from '../link';
+import { exists } from '../../utils/basics';
 
 export default function MultiChoiceMenu({
     baseKey = 'multi-choice-menu',

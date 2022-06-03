@@ -3,7 +3,7 @@ import Form from "../components/form";
 import Text from "../components/text";
 import { useAuth } from "../provider/auth";
 
-const TENANT_LOGIN_API = 'http://localhost:4080/login';
+const TENANT_LOGIN_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/login';
 
 function LoginScreen({ info, Layout }) {
     const { logo, form } = info;
