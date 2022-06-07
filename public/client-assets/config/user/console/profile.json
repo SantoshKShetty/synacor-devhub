@@ -16,17 +16,17 @@
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "email", "label": "Primary email" }
-                ], "styles": { "mb": 3 }}
-            ]}
-        ]},
-        { "type": "grid", "variant": "item", "xs": true, "children": [
-            { "type": "box", "children": [
+                ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "fname", "label": "Home Phone" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "lname", "label": "Mobile" }
-                ], "styles": { "mb": 3 }},
+                ], "styles": { "mb": 3 }}
+            ]}
+        ]},
+        { "type": "grid", "variant": "item", "xs": true, "children": [
+            { "type": "box", "children": [
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "usrname", "label": "Work Fax" }
                 ], "styles": { "mb": 3 }},
