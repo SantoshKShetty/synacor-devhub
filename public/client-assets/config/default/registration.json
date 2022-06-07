@@ -82,6 +82,17 @@
                     { "type": "link", "href": "/login", "label": "Sign In" }
                 ]}
             ], "styles": { "mb": 5 }}
+        ],
+        "validations": [
+            { "field": "username", "rules": [
+                { "pattern": "^[a-zA-Z0-9]+$", "message": "Username can have only alpha numeric characters without space." }
+            ]},
+            { "field": "password", "rules": [
+                { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
+                { "pattern": "\\d", "message": "Must contain a number." },
+                { "pattern": "[A-Z]", "message": "Must contain uppercase character." },
+                { "pattern": "[a-z]", "message": "Must contain lowercase character." }
+            ]}
         ]
     }
 }

@@ -3,7 +3,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Form from "../components/form";
 import Text from "../components/text";
 import { exists } from "../utils/basics";
-import { flattenFormData } from "../utils/form";
 
 const TENANT_REGISTER_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants';
 
@@ -15,7 +14,7 @@ function SetupAccountScreen({ info, Layout }) {
 
     const handleSubmit = formData => {
         const prevFormData = location?.state || {};
-        const { compName, ...restData } = flattenFormData({ ...prevFormData, ...formData });
+        const { compName, ...restData } = { ...prevFormData, ...formData };
 
         if (exists(compName)) {
             setError(null);

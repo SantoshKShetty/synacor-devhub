@@ -85,6 +85,14 @@
             { "type": "box", "children": [
                 { "type": "submit", "variant": "primary", "label": "Create Account" }
             ]}
+        ],
+        "validations": [
+            { "field": "compName", "rules": [
+                { "pattern": "^[a-zA-Z0-9]+$", "message": "Company name can have only alpha numeric characters without space." }
+            ]},
+            { "field": "tenantDomain", "rules": [
+                { "pattern": "^[a-zA-Z0-9]+$", "message": "Tenant domain can have only alpha numeric characters without space." }
+            ]}
         ]
     }
 }

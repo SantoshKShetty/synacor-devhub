@@ -128,14 +128,24 @@ export function generateComponent(componentData) {
 		...props
 	} = componentData;
 
-	const { bindFormEvents } = useForm()
+	const { formError, bindFormEvents } = useForm();
+
+	// Event props, later we can add custom events if required.
+	const eventProps = bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField);
+
+	// Form validation errors etc.
+	const errorProps = formError && formError[name] && {
+		error: true,
+		helperText: formError[name]
+	};
 
 	const componentProps = {
 		key,
 		name,
 		...props,
 		...styles,
-		...bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField)
+		...errorProps,
+		...eventProps
 	};
 
 	switch(type) {
