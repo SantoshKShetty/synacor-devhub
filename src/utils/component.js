@@ -40,6 +40,7 @@ import {
 	USER_INPUT_TYPES
 } from '../constants/field-types';
 import { useForm } from '../components/form';
+import useEventsRegistry from '../hooks/events-registry';
 
 
 /**
@@ -123,6 +124,7 @@ export function generateComponent(componentData) {
 		icon,
 		name,
 		relatesToField,
+		id,
 		...props
 	} = componentData;
 
@@ -130,6 +132,8 @@ export function generateComponent(componentData) {
 
 	// Event props, later we can add custom events if required.
 	const eventProps = bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField);
+
+	const { retrieveEvents } = useEventsRegistry();
 
 	// Form validation errors etc.
 	const errorProps = formError && formError[name] && {
@@ -140,10 +144,12 @@ export function generateComponent(componentData) {
 	const componentProps = {
 		key,
 		name,
+		id,
 		...props,
 		...styles,
 		...errorProps,
-		...eventProps
+		...eventProps,
+		...retrieveEvents(name || id)
 	};
 
 	switch(type) {
