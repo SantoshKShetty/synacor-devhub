@@ -37,21 +37,21 @@ const useStyles = makeStyles(
     }
 );
 
-function ConsoleLayout({ children }) {
+function ConsoleLayout({ logo, header, leftCol, children }) {
     const classes = useStyles();
-    const [ Header, LeftCol, RightCol ] = children;
 
     return (
         <React.Fragment>
             <Box className={classes.headerContainer} direction={HORIZONTAL}>
-                {Header}
+                {logo && generateComponent(logo)}
+                {header && generateComponent(header)}
             </Box>
             <Box className={classes.bodyContainer} direction={HORIZONTAL}>
                 <Box className={classes.leftColContainer}>
-                    {LeftCol}
+                    {generateComponent(leftCol)}
                 </Box>
                 <Box className={classes.rightColContainer}>
-                    {RightCol}
+                    {children}
                 </Box>
             </Box>
         </React.Fragment>

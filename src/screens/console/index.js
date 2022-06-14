@@ -4,32 +4,13 @@ import { useScreen } from "../../provider/screen";
 import { findMatchingRoute } from "../../utils/route";
 import { exists } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
-import useEventsRegistry from "../../hooks/events-registry";
-import { useAuth } from "../../provider/auth";
 
-const Header = ({ logo, header }) => {
-    const { signOut } = useAuth();
-    const { registerEvents } = useEventsRegistry();
-
-    const handleSignout = () => {
-        signOut()
-    }
-
-    const eventsToRegister = {
-        SignoutBtn: {
-            onClick: handleSignout
-        }
-    }
-
-    registerEvents(eventsToRegister);
-
-    return (
-        <React.Fragment>
-            {logo && generateComponent(logo)}
-            {header && generateComponent(header)}
-        </React.Fragment>
-    );
-}
+const Header = ({ logo, header }) => (
+    <React.Fragment>
+        {logo && generateComponent(logo)}
+        {header && generateComponent(header)}
+    </React.Fragment>
+)
 
 const LeftCol = ({ leftCol }) => generateComponent(leftCol);
 
@@ -56,9 +37,7 @@ function ConsoleScreen({ info, Layout, subScreens }) {
     const { logo, header, leftCol } = info;
 
     return (
-        <Layout>
-            <Header logo={logo} header={header} />
-            <LeftCol leftCol={leftCol} />
+        <Layout logo={logo} header={header} leftCol={leftCol}>
             <RightCol subScreens={subScreens} />
         </Layout>
     );
