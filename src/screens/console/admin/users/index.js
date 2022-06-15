@@ -15,7 +15,6 @@ import IconButton from '../../../../components/button/icon';
 import SearchIcon from '@material-ui/icons/Search';
 import PrimaryBtn from '../../../../components/button/primary';
 import CLIENTS from '../../../../constants/clients';
-import { useAuth } from '../../../../provider/auth';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -145,12 +144,11 @@ export default function AdminUsersList({ info: { filter } = {} }) {
     const [columns, setColumns] = React.useState(DEFAULT_COLUMNS);
     const [data, setData] = React.useState(null);
     const [perPage, setPerPage] = React.useState(5);
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = React.useState(1);
     const [total, setTotal] = React.useState(0);
     const [searchParams, setSearchParams] = React.useState({ username: null, contactEmail: null });
     const [error, setError] = React.useState(null);
     const history = useHistory();
-    const { getAccessToken } = useAuth();
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
@@ -206,14 +204,9 @@ export default function AdminUsersList({ info: { filter } = {} }) {
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${ORG}/keycloak/users?${params}`;
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${ORG}/users?${params}`;
 
-        params && fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                Bearer: getAccessToken()
-            }
-        }).then(r => r.json()).then(({ users = [], totalNumberOfRecords, message }) => {
+        params && fetch(apiUrl).then(r => r.json()).then(({ users = [], totalNumberOfRecords, message }) => {
             setTotal(exists(totalNumberOfRecords) ? totalNumberOfRecords : users.length);
 
             if (message) {
