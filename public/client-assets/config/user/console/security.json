@@ -12,15 +12,15 @@
                     { "type": "text", "variant": "body2", "label": "Your password can't be any of your last 4 passwords" }
                 ]}
             ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
+            { "type": "form", "children": [
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "fname", "label": "Current password" }
+                    { "type": "textfield", "name": "fname", "label": "Current password" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "lname", "label": "New password" }
+                    { "type": "textfield", "name": "lname", "label": "New password" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "usrname", "label": "Confirm new password" }
+                    { "type": "textfield", "name": "usrname", "label": "Confirm new password" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
                     { "type": "button", "label": "Change Password" }

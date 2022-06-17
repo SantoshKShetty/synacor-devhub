@@ -1,6 +1,6 @@
-{
-    "screenInfo": [
-        { "type": "box", "children": [
+[
+    {
+        "type": "box", "children": [
             { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
             { "type": "box", "children": [
                 { "type": "list", "variant": "advanced",
@@ -43,10 +43,10 @@
                     { "type": "image", "src": "partner-logos/dish.png", "width": "74", "height": "39" }
                 ], "styles": { "m": 1 }}
             ], "styles": { "flexWrap": "wrap", "alignItems": "center" }}
-        ], "styles": { "mt": { "md": 5 } }}
-    ],
-    "form": {
-        "controls": [
+        ], "styles": { "mt": { "md": 5 } }
+    },
+    {
+        "type": "form", "children": [
             { "type": "box", "children": [
                 { "type": "heading", "variant": "screenTitle", "label": "Create Account", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
@@ -95,4 +95,4 @@
             ]}
         ]
     }
-}
+]
