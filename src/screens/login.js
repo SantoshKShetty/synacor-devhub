@@ -1,14 +1,15 @@
 import React from "react";
-import Form from "../components/form";
 import Text from "../components/text";
 import { useAuth } from "../provider/auth";
+import { generateComponent } from "../utils/component";
 
 const TENANT_LOGIN_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/login';
 
-function LoginScreen({ info, Layout }) {
-    const { logo, form } = info;
-    const { signIn } = useAuth();
+function LoginScreen({ genericInfo, screenInfo, Layout }) {
+    const { logo } = genericInfo;
     const [error, setError] = React.useState(null);
+
+    const { signIn } = useAuth();
 
     const handleSubmit = formData => {
         setError(null);
@@ -32,7 +33,7 @@ function LoginScreen({ info, Layout }) {
 
     return (
         <Layout logo={logo}>
-            <Form form={form} onSubmit={handleSubmit} />
+            {generateComponent(screenInfo)}
             {error && <Text color="error" variant="caption">{error}</Text>}
         </Layout>
     );

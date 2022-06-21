@@ -2,10 +2,6 @@ import React, { lazy } from 'react';
 
 // Mapping of lookup id's against lazy loaded screens (chunks)
 const SCREENS = {
-    Home: lazy(() => import(
-        /* webpackChunkName: "home-screen" */
-        '../screens/home'
-    )),
     Register: lazy(() => import(
         /* webpackChunkName: "registration-screen" */
         '../screens/registration'

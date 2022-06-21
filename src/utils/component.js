@@ -32,6 +32,7 @@ import {
 	AVATAR_TYPE,
 	CONTAINER_TYPES,
 	DISPLAY_TYPES,
+	FORM_TYPE,
 	ICON_TYPE,
 	IMAGE_TYPE,
 	LINK_TYPE,
@@ -39,7 +40,7 @@ import {
 	MENU_TYPES,
 	USER_INPUT_TYPES
 } from '../constants/field-types';
-import { useForm } from '../components/form';
+import Form, { useForm } from '../components/form';
 import useEventsRegistry from '../hooks/events-registry';
 import { CALLBACK_TYPES } from '../constants/events-registry';
 
@@ -162,8 +163,8 @@ export function generateComponent(componentData) {
 
 	const componentProps = {
 		key,
-		name,
-		id,
+		...name && { name },
+		...id && { id },
 		...props,
 		...styles,
 		...errorProps,
@@ -257,5 +258,7 @@ export function generateComponent(componentData) {
 			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
 		case CONTAINER_TYPES.GRID:
 			return <Grid {...componentProps} baseKey={key} variant={variant} items={children} />
+		case FORM_TYPE:
+			return <Form {...componentProps} items={children} />
 	}
 }

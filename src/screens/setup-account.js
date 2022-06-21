@@ -1,16 +1,18 @@
 import React from "react";
 import { useHistory, useLocation } from 'react-router-dom';
-import Form from "../components/form";
 import Text from "../components/text";
-import { exists } from "../utils/basics";
+import { isArray, isObject } from "../utils/basics";
+import { generateComponent } from "../utils/component";
 
 const TENANT_REGISTER_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants';
 
-function SetupAccountScreen({ info, Layout }) {
-    const { logo, screenInfo, form } = info;
+function SetupAccountScreen({ genericInfo, screenInfo, Layout }) {
+    const { logo } = genericInfo;
+    const [ leftCol, rightCol ] = isObject(screenInfo) ? [screenInfo] : isArray(screenInfo) ? screenInfo : [];
+    const [error, setError] = React.useState(null);
+
     const location = useLocation();
     const history = useHistory();
-    const [error, setError] = React.useState(null);
 
     const handleSubmit = formData => {
         const prevFormData = location?.state || {};
@@ -31,9 +33,12 @@ function SetupAccountScreen({ info, Layout }) {
     }
 
     return (
-        <Layout logo={logo} screenInfo={screenInfo}>
-            <Form form={form} onSubmit={handleSubmit} />
-            {error && <Text color="error" variant="caption">{error}</Text>}
+        <Layout logo={logo}>
+            {generateComponent(leftCol)}
+            <React.Fragment>
+                {generateComponent(rightCol)}
+                {error && <Text color="error" variant="caption">{error}</Text>}
+            </React.Fragment>
         </Layout>
     );
 };

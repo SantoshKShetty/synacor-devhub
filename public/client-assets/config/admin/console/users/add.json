@@ -35,4 +35,4 @@
             { "type": "button", "variant": "primary", "label": "Cancel", "routeTo": "/admin/users" }
         ], "styles": { "justifyContent": "space-between" }}
     ]}
-]}
+], "styles": { "width": "80%", "maxWidth": 600 }}

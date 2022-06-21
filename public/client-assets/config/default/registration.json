@@ -45,54 +45,55 @@
             ], "styles": { "flexWrap": "wrap", "alignItems": "center" }}
         ], "styles": { "mt": { "md": 5 } }
     },
-    {
-        "type": "form", "children": [
-            { "type": "box", "children": [
-                { "type": "heading", "variant": "screenTitle", "label": "Create Account", "color": "textPrimary" }
-            ], "styles": { "mb": 4 }},
-            { "type": "box", "children": [
-                { "type": "textfield", "variant": "email", "label": "Email", "name": "username" }
-            ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
-                { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
-            ], "styles": { "mb": 4 }},
-            { "type": "box", "children": [
-                { "type": "text", "variant": "body2", "label": "By clicking on any of the Sign Up options, I agree to the terms of service.", "color": "textPrimary" }
-            ], "styles": { "mb": 5 }},
-            { "type": "box", "children": [
-                { "type": "submit", "variant": "primary", "label": "Sign Up" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 5, "mt": 5 }},
-                { "type": "button", "variant": "socialGithub", "label": "Sign Up With Github" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google", "startIcon": {
-                    "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
-                }},
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft", "startIcon": {
-                    "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
-                }}
-            ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 5, "mt": 2 }},
-                { "type": "text", "variant": "body2", "label": "Already have an account? ", "color": "textPrimary", "children": [
-                    { "type": "link", "href": "/login", "label": "Sign In" }
+    { "type": "box", "children": [
+        { "type": "box", "children": [
+            { "type": "heading", "variant": "screenTitle", "label": "Create Account", "color": "textPrimary" }
+        ], "styles": { "mb": 4 }},
+        {
+            "type": "form", "children": [
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "email", "label": "Email", "name": "username" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
+                ], "styles": { "mb": 4 }},
+                { "type": "box", "children": [
+                    { "type": "text", "variant": "body2", "label": "By clicking on any of the Sign Up options, I agree to the terms of service.", "color": "textPrimary" }
+                ], "styles": { "mb": 5 }},
+                { "type": "submit", "variant": "primary", "label": "Sign Up" }
+            ], "validations": [
+                { "field": "username", "rules": [
+                    { "pattern": "^[a-zA-Z0-9]+$", "message": "Username can have only alpha numeric characters without space." }
+                ]},
+                { "field": "password", "rules": [
+                    { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
+                    { "pattern": "\\d", "message": "Must contain a number." },
+                    { "pattern": "[A-Z]", "message": "Must contain uppercase character." },
+                    { "pattern": "[a-z]", "message": "Must contain lowercase character." }
                 ]}
-            ], "styles": { "mb": 5 }}
-        ],
-        "validations": [
-            { "field": "username", "rules": [
-                { "pattern": "^[a-zA-Z0-9]+$", "message": "Username can have only alpha numeric characters without space." }
-            ]},
-            { "field": "password", "rules": [
-                { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
-                { "pattern": "\\d", "message": "Must contain a number." },
-                { "pattern": "[A-Z]", "message": "Must contain uppercase character." },
-                { "pattern": "[a-z]", "message": "Must contain lowercase character." }
+            ]
+        },
+        { "type": "box" , "children": [
+            { "type": "divider" }
+        ], "styles": { "mb": 5, "mt": 5 }},
+        { "type": "box", "children": [
+            { "type": "button", "variant": "socialGithub", "label": "Sign Up With Github" },
+            { "type": "box" , "styles": { "mb": 2 }},
+            { "type": "button", "variant": "socialGoogle", "label": "Sign Up With Google", "startIcon": {
+                "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
+            }},
+            { "type": "box" , "styles": { "mb": 2 }},
+            { "type": "button", "variant": "socialMicrosoft", "label": "Sign Up With Microsoft", "startIcon": {
+                "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
+            }}
+        ], "styles": { "mb": 3 }},
+        { "type": "box" , "children": [
+            { "type": "divider" }
+        ], "styles": { "mb": 5, "mt": 2 }},
+        { "type": "box", "children": [
+            { "type": "text", "variant": "body2", "label": "Already have an account? ", "color": "textPrimary", "children": [
+                { "type": "link", "href": "/login", "label": "Sign In" }
             ]}
-        ]
-    }
+        ], "styles": { "mb": 5 }}
+    ], "styles": { "width": { "md": 340 } }}
 ]

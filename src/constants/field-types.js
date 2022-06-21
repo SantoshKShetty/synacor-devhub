@@ -54,3 +54,5 @@ export const MENU_TYPES = {
     ACCORDION: 'accordionMenu',
     MULTI_CHOICE: 'multiChoiceMenu'
 }
+
+export const FORM_TYPE = 'form';

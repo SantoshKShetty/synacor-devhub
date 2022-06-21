@@ -1,4 +1,4 @@
-{ "type": "form", "children": [
+{ "type": "box", "children": [
     { "type": "box", "children": [
         { "type": "heading", "variant": "screenTitle", "label": "Hurray... Registration Successful!", "color": "textPrimary" }
     ], "styles": { "mb": 2, "mt": 4 }},

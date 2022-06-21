@@ -1,8 +1,6 @@
 import React from 'react';
-import cn from 'classnames';
 import dlv from 'dlv';
 import { dset } from 'dset';
-import { makeStyles } from '../../provider/theme';
 import { generateComponent } from '../../utils/component';
 import { createObjPath, exists, isObject } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
@@ -14,15 +12,6 @@ const EVENT_HANDLER_RETURN_TYPE = {
     EXEC: 'EXEC_AND_RETURN'
 };
 
-const styles = makeStyles(
-    ({ breakpoints }) => ({
-        form: {
-            [breakpoints.up('md')]: {
-                width: 340
-            }
-        }
-    })
-);
 
 function storeUpdaterFn(state, { type, payload }) {
     if (type === INIT) {
@@ -53,9 +42,7 @@ const FormControls = ({ controls }) => generateComponent(controls);
 
 
 // Main `Form` Component
-const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...props }) => {
-    const classes = styles();
-
+const Form = ({ items: controls, validations, onSubmit, ...props }) => {
     // State to maintain form data.
     const [formData, dispatchData] = React.useReducer(storeUpdaterFn, {});
 
@@ -161,7 +148,7 @@ const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...pr
 
 
     return (
-        <form {...props} className={cn(classes.form, className)}>
+        <form {...props}>
             <FormContext.Provider value={contextData}>
                 <FormControls controls={controls} />
             </FormContext.Provider>

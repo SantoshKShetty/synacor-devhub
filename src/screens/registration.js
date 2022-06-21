@@ -1,9 +1,12 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
-import Form from "../components/form";
+import { isArray, isObject } from "../utils/basics";
+import { generateComponent } from "../utils/component";
 
-function RegistrationScreen({ info, Layout }) {
-    const { logo, screenInfo, form } = info;
+function RegistrationScreen({ genericInfo, screenInfo, Layout }) {
+    const { logo } = genericInfo;
+    const [ leftCol, rightCol ] = isObject(screenInfo) ? [screenInfo] : isArray(screenInfo) ? screenInfo : [];
+
     const history = useHistory();
 
     const handleSubmit = formData => {
@@ -11,8 +14,9 @@ function RegistrationScreen({ info, Layout }) {
     }
 
     return (
-        <Layout logo={logo} screenInfo={screenInfo}>
-            <Form form={form} onSubmit={handleSubmit} />
+        <Layout logo={logo}>
+            {generateComponent(leftCol)}
+            {generateComponent(rightCol)}
         </Layout>
     );
 };

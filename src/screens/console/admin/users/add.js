@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Form from '../../../../components/form';
 import Text from '../../../../components/text';
 import { useAuth } from '../../../../provider/auth';
+import { generateComponent } from '../../../../utils/component';
 
 const CREATE_USER_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/keycloak/users`;
 
-export default function AdminAddUser({ info: { form } = {} }) {
+export default function AdminAddUser({ screenInfo }) {
     const [error, setError] = React.useState(null);
     const { getAccessToken } = useAuth();
     const history = useHistory();
@@ -34,11 +34,7 @@ export default function AdminAddUser({ info: { form } = {} }) {
 
     return (
         <React.Fragment>
-            <Form
-                form={form}
-                style={{ width: '80%', padding: '0 10% 0 0', boxSizing: 'border-box', maxWidth: 700 }}
-                onSubmit={handleSubmit}
-            />
+            {generateComponent(screenInfo)}
             {error && <Text color="error" variant="caption">{error}</Text>}
         </React.Fragment>
     );
