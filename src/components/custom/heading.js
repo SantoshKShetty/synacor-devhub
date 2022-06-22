@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '../../../provider/theme';
-import Text from '../../text';
+import { makeStyles } from '../../provider/theme';
+import Text from '../text';
 
 const styles = makeStyles(
     () => ({

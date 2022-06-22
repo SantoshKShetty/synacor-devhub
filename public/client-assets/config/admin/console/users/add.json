@@ -6,19 +6,19 @@
             ], "styles": { "mb": 2 }},
             { "type": "box", "children": [
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "fname", "label": "First Name" }
+                    { "type": "textfield", "name": "firstName", "label": "First Name" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "lname", "label": "Last Name" }
+                    { "type": "textfield", "name": "lastName", "label": "Last Name" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "usrname", "label": "Username" }
+                    { "type": "textfield", "name": "user", "label": "Username" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "email", "label": "Primary email" }
+                    { "type": "textfield", "name": "email", "label": "Primary email" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "variant": "phone", "label": "Phone Number" }
+                    { "type": "textfield", "name": "phoneNo", "label": "Phone Number" }
                 ], "styles": { "mb": 4 }},
                 { "type": "box", "children": [
                     { "type": "text", "variant": "body2", "label": "You don’t have any group. Add ", "children": [
@@ -31,7 +31,7 @@
                 ], "styles": { "mb": 3 }}
             ], "styles": { "maxWidth": 470 }},
             { "type": "box", "direction": "row", "children": [
-                { "type": "button", "variant": "primary", "label": "Save", "routeTo": "/admin/users" },
+                { "type": "submit", "variant": "primary", "label": "Save" },
                 { "type": "button", "variant": "primary", "label": "Save and Add More", "routeTo": "#" },
                 { "type": "button", "variant": "primary", "label": "Cancel", "routeTo": "/admin/users" }
             ], "styles": { "justifyContent": "space-between" }}

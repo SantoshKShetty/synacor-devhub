@@ -2,19 +2,19 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import dlv from 'dlv';
-import Box, { HORIZONTAL } from '../../../components/containers/box';
-import Text from '../../../components/text';
-import { generateComponent } from '../../../utils/component';
+import Box, { HORIZONTAL } from '../../../../components/containers/box';
+import Text from '../../../../components/text';
+import { generateComponent } from '../../../../utils/component';
 import { TableContainer, TableHead, TableRow, Table, TableCell, TableSortLabel, TableBody, Select, MenuItem, makeStyles, InputAdornment } from '@material-ui/core';
-import TransferList from '../../../components/transfer-list';
-import TextField from '../../../components/textfield';
+import TransferList from '../../../../components/transfer-list';
+import TextField from '../../../../components/textfield';
 import { debounce } from "debounce";
-import { isEmail, exists } from '../../../utils/basics';
-import CheckBox from '../../../components/checkbox';
-import IconButton from '../../../components/button/icon-button';
+import { isEmail, exists } from '../../../../utils/basics';
+import CheckBox from '../../../../components/checkbox';
+import IconButton from '../../../../components/button/icon';
 import SearchIcon from '@material-ui/icons/Search';
-import PrimaryCTABtn from '../../../components/button/primary-cta';
-import CLIENTS from '../../../constants/clients';
+import PrimaryBtn from '../../../../components/button/primary';
+import CLIENTS from '../../../../constants/clients';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -106,7 +106,16 @@ function getSortedData(sortBy, sortOrder, data) {
 
 function prepareData(data) {
     return data.map(d => {
-        d.fullName = d.firstName && d.lastName && `${d.firstName} ${d.lastName}` || d.userId;
+        if (!exists(d.firstName)) d.firstName = d.username
+
+        if (!exists(d.lastName)) d.lastName = d.username
+
+        if (!exists(d.userId)) d.userId = d.username;
+
+        if (!exists(d.fullName)) d.fullName = d.firstName && d.lastName && `${d.firstName} ${d.lastName}` || d.userId;
+
+        if (!exists(d.userStatus)) d.userStatus = d.attributes?.userStatus?.pop()
+
         return d;
     })
 }
@@ -128,7 +137,7 @@ const styles = makeStyles(
     })
 )
 
-export default function UsersMain({ info: { filter } = {} }) {
+export default function AdminUsersList({ info: { filter } = {} }) {
     const classes = styles();
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);
@@ -172,7 +181,7 @@ export default function UsersMain({ info: { filter } = {} }) {
     }, 1000);
 
     const handleUserClick = userid => () => {
-        history.push(`/users/${userid}`);
+        history.push(`/admin/users/${userid}`);
     }
 
     const handleSelectUser = event => {
@@ -181,6 +190,8 @@ export default function UsersMain({ info: { filter } = {} }) {
 
     React.useEffect(() => {
         setError(null);
+
+        const ORG = sessionStorage.getItem('ORG') || '{{ORG}}';
 
         const paginationParams = '{{CLIENT}}' !== CLIENTS.SXM.NAME ? [
             !searchParams.username && !searchParams.contactEmail && `index=${page}`,
@@ -193,10 +204,10 @@ export default function UsersMain({ info: { filter } = {} }) {
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users?${params}`;
+        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${ORG}/users?${params}`;
 
-        params && fetch(apiUrl).then(r => r.json()).then(({ users, totalNumberOfRecords = 0, message }) => {
-            setTotal(totalNumberOfRecords);
+        params && fetch(apiUrl).then(r => r.json()).then(({ users = [], totalNumberOfRecords, message }) => {
+            setTotal(exists(totalNumberOfRecords) ? totalNumberOfRecords : users.length);
 
             if (message) {
                 setError(message);
@@ -231,8 +242,8 @@ export default function UsersMain({ info: { filter } = {} }) {
                     </Box>
                 </Box>
                 <Box direction={HORIZONTAL}>
-                    <PrimaryCTABtn routeTo="/admin/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
-                    <PrimaryCTABtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
+                    <PrimaryBtn routeTo="/admin/users/add" label="Add User" style={{ marginRight: '1rem', width: 'auto', height: '40px' }} />
+                    <PrimaryBtn label="Import from CSV" style={{ width: 'auto', height: '40px' }} />
                 </Box>
             </Box>
             <Box direction={HORIZONTAL} style={{ marginBottom: '0.5rem', padding: '0 0 0 60px' }}>
@@ -305,7 +316,7 @@ export default function UsersMain({ info: { filter } = {} }) {
                                             return (
                                                 <TableCell key={`tbody-cell-${i}`}>
                                                     <Text>{d[t.dataKey]}</Text>
-                                                    {c === 'FULL_NAME' && <Text style={{ fontSize: '12px', color: '#888888' }}>{d['userId']}</Text>}
+                                                    {c === 'FULL_NAME' && <Text style={{ fontSize: '12px', color: '#888888' }}>{d['username']}</Text>}
                                                 </TableCell>
                                             )
                                         })}

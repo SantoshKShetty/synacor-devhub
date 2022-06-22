@@ -1,0 +1,8 @@
+{ "type": "box", "children": [
+    { "type": "box", "children": [
+        { "type": "heading", "variant": "sectionTitle", "label": "Applications", "color": "textPrimary" }
+    ], "styles": { "mb": 3 }},
+    { "type": "box", "children": [
+        { "type": "text", "label": "You have not been given access to any SSO applications by your administrator." }
+    ]}
+], "styles": { "width": "100%" }}

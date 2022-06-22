@@ -28,7 +28,7 @@
                     "transformOrigin": { "vertical": "top", "horizontal": "center" }
                 },
                 "children": [
-                    { "type": "link", "href": "/user/dashboard", "label": "End-user dashboard" }
+                    { "type": "link", "href": "/user/applications", "label": "End-user dashboard" }
                 ]
             },
             { "type": "headerMenu", "opensBy": {

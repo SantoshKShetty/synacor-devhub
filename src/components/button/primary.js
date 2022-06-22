@@ -1,23 +1,23 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Button from '../';
-import { makeStyles } from '../../../provider/theme';
+import Button from '.';
+import { makeStyles } from '../../provider/theme';
 
 const styles = makeStyles(
     ({ palette }) => ({
-        primaryCta: {
-            backgroundColor: palette.custom.button.primaryCTA.bgColor,
+        primaryBtn: {
+            backgroundColor: palette.custom.button.primaryBtn.bgColor,
             width: '190px',
             height: '32px',
 
             '&:hover': {
-                backgroundColor: palette.custom.button.primaryCTA.bgColorHover
+                backgroundColor: palette.custom.button.primaryBtn.bgColorHover
             }
         }
     })
 )
 
-export default function PrimaryCTABtn({ routeTo, onClick, ...props }) {
+export default function PrimaryBtn({ routeTo, onClick, ...props }) {
     const classes = styles();
 
     // Temporary logic to move from flow to flow.
@@ -27,5 +27,5 @@ export default function PrimaryCTABtn({ routeTo, onClick, ...props }) {
         routeTo && history.push(routeTo);
     }
 
-    return <Button {...props} className={classes.primaryCta} onClick={handleClick } />
+    return <Button {...props} className={classes.primaryBtn} onClick={handleClick } />
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '../../../provider/theme';
-import Accordion from '../../accordion';
+import { makeStyles } from '../../provider/theme';
+import Accordion from '../accordion';
 
 const styles = makeStyles(
     ({ palette, spacing, typography }) => ({
@@ -37,32 +37,30 @@ const styles = makeStyles(
                 }
             },
 
-            '& > .MuiCollapse-root': {
-                '& .MuiAccordionDetails-root': {
-                    padding: 'revert',
-                    display: 'block',
+            '& .MuiAccordionDetails-root': {
+                padding: 'revert',
+                display: 'block',
 
-                    '& > ul': {
-                        margin: 0,
-                        padding: 0,
-                        listStyleType: 'none',
+                '& > ul': {
+                    margin: 0,
+                    padding: 0,
+                    listStyleType: 'none',
 
-                        '& > li > a': {
-                            fontSize: typography.fontSize,
-                            fontWeight: typography.fontWeightMedium,
-                            color: palette.text.primary,
-                            display: 'block',
-                            borderRadius: `${spacing(1)}px`,
-                            padding: `${spacing(1)}px ${spacing(2)}px`,
-                            textDecoration: 'none',
+                    '& > li > a': {
+                        fontSize: typography.fontSize,
+                        fontWeight: typography.fontWeightMedium,
+                        color: palette.text.primary,
+                        display: 'block',
+                        borderRadius: `${spacing(1)}px`,
+                        padding: `${spacing(1)}px ${spacing(2)}px`,
+                        textDecoration: 'none',
 
-                            '&:hover': {
-                                backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorHover
-                            },
+                        '&:hover': {
+                            backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorHover
+                        },
 
-                            '&.activeLink': {
-                                backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorActive
-                            }
+                        '&.activeLink': {
+                            backgroundColor: palette.custom.layout.console.leftCol.accordion.content.bgColorActive
                         }
                     }
                 }

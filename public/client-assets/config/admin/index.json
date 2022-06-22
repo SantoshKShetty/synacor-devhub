@@ -17,15 +17,15 @@
             "screen": "Console", "layout": "Console",
             "subScreens": {
                 "/admin/users": {
-                    "component": "UsersMain",
+                    "component": "AdminUsersList",
                     "descriptor": "admin/console/users/index.json"
                 },
                 "/admin/users/add": {
-                    "component": "AddUser",
+                    "component": "AdminAddUser",
                     "descriptor": "admin/console/users/add.json"
                 },
                 "/admin/users/:userid": {
-                    "component": "UserDetails",
+                    "component": "AdminUsersDetails",
                     "descriptor": "admin/console/users/details.json"
                 }
             }

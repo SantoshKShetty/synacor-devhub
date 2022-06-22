@@ -1,0 +1,47 @@
+{ "type": "box", "children": [
+    { "type": "grid", "spacing": 4, "children": [
+        { "type": "grid", "variant": "item", "xs": true, "children": [
+            { "type": "box", "children": [
+                { "type": "heading", "variant": "sectionTitle", "label": "Change Password", "color": "textPrimary" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Password requirements." },
+                { "type": "list", "children": [
+                    { "type": "text", "variant": "body2", "label": "Atleast 8 characters" },
+                    { "type": "text", "variant": "body2", "label": "No parts of your username" },
+                    { "type": "text", "variant": "body2", "label": "Your password can't be any of your last 4 passwords" }
+                ]}
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "fname", "label": "Current password" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "lname", "label": "New password" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "textfield", "variant": "usrname", "label": "Confirm new password" }
+                ], "styles": { "mb": 3 }},
+                { "type": "box", "children": [
+                    { "type": "button", "label": "Change Password" }
+                ], "styles": { "mb": 3 }}
+            ]}
+        ]},
+        { "type": "grid", "variant": "item", "xs": true, "children": [
+            { "type": "box", "children": [
+                { "type": "heading", "variant": "sectionTitle", "label": "Forgotten Password Question", "color": "textPrimary" }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "variant": "body2", "label": "Select a forgotten password question so you can reset your password in case you have trouble signing into your account." }
+            ], "styles": { "mb": 3 }},
+            { "type": "box", "children": [
+                { "type": "text", "label": "Tips for choosing a good security question:" },
+                { "type": "list", "children": [
+                    { "type": "text", "variant": "body2", "label": "Don't pick a question that someone could easily guess or find out the answer to by looking at your resume or social networking profile." },
+                    { "type": "text", "variant": "body2", "label": "Pick a question with an answer that is easy for you to remember." },
+                    { "type": "text", "variant": "body2", "label": "Don't write your security question down on a piece of paper where someone could find it." }
+                ]}
+            ]}
+        ]}
+    ]}
+], "styles": { "width": "100%" }}

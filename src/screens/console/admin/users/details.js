@@ -4,14 +4,15 @@ import { useParams } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Box, TextField } from '@material-ui/core';
-import Text from '../../../components/text';
-import { makeStyles } from '../../../provider/theme';
-import PrimaryCTABtn from '../../../components/button/primary-cta';
-import { exists, isBoolean } from '../../../utils/basics';
-import CheckBox from '../../../components/checkbox';
-import Heading from '../../../components/custom/heading';
+import Text from '../../../../components/text';
+import { makeStyles } from '../../../../provider/theme';
+import PrimaryBtn from '../../../../components/button/primary';
+import { exists, isBoolean } from '../../../../utils/basics';
+import CheckBox from '../../../../components/checkbox';
+import Heading from '../../../../components/custom/heading';
+import { useAuth } from '../../../../provider/auth';
 
-const USER_DETAILS_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/{{ORG}}/users';
+const USER_DETAILS_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/keycloak/users`;
 
 const TABS = ['Profile', 'Account Info', 'Credentials'];
 
@@ -67,7 +68,7 @@ const TabPanel = ({ children, ...props }) => {
     return <Box {...props}>{children}</Box>
 }
 
-export default function UserDetails(props) {
+export default function AdminUsersDetails(props) {
     const classes = styles();
 
     const { userid } = useParams();
@@ -85,6 +86,8 @@ export default function UserDetails(props) {
         passwordUpdateDate
     } = user || {};
 
+    const { getAccessToken } = useAuth();
+
     const [edit, setEdit] = React.useState(false);
     const [tab, setTab] = React.useState(0);
 
@@ -97,7 +100,12 @@ export default function UserDetails(props) {
     const handleTabChange = (event, val) => setTab(val);
 
     React.useEffect(() => {
-        fetch(`${USER_DETAILS_API}/${userid}`).then(res => {
+        fetch(`${USER_DETAILS_API}/${userid}`, {
+            method: 'GET',
+            headers: {
+                Bearer: getAccessToken()
+            }
+        }).then(res => {
             if (res.ok) {
                 return res.json()
             }
@@ -121,11 +129,11 @@ export default function UserDetails(props) {
             <Box className={classes.btnContainer}>
                 {edit ? (
                     <React.Fragment>
-                        <PrimaryCTABtn label="Save" onClick={handleSave} style={{ maxWidth: '120px', marginRight: 8 }} />
-                        <PrimaryCTABtn label="Cancel" onClick={handleCancel} style={{ maxWidth: '120px' }} />
+                        <PrimaryBtn label="Save" onClick={handleSave} style={{ maxWidth: '120px', marginRight: 8 }} />
+                        <PrimaryBtn label="Cancel" onClick={handleCancel} style={{ maxWidth: '120px' }} />
                     </React.Fragment>
                 ) : (
-                    <PrimaryCTABtn label="Edit" onClick={handleEdit} style={{ maxWidth: '120px' }} />
+                    <PrimaryBtn label="Edit" onClick={handleEdit} style={{ maxWidth: '120px' }} />
                 )}
             </Box>
             <TabPanel className={cn(classes.fieldSpacer, tab !== 0 && classes.hide)}>
