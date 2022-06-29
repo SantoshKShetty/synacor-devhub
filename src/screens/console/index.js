@@ -6,6 +6,7 @@ import { exists } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
 import useEventsRegistry from "../../hooks/events-registry";
 import { useAuth } from "../../provider/auth";
+import { CALLBACK_TYPES, ELEM_REF_ATTR } from "../../constants/events-registry";
 
 const Header = ({ logo, header }) => {
     const { signOut } = useAuth();
@@ -15,11 +16,14 @@ const Header = ({ logo, header }) => {
         signOut()
     }
 
-    const eventsToRegister = {
-        SignoutBtn: {
-            onClick: handleSignout
+    const eventsToRegister = [
+        {
+            [ELEM_REF_ATTR.ID]: 'SIGN_OUT_CTA',
+            events: {
+                onClick: [CALLBACK_TYPES.DEFAULT_RETURN, handleSignout]
+            }
         }
-    }
+    ];
 
     registerEvents(eventsToRegister);
 

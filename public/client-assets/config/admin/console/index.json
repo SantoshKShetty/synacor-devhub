@@ -44,7 +44,7 @@
                     { "type": "link", "href": "", "label": "joe.doe@hbo.com" },
                     { "type": "link", "href": "", "label": "hbo.bonafid.com" },
                     { "type": "link", "href": "", "label": "My Settings" },
-                    { "type": "link", "href": "", "label": "Sign Out", "id": "SignoutBtn" }
+                    { "type": "link", "href": "", "label": "Sign Out", "id": "SIGN_OUT_CTA" }
                 ]
             }], "styles": { "alignItems": "center" }
         }

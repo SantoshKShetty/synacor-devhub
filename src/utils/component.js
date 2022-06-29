@@ -1,5 +1,5 @@
 import React from 'react';
-import { isArray, exists } from "./basics";
+import { isArray, exists, isObject } from "./basics";
 import Text from '../components/text';
 import Box from '../components/containers/box';
 import Divider from '../components/divider';
@@ -41,6 +41,7 @@ import {
 } from '../constants/field-types';
 import { useForm } from '../components/form';
 import useEventsRegistry from '../hooks/events-registry';
+import { CALLBACK_TYPES } from '../constants/events-registry';
 
 
 /**
@@ -92,6 +93,24 @@ export function composeComponents() {
  */
 export function generateKey(prefix = 'component', suffix = '', randomize = false) {
 	return `${prefix}-${randomize ? Math.random() * 1000000 : ''}-${suffix}`;
+}
+
+
+/**
+ * `prepareRegisteredEvents` returns formatted collection of event handlers.
+ * The custom events that are PLUGGED-IN during registration of events will be formatted to make the properly consumed.
+ *
+ * @param {Object} events - Key value pairs of event names and callbacks (with types)
+ * @param {Any} data - any data required by callback.
+ * @returns {Object} - returns formatted collection of event handlers.
+ */
+function prepareRegisteredEvents(events, data) {
+	if (!isObject(events)) return;
+
+	return Object.entries(events).reduce((acc, [eventName, [callbackType, callback]]) => {
+		acc[eventName] = callbackType === CALLBACK_TYPES.EXEC_AND_RETURN ? callback(data) : callback;
+		return acc;
+	}, {});
 }
 
 
@@ -149,7 +168,7 @@ export function generateComponent(componentData) {
 		...styles,
 		...errorProps,
 		...eventProps,
-		...retrieveEvents(name || id)
+		...prepareRegisteredEvents(retrieveEvents(id || name))
 	};
 
 	switch(type) {
