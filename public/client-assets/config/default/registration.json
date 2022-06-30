@@ -50,7 +50,7 @@
             { "type": "heading", "variant": "screenTitle", "label": "Create Account", "color": "textPrimary" }
         ], "styles": { "mb": 4 }},
         {
-            "type": "form", "children": [
+            "type": "form", "id": "REGISTRATION_FORM", "children": [
                 { "type": "box", "children": [
                     { "type": "textfield", "variant": "email", "label": "Email", "name": "username" }
                 ], "styles": { "mb": 3 }},

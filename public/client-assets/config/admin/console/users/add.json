@@ -2,7 +2,7 @@
     { "type": "box", "children": [
         { "type": "heading", "variant": "sectionTitle", "label": "Add User", "color": "textPrimary" }
     ], "styles": { "mb": 2 }},
-    { "type": "form", "children": [
+    { "type": "form", "id": "ADD_USER_FORM", "children": [
         { "type": "box", "children": [
             { "type": "box", "children": [
                 { "type": "textfield", "name": "firstName", "label": "First Name" }

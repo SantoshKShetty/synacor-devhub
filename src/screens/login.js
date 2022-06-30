@@ -1,5 +1,7 @@
 import React from "react";
 import Text from "../components/text";
+import { CALLBACK_TYPES, ELEM_REF_ATTR } from "../constants/events-registry";
+import useEventsRegistry from "../hooks/events-registry";
 import { useAuth } from "../provider/auth";
 import { generateComponent } from "../utils/component";
 
@@ -8,6 +10,8 @@ const TENANT_LOGIN_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:40
 function LoginScreen({ genericInfo, screenInfo, Layout }) {
     const { logo } = genericInfo;
     const [error, setError] = React.useState(null);
+
+    const { registerEvents } = useEventsRegistry();
 
     const { signIn } = useAuth();
 
@@ -30,6 +34,17 @@ function LoginScreen({ genericInfo, screenInfo, Layout }) {
             setError(e.message)
         });
     }
+
+    const eventsToRegister = [
+        {
+            [ELEM_REF_ATTR.ID]: 'LOGIN_FORM',
+            events: {
+                onSubmit: [CALLBACK_TYPES.DEFAULT_RETURN, handleSubmit]
+            }
+        }
+    ];
+
+    registerEvents(eventsToRegister)
 
     return (
         <Layout logo={logo}>

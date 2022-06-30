@@ -5,7 +5,7 @@
         ], "styles": { "mt": { "md": 25 } }
     },
     { "type": "box", "children": [{
-        "type": "form", "children": [
+        "type": "form", "id": "SETUP_ACC_FORM", "children": [
             { "type": "box", "children": [
                 { "type": "heading", "variant": "screenTitle", "label": "Account Type", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},

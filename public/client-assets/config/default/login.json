@@ -2,7 +2,7 @@
     { "type": "box", "children": [
         { "type": "heading", "variant": "screenTitle", "label": "Login", "color": "textPrimary" }
     ], "styles": { "mb": 2, "mt": 4 }},
-    { "type": "form", "children": [
+    { "type": "form", "id": "LOGIN_FORM", "children": [
         { "type": "box", "children": [
             { "type": "textfield", "label": "Company Name", "name": "compName" }
         ], "styles": { "mb": 3 }},
