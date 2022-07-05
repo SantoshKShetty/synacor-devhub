@@ -12,19 +12,16 @@
                     { "type": "text", "variant": "body2", "label": "Your password can't be any of your last 4 passwords" }
                 ]}
             ], "styles": { "mb": 3 }},
-            { "type": "form", "children": [
+            { "type": "form", "id": "UPDATE_PWD_FORM", "children": [
                 { "type": "box", "children": [
-                    { "type": "textfield", "name": "fname", "label": "Current password" }
+                    { "type": "textfield", "variant": "password", "name": "password", "label": "New password" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "name": "lname", "label": "New password" }
+                    { "type": "textfield", "variant": "password", "name": "confirmPassword", "label": "Confirm new password" }
                 ], "styles": { "mb": 3 }},
                 { "type": "box", "children": [
-                    { "type": "textfield", "name": "usrname", "label": "Confirm new password" }
-                ], "styles": { "mb": 3 }},
-                { "type": "box", "children": [
-                    { "type": "button", "label": "Change Password" }
-                ], "styles": { "mb": 3 }}
+                    { "type": "submit", "variant": "primary", "label": "Change Password" }
+                ], "styles": { "mt": 5 }}
             ]}
         ]},
         { "type": "grid", "variant": "item", "xs": true, "children": [
