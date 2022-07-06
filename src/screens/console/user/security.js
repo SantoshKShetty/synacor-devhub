@@ -1,3 +1,4 @@
+import React from 'react';
 import jwt_decode from "jwt-decode";
 import { generateComponent } from '../../../utils/component';
 import useEventsRegistry from '../../../hooks/events-registry';
@@ -8,6 +9,7 @@ import { exists } from "../../../utils/basics";
 export default function UserSecurity({ screenInfo }) {
     const { getAccessToken } = useAuth();
     const { registerEvents } = useEventsRegistry();
+    const [status, setStatus] = React.useState(null);
 
     const handleChangePwd = ({ password }) => {
         const accessToken = getAccessToken();
@@ -26,9 +28,9 @@ export default function UserSecurity({ screenInfo }) {
                 }
             ).then(res => {
                 if (!res.ok) return Promise.reject({ message: res.statusText });
-                alert('Password updated successfully!')
+                setStatus('Password updated successfully!')
             }).catch(e => {
-                alert(e.message)
+                setStatus(e.message)
             })
         }
     }
@@ -43,6 +45,8 @@ export default function UserSecurity({ screenInfo }) {
     ];
 
     registerEvents(eventsToRegister)
+
+    if (status) alert(status)
 
     return screenInfo && generateComponent(screenInfo)
 }

@@ -12,17 +12,30 @@
                     { "type": "text", "variant": "body2", "label": "Your password can't be any of your last 4 passwords" }
                 ]}
             ], "styles": { "mb": 3 }},
-            { "type": "form", "id": "UPDATE_PWD_FORM", "children": [
-                { "type": "box", "children": [
-                    { "type": "textfield", "variant": "password", "name": "password", "label": "New password" }
-                ], "styles": { "mb": 3 }},
-                { "type": "box", "children": [
-                    { "type": "textfield", "variant": "password", "name": "confirmPassword", "label": "Confirm new password" }
-                ], "styles": { "mb": 3 }},
-                { "type": "box", "children": [
-                    { "type": "submit", "variant": "primary", "label": "Change Password" }
-                ], "styles": { "mt": 5 }}
-            ]}
+            { "type": "form", "id": "UPDATE_PWD_FORM",
+                "children": [
+                    { "type": "box", "children": [
+                        { "type": "textfield", "variant": "password", "name": "password", "label": "New password" }
+                    ], "styles": { "mb": 3 }},
+                    { "type": "box", "children": [
+                        { "type": "textfield", "variant": "password", "name": "confirmPassword", "label": "Confirm new password" }
+                    ], "styles": { "mb": 3 }},
+                    { "type": "box", "children": [
+                        { "type": "submit", "variant": "primary", "label": "Change Password" }
+                    ], "styles": { "mt": 5 }}
+                ],
+                "validations": [
+                    { "field": "password", "rules": [
+                        { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
+                        { "pattern": "\\d", "message": "Must contain a number." },
+                        { "pattern": "[A-Z]", "message": "Must contain uppercase character." },
+                        { "pattern": "[a-z]", "message": "Must contain lowercase character." }
+                    ]},
+                    { "field": "confirmPassword", "rules": [
+                        { "matchToField": "password", "message": "Must match password field." }
+                    ]}
+                ]
+            }
         ]},
         { "type": "grid", "variant": "item", "xs": true, "children": [
             { "type": "box", "children": [
