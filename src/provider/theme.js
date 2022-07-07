@@ -11,6 +11,9 @@ const DEFAULT_THEME = {
 			disableRipple: true //Ripple used for select states
 		}
 	},
+    typography: {
+        fontFamily: 'Avenir, "Roboto", "Helvetica", "Arial", sans-serif'
+    },
 	palette: {
 		custom: {} // Custom CSS rules that can be added in client specific theme config files.
 	}

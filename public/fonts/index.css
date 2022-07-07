@@ -1,0 +1,5 @@
+@font-face {
+	font-family: "Avenir";
+	font-display: swap;
+	src: url("/fonts/Avenir/Avenir-Medium.ttf") format("truetype"), url("/fonts/Avenir/Avenir-Medium.otf") format("opentype");
+}
