@@ -2,7 +2,7 @@
     "genericInfo": {
         "logo": {
             "type": "box", "children": [{
-                "type": "image", "src": "logo.png", "width": 147, "alt": "Brand Logo"
+                "type": "image", "src": "cloudid-logo.png", "width": 160, "alt": "CloudID Logo"
             }]
         }
     },
