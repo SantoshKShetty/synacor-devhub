@@ -12,7 +12,7 @@
         { "type": "box", "children": [
             { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
         ], "styles": { "mb": 4 }},
-        { "type": "submit", "variant": "primary", "label": "Sign In" }
+        { "type": "submit", "variant": "primary", "label": "SIGN IN" }
     ]},
     { "type": "box" , "children": [
         { "type": "divider" }
