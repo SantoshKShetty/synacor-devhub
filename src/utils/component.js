@@ -170,6 +170,7 @@ export function generateComponent(componentData) {
 					return <TextField {...componentProps} label={label} />
 			}
 		case ACTION_TYPES.BUTTON.GENERIC :
+		case ACTION_TYPES.BUTTON.SUBMIT :
 			switch(variant) {
 				case ACTION_TYPES.BUTTON.PRIMARY :
 					return <PrimaryBtn {...componentProps} label={label} />
@@ -184,8 +185,6 @@ export function generateComponent(componentData) {
 				default :
 					return <Button {...componentProps} label={label} />
 			}
-		case ACTION_TYPES.BUTTON.SUBMIT :
-			return <PrimaryBtn {...componentProps} label={label} />
 		case DISPLAY_TYPES.DIVIDER :
 			return <Divider {...componentProps} />
 		case LIST_TYPES.GENERIC :
