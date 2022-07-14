@@ -7,14 +7,16 @@ import { isReactComponent } from '../../utils/basics';
 import Text from '../text';
 
 const styles = makeStyles(
-    ({ palette, shape, spacing }) => ({
+    ({ palette, shape, spacing, typography }) => ({
         button: {
             height: 40,
             padding: `${spacing(1)}px ${spacing(1.5)}px`,
             backgroundColor: palette.custom.button.default.bgColor,
             border: `1px solid ${palette.custom.button.default.borderColor}`,
             borderRadius: shape.borderRadius * 2,
+            fontWeight: typography.fontWeightMedium,
             textTransform: 'none',
+            letterSpacing: 1,
 
             '&:hover': {
                 backgroundColor: palette.custom.button.bgColorHover
@@ -22,7 +24,7 @@ const styles = makeStyles(
         },
         labelTxt: {
             fontSize: '0.825rem',
-            fontWeight: 400,
+            fontWeight: 'inherit',
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'nowrap'

@@ -4,7 +4,7 @@
             { "type": "heading", "variant": "screenDesc", "label": "Try our identity as a Service (IdaaS) it’s free and only takes a minute!" },
             { "type": "box", "children": [
                 { "type": "list", "variant": "advanced",
-                    "listStyle": { "type": "icon", "icon": "CheckIcon", "styles": { "color": "#0078F3" } },
+                    "listStyle": { "type": "icon", "icon": "CheckIcon", "styles": { "color": "#6B6A6A" } },
                     "children": [
                         { "type": "text", "label": "7,000 Monthly Active Users" },
                         { "type": "text", "label": "Email/Password Login" },
@@ -43,7 +43,7 @@
                     { "type": "image", "src": "partner-logos/dish.png", "width": "74", "height": "39" }
                 ], "styles": { "m": 1 }}
             ], "styles": { "flexWrap": "wrap", "alignItems": "center" }}
-        ], "styles": { "mt": { "md": 5 } }}
+        ], "styles": { "mt": { "md": 4 } }}
     ],
     "form": {
         "controls": [
@@ -60,7 +60,7 @@
                 { "type": "text", "variant": "body2", "label": "By clicking on any of the Sign Up options, I agree to the terms of service.", "color": "textPrimary" }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "submit", "variant": "primary", "label": "Sign Up" },
+                { "type": "submit", "variant": "primary", "label": "SIGN UP" },
                 { "type": "box" , "children": [
                     { "type": "divider" }
                 ], "styles": { "mb": 5, "mt": 5 }},

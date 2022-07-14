@@ -12,8 +12,9 @@
                     "borderColor": "#CCCCCC"
                 },
                 "primaryBtn": {
-                    "bgColor": "#FFFFFF",
-                    "bgColorHover": "#CEE7FF"
+                    "color": "#FFFFFF",
+                    "borderColor": "#E72F27",
+                    "bgImage": "linear-gradient(90deg, #FF4130 22%, #E80B00 100%)"
                 },
                 "secondaryBtn": {
                     "bgColor": "#FFFFFF",
@@ -30,11 +31,21 @@
                     "bgColorActive": "#FFF1F1"
                 }
             },
+            "link": {
+                "default": {
+                    "color": "#2ea3f2"
+                }
+            },
             "layout": {
                 "split": {
                     "leftCol": {
                         "bgColor": "#EEEEEE",
-                        "color": "#003C79"
+                        "title": {
+                            "color": "#0057B0"
+                        },
+                        "content": {
+                            "color": "#6B6A6A"
+                        }
                     }
                 },
                 "console": {

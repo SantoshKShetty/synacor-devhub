@@ -83,7 +83,7 @@
                 { "type": "text", "variant": "body2", "color": "textPrimary", "label": "We can host all your data in any of these regions. Useful if you need to comply with EU Data Protection Directive." }
             ], "styles": { "mb": 5 }},
             { "type": "box", "children": [
-                { "type": "submit", "variant": "primary", "label": "Create Account" }
+                { "type": "submit", "variant": "primary", "label": "CREATE ACCOUNT" }
             ]}
         ],
         "validations": [

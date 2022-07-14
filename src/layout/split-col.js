@@ -19,7 +19,7 @@ const useStyles = makeStyles(
             }
         },
         leftCol: {
-            color: palette.custom.layout.split.leftCol.color,
+            color: palette.custom.layout.split.leftCol.content.color,
             backgroundColor: palette.custom.layout.split.leftCol.bgColor,
 
             [breakpoints.up('md')]: {

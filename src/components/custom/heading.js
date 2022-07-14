@@ -3,10 +3,11 @@ import { makeStyles } from '../../provider/theme';
 import Text from '../text';
 
 const styles = makeStyles(
-    () => ({
+    ({ palette }) => ({
         screenDesc: {
             fontSize: '2.5rem',
             fontWeight: 900,
+            color: palette.custom.layout.split.leftCol.title.color,
 
             '@media (max-width: 1340px)': {
                 fontSize: '2.2rem'

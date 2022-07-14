@@ -47,6 +47,7 @@ const styles = makeStyles(
                     listStyleType: 'none',
 
                     '& > li > a': {
+                        fontFamily: typography.fontFamily,
                         fontSize: typography.fontSize,
                         fontWeight: typography.fontWeightMedium,
                         color: palette.text.primary,
