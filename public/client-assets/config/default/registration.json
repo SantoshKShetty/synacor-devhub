@@ -85,13 +85,13 @@
         ],
         "validations": [
             { "field": "username", "rules": [
-                { "pattern": "^[a-zA-Z0-9]+$", "message": "Username can have only alpha numeric characters without space." }
+                { "pattern": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$", "message": "Please enter valid email address." }
             ]},
             { "field": "password", "rules": [
-                { "pattern": "^.{8,}$", "message": "Must have at least 8 letters." },
-                { "pattern": "\\d", "message": "Must contain a number." },
-                { "pattern": "[A-Z]", "message": "Must contain uppercase character." },
-                { "pattern": "[a-z]", "message": "Must contain lowercase character." }
+                { "pattern": "^.{8,}$", "message": "Password must contain at least 8 letters." },
+                { "pattern": "\\d", "message": "Password must contain a number." },
+                { "pattern": "[A-Z]", "message": "Password must contain uppercase character." },
+                { "pattern": "[a-z]", "message": "Password must contain lowercase character." }
             ]}
         ]
     }
