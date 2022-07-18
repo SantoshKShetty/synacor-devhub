@@ -2,7 +2,7 @@ import React from 'react';
 import dlv from 'dlv';
 import { dset } from 'dset';
 import { generateComponent } from '../../utils/component';
-import { createObjPath, exists, isObject } from '../../utils/basics';
+import { areSameObjects, createObjPath, exists, isFunction } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
 import { ACTION_TYPES, USER_INPUT_TYPES } from '../../constants/field-types';
 import { normalizeFormData, validateForm } from './utils';
@@ -44,14 +44,14 @@ const FormControls = ({ controls }) => generateComponent(controls);
 // Main `Form` Component
 const Form = ({ items: controls, validations, onSubmit, ...props }) => {
     // State to maintain form data.
-    const [formData, dispatchData] = React.useReducer(storeUpdaterFn, {});
+    const [formData, dispatchData] = React.useReducer(storeUpdaterFn, null);
 
     // Initialize `initialFormData` local variable and keep this in sync for future use.
     // This is used to set the state in one go instead of calling `dispatchData` many times within `bindFormEvents`.
     const initialFormData = { ...formData };
 
     // State to maintain form errors.
-    const [formError, dispatchError] = React.useReducer(storeUpdaterFn, {});
+    const [formError, dispatchError] = React.useReducer(storeUpdaterFn, null);
 
 
     // Event callbacks.
@@ -68,10 +68,13 @@ const Form = ({ items: controls, validations, onSubmit, ...props }) => {
         const dataToSubmit = normalizeFormData(formData);
         const errors = validateForm(dataToSubmit, validations);
 
-        if (isObject(errors)) {
+        // Either set/reset formError.
+        if (!areSameObjects(errors, formError)) {
             dispatchError({ type: INIT, payload: errors });
-        } else {
-            onSubmit && onSubmit(dataToSubmit);
+        }
+
+        if (!exists(errors) && isFunction(onSubmit)) {
+            onSubmit(dataToSubmit);
         }
     }
 
