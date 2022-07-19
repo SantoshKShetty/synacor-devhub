@@ -1,10 +1,8 @@
 import React from 'react';
-import cn from 'classnames';
 import dlv from 'dlv';
 import { dset } from 'dset';
-import { makeStyles } from '../../provider/theme';
 import { generateComponent } from '../../utils/component';
-import { createObjPath, exists, isObject } from '../../utils/basics';
+import { areSameObjects, createObjPath, exists, isFunction } from '../../utils/basics';
 import { INIT, REPLACE } from '../../constants/reducer-actions';
 import { ACTION_TYPES, USER_INPUT_TYPES } from '../../constants/field-types';
 import { normalizeFormData, validateForm } from './utils';
@@ -14,15 +12,6 @@ const EVENT_HANDLER_RETURN_TYPE = {
     EXEC: 'EXEC_AND_RETURN'
 };
 
-const styles = makeStyles(
-    ({ breakpoints }) => ({
-        form: {
-            [breakpoints.up('md')]: {
-                width: 340
-            }
-        }
-    })
-);
 
 function storeUpdaterFn(state, { type, payload }) {
     if (type === INIT) {
@@ -53,18 +42,16 @@ const FormControls = ({ controls }) => generateComponent(controls);
 
 
 // Main `Form` Component
-const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...props }) => {
-    const classes = styles();
-
+const Form = ({ items: controls, validations, onSubmit, ...props }) => {
     // State to maintain form data.
-    const [formData, dispatchData] = React.useReducer(storeUpdaterFn, {});
+    const [formData, dispatchData] = React.useReducer(storeUpdaterFn, null);
 
     // Initialize `initialFormData` local variable and keep this in sync for future use.
     // This is used to set the state in one go instead of calling `dispatchData` many times within `bindFormEvents`.
     const initialFormData = { ...formData };
 
     // State to maintain form errors.
-    const [formError, dispatchError] = React.useReducer(storeUpdaterFn, {});
+    const [formError, dispatchError] = React.useReducer(storeUpdaterFn, null);
 
 
     // Event callbacks.
@@ -81,10 +68,13 @@ const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...pr
         const dataToSubmit = normalizeFormData(formData);
         const errors = validateForm(dataToSubmit, validations);
 
-        if (isObject(errors)) {
+        // Either set/reset formError.
+        if (!areSameObjects(errors, formError)) {
             dispatchError({ type: INIT, payload: errors });
-        } else {
-            onSubmit && onSubmit(dataToSubmit);
+        }
+
+        if (!exists(errors) && isFunction(onSubmit)) {
+            onSubmit(dataToSubmit);
         }
     }
 
@@ -161,7 +151,7 @@ const Form = ({ form: { controls, validations } = {}, className, onSubmit, ...pr
 
 
     return (
-        <form {...props} className={cn(classes.form, className)}>
+        <form {...props}>
             <FormContext.Provider value={contextData}>
                 <FormControls controls={controls} />
             </FormContext.Provider>

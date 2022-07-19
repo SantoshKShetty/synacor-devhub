@@ -27,8 +27,8 @@ export default function Router() {
                 return composeComponents(
                     [Route, { key: routeKey, path, exact }],
                     [Suspense, { fallback: <div>Loading app...</div> }],
-                    descriptor && [DescriptorLoader, { descriptor, genericInfo, key: descriptor }]
-                )(<Screen info={genericInfo} Layout={Layout} subScreens={subScreens} />)
+                    descriptor && [DescriptorLoader, { descriptor }]
+                )(<Screen genericInfo={genericInfo} Layout={Layout} subScreens={subScreens} />)
             } else {
                 return null;
             }

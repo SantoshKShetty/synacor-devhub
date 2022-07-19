@@ -2,7 +2,7 @@ import React from "react";
 import { generateComponent, composeComponents } from '../../utils/component';
 import { useScreen } from "../../provider/screen";
 import { findMatchingRoute } from "../../utils/route";
-import { exists } from "../../utils/basics";
+import { exists, isArray, isObject } from "../../utils/basics";
 import DescriptorLoader from '../../enhancers/descriptor-loader';
 import useEventsRegistry from "../../hooks/events-registry";
 import { useAuth } from "../../provider/auth";
@@ -56,8 +56,9 @@ const RightCol = ({ subScreens = {} }) => {
     return null;
 }
 
-function ConsoleScreen({ info, Layout, subScreens }) {
-    const { logo, header, leftCol } = info;
+function ConsoleScreen({ genericInfo, screenInfo, Layout, subScreens }) {
+    const { logo } = genericInfo;
+    const [ header, leftCol ] = isObject(screenInfo) ? [screenInfo] : isArray(screenInfo) ? screenInfo : [];
 
     return (
         <Layout>

@@ -137,7 +137,7 @@ const styles = makeStyles(
     })
 )
 
-export default function AdminUsersList({ info: { filter } = {} }) {
+export default function AdminUsersList({ screenInfo: { filter } = {} }) {
     const classes = styles();
     const [sortBy, setSortBy] = React.useState(null);
     const [sortOrder, setSortOrder] = React.useState(null);

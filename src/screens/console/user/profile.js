@@ -1,6 +1,5 @@
-import React from 'react';
 import { generateComponent } from '../../../utils/component';
 
-export default function UserProfile({ info }) {
-    return info && generateComponent(info)
+export default function UserProfile({ screenInfo }) {
+    return screenInfo && generateComponent(screenInfo)
 }
