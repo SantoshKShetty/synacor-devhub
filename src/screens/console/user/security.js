@@ -9,7 +9,6 @@ import { exists } from "../../../utils/basics";
 export default function UserSecurity({ screenInfo }) {
     const { getAccessToken } = useAuth();
     const { registerEvents } = useEventsRegistry();
-    const [status, setStatus] = React.useState(null);
 
     const handleChangePwd = ({ password }) => {
         const accessToken = getAccessToken();
@@ -28,9 +27,9 @@ export default function UserSecurity({ screenInfo }) {
                 }
             ).then(res => {
                 if (!res.ok) return Promise.reject({ message: res.statusText });
-                setStatus('Password updated successfully!')
+                alert('Password updated successfully!')
             }).catch(e => {
-                setStatus(e.message)
+                alert(e.message)
             })
         }
     }
@@ -45,8 +44,6 @@ export default function UserSecurity({ screenInfo }) {
     ];
 
     registerEvents(eventsToRegister)
-
-    if (status) alert(status)
 
     return screenInfo && generateComponent(screenInfo)
 }
