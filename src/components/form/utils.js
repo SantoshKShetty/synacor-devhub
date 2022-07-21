@@ -78,7 +78,25 @@ export function getFieldValidationRules(fieldName, validationRules) {
  * Plain object referring to various functions based on validation type (regexp, comparison etc.).
  */
  const VALIDATORS = {
-    REGEXP: (value, pattern) => new RegExp(pattern).test(value)
+    REGEXP: (value, pattern) => new RegExp(pattern).test(value),
+    COMPARE: {
+        TO_EQUAL: (src, target) => src === target
+    }
+}
+
+
+/**
+ * Function `getFormDataForField` searches inside `formData` and returns the value for given `fieldName`.
+ *
+ * @param {Object} formData - Complete Form data that's saved by `Form`. It includes data of each and every field.
+ * @param {String} fieldName - HTML Attribute `name` for a given field
+ *
+ * @returns The value, found inside `formData` for given `fieldName`.
+ *
+ * // TO DO:- Deep lookup the given `fieldName` key.
+ */
+const getFormDataForField = (formData, fieldName) => {
+    return formData[fieldName]
 }
 
 
@@ -88,21 +106,22 @@ export function getFieldValidationRules(fieldName, validationRules) {
  * @param {String} fieldName - HTML Attribute `name` for a given field
  * @param {String | Boolean | Object | Array | Any} fieldValue - HTML Attribute `value` for a given field. However, here it's read using `Form's` state object.
  * @param {Array of Rules (Objects)} rules - Validation rules specific to this given field (based on `fieldName`).
+ * @param {Object} formData - Complete Form data that's saved by `Form`. It includes data of each and every field.
  * 
  * @returns `undefined` OR Error Object - { [fieldName]: First error that occured during validation }
  */
-export function validateField(fieldName, fieldValue, rules) {
+export function validateField(fieldName, fieldValue, rules, formData) {
     if (!exists(fieldName) || !exists(fieldValue) || !isArray(rules)) return;
 
     let error;
 
-    for (const { pattern, match, symbol, message } of rules) {
+    for (const { pattern, matchToField, symbol, message } of rules) {
         if (exists(pattern)) {
             !VALIDATORS.REGEXP(fieldValue, pattern) && (error = message);
+        } else if (exists(matchToField)) {
+            !VALIDATORS.COMPARE.TO_EQUAL(fieldValue, getFormDataForField(formData, matchToField)) && (error = message);
         } else if (exists(symbol)) {
             // Code for math symbol comparisons. E.g:- >, <, === etc.
-        } else if (exists(match)) {
-            // Code for matching value exactness with another field whose [name] is provided as value of [match]
         }
 
         // We'll stop at first error itself.
@@ -129,7 +148,7 @@ export function validateForm(formData, validationRules) {
         if (isObject(value)) return validateForm(value, validationRules);
 
         const rules = getFieldValidationRules(name, validationRules);
-        const error = validateField(name, value, rules);
+        const error = validateField(name, value, rules, formData);
 
         // Save the validation error data.
         if (error) acc = { ...(acc || {}), ...error };

@@ -1,15 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Form from '../../../../components/form';
 import Text from '../../../../components/text';
+import { CALLBACK_TYPES, ELEM_REF_ATTR } from '../../../../constants/events-registry';
+import useEventsRegistry from '../../../../hooks/events-registry';
 import { useAuth } from '../../../../provider/auth';
+import { generateComponent } from '../../../../utils/component';
 
 const CREATE_USER_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/keycloak/users`;
 
-export default function AdminAddUser({ info: { form } = {} }) {
+export default function AdminAddUser({ screenInfo }) {
     const [error, setError] = React.useState(null);
     const { getAccessToken } = useAuth();
     const history = useHistory();
+    const { registerEvents } = useEventsRegistry();
 
     const handleSubmit = data => {
         const { user, ...restData } = data;
@@ -32,13 +35,20 @@ export default function AdminAddUser({ info: { form } = {} }) {
         })
     };
 
+    const eventsToRegister = [
+        {
+            [ELEM_REF_ATTR.ID]: 'ADD_USER_FORM',
+            events: {
+                onSubmit: [CALLBACK_TYPES.DEFAULT_RETURN, handleSubmit]
+            }
+        }
+    ];
+
+    registerEvents(eventsToRegister)
+
     return (
         <React.Fragment>
-            <Form
-                form={form}
-                style={{ width: '80%', padding: '0 10% 0 0', boxSizing: 'border-box', maxWidth: 700 }}
-                onSubmit={handleSubmit}
-            />
+            {generateComponent(screenInfo)}
             {error && <Text color="error" variant="caption">{error}</Text>}
         </React.Fragment>
     );

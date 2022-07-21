@@ -1,38 +1,36 @@
-{
-    "form": {
-        "controls": [
-            { "type": "box", "children": [
-                { "type": "heading", "variant": "screenTitle", "label": "Login", "color": "textPrimary" }
-            ], "styles": { "mb": 2, "mt": 4 }},
-            { "type": "box", "children": [
-                { "type": "textfield", "label": "Company Name", "name": "compName" }
-            ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
-                { "type": "textfield", "variant": "email", "label": "Email", "name": "userName" }
-            ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
-                { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
-            ], "styles": { "mb": 4 }},
-            { "type": "box", "children": [
-                { "type": "submit", "variant": "primary", "label": "Sign In" },
-                { "type": "box" , "children": [
-                    { "type": "divider" }
-                ], "styles": { "mb": 5, "mt": 5 }},
-                { "type": "button", "variant": "socialGithub", "label": "Sign In With Github" },
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialGoogle", "label": "Sign In With Google", "startIcon": {
-                    "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
-                }},
-                { "type": "box" , "styles": { "mb": 2 }},
-                { "type": "button", "variant": "socialMicrosoft", "label": "Sign In With Microsoft", "startIcon": {
-                    "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
-                }}
-            ], "styles": { "mb": 3 }},
-            { "type": "box", "children": [
-                { "type": "text", "variant": "body2", "label": "Don't have an account ? ", "children": [
-                    { "type": "link", "href": "/register", "label": "Register here" }
-                ]}
-            ]}
-        ]
-    }
-}
+{ "type": "box", "children": [
+    { "type": "box", "children": [
+        { "type": "heading", "variant": "screenTitle", "label": "Login", "color": "textPrimary" }
+    ], "styles": { "mb": 2, "mt": 4 }},
+    { "type": "form", "id": "LOGIN_FORM", "children": [
+        { "type": "box", "children": [
+            { "type": "textfield", "label": "Company Name", "name": "compName" }
+        ], "styles": { "mb": 3 }},
+        { "type": "box", "children": [
+            { "type": "textfield", "variant": "email", "label": "Email", "name": "userName" }
+        ], "styles": { "mb": 3 }},
+        { "type": "box", "children": [
+            { "type": "textfield", "variant": "password", "label": "Password", "name": "password" }
+        ], "styles": { "mb": 4 }},
+        { "type": "submit", "variant": "primary", "label": "Sign In" }
+    ]},
+    { "type": "box" , "children": [
+        { "type": "divider" }
+    ], "styles": { "mb": 5, "mt": 5 }},
+    { "type": "box", "children": [
+        { "type": "button", "variant": "socialGithub", "label": "Sign In With Github" },
+        { "type": "box" , "styles": { "mb": 2 }},
+        { "type": "button", "variant": "socialGoogle", "label": "Sign In With Google", "startIcon": {
+            "type": "image", "src": "social-icons/google.png", "width": "27", "height": "27"
+        }},
+        { "type": "box" , "styles": { "mb": 2 }},
+        { "type": "button", "variant": "socialMicrosoft", "label": "Sign In With Microsoft", "startIcon": {
+            "type": "image", "src": "social-icons/microsoft.png", "width": "22", "height": "22"
+        }}
+    ], "styles": { "mb": 3 }},
+    { "type": "box", "children": [
+        { "type": "text", "variant": "body2", "label": "Don't have an account ? ", "children": [
+            { "type": "link", "href": "/register", "label": "Register here" }
+        ]}
+    ]}
+], "styles": { "width": { "md": 340 } }}
