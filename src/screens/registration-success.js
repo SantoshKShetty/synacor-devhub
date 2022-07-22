@@ -1,12 +1,12 @@
 import React from "react";
-import Form from "../components/form";
+import { generateComponent } from "../utils/component";
 
-function RegisterSuccess({ info, Layout }) {
-    const { logo, form } = info;
+function RegisterSuccess({ genericInfo, screenInfo, Layout }) {
+    const { logo } = genericInfo;
 
     return (
         <Layout logo={logo}>
-            <Form form={form} />
+            {generateComponent(screenInfo)}
         </Layout>
     );
 }
