@@ -6,7 +6,7 @@ import useEventsRegistry from '../../../../hooks/events-registry';
 import { useAuth } from '../../../../provider/auth';
 import { generateComponent } from '../../../../utils/component';
 
-const CREATE_USER_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/keycloak/users`;
+const CREATE_USER_API = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
 
 export default function AdminAddUser({ screenInfo }) {
     const [error, setError] = React.useState(null);

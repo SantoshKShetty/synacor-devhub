@@ -16,7 +16,7 @@ export default function UserSecurity({ screenInfo }) {
 
         if (exists(user)) {
             fetch(
-                `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/orgs/${sessionStorage.getItem('ORG') || '{{ORG}}'}/keycloak/users/${user}/reset-password`,
+                `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users/${user}/reset-password`,
                 {
                     method: 'PUT',
                     headers: {
