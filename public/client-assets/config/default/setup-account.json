@@ -1,11 +1,11 @@
-{
-    "screenInfo": [
-        { "type": "box", "children": [
+[
+    {
+        "type": "box", "children": [
             { "type": "heading", "variant": "screenDesc", "label": "Before we set you up for success!" }
-        ], "styles": { "mt": { "md": 25 } }}
-    ],
-    "form": {
-        "controls": [
+        ], "styles": { "mt": { "md": 25 } }
+    },
+    { "type": "box", "children": [{
+        "type": "form", "id": "SETUP_ACC_FORM", "children": [
             { "type": "box", "children": [
                 { "type": "heading", "variant": "screenTitle", "label": "Account Type", "color": "textPrimary" }
             ], "styles": { "mb": 4 }},
@@ -85,8 +85,7 @@
             { "type": "box", "children": [
                 { "type": "submit", "variant": "primary", "label": "Create Account" }
             ]}
-        ],
-        "validations": [
+        ], "validations": [
             { "field": "compName", "rules": [
                 { "pattern": "^[a-zA-Z0-9]+$", "message": "Company name can have only alpha numeric characters without space." }
             ]},
@@ -94,5 +93,5 @@
                 { "pattern": "^[a-zA-Z0-9]+$", "message": "Tenant domain can have only alpha numeric characters without space." }
             ]}
         ]
-    }
-}
+    }], "styles": { "width": { "md": 340 } }}
+]

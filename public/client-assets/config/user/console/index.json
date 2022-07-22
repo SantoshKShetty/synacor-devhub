@@ -1,23 +1,21 @@
-{
-    "header": [
-        { "type": "box", "direction": "row", "children": [
-            { "type": "headerMenu", "opensBy": {
-                    "type": "iconButton",
-                    "children": [
-                        { "type": "avatar", "label": "JD" },
-                        { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
-                    ]
-                }, "position": {
-                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
-                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
-                }, "children": [
-                    { "type": "link", "href": "", "label": "My Settings" },
-                    { "type": "link", "href": "", "label": "Sign Out" }
+[
+    { "type": "box", "direction": "row", "children": [
+        { "type": "headerMenu", "opensBy": {
+                "type": "iconButton",
+                "children": [
+                    { "type": "avatar", "label": "JD" },
+                    { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
                 ]
-            }], "styles": { "alignItems": "center" }
-        }
-    ],
-    "leftCol": [
+            }, "position": {
+                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+            }, "children": [
+                { "type": "link", "href": "", "label": "My Settings" },
+                { "type": "link", "href": "", "label": "Sign Out", "id": "SIGN_OUT_CTA" }
+            ]
+        }], "styles": { "alignItems": "center" }
+    },
+    [
         { "type": "accordionMenu", "expanded": true, "children": [
             { "type": "list", "children": [
                 { "type": "link", "href": "/user/applications", "label": "Applications" },
@@ -26,4 +24,4 @@
             ]}
         ]}
     ]
-}
+]

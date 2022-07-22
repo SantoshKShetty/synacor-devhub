@@ -1,55 +1,53 @@
-{
-    "header": [
-        { "type": "box", "direction": "row", "children": [
-            { "type": "headerMenu", "opensBy": {
-                    "type": "iconButton",
-                    "children": [
-                        { "type": "icon", "icon": "HelpOutlineIcon" }
-                    ]
-                },
-                "position": {
-                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
-                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
-                },
+[
+    { "type": "box", "direction": "row", "children": [
+        { "type": "headerMenu", "opensBy": {
+                "type": "iconButton",
                 "children": [
-                    { "type": "link", "href": "", "label": "Help Center" },
-                    { "type": "link", "href": "", "label": "Developer Documentation" },
-                    { "type": "link", "href": "", "label": "Training" }
+                    { "type": "icon", "icon": "HelpOutlineIcon" }
                 ]
             },
-            { "type": "headerMenu", "opensBy": {
-                    "type": "iconButton",
-                    "children": [
-                        { "type": "icon", "icon": "AppsIcon" }
-                    ]
-                },
-                "position": {
-                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
-                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
-                },
+            "position": {
+                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+            },
+            "children": [
+                { "type": "link", "href": "", "label": "Help Center" },
+                { "type": "link", "href": "", "label": "Developer Documentation" },
+                { "type": "link", "href": "", "label": "Training" }
+            ]
+        },
+        { "type": "headerMenu", "opensBy": {
+                "type": "iconButton",
                 "children": [
-                    { "type": "link", "href": "/user/applications", "label": "End-user dashboard" }
+                    { "type": "icon", "icon": "AppsIcon" }
                 ]
             },
-            { "type": "headerMenu", "opensBy": {
-                    "type": "iconButton",
-                    "children": [
-                        { "type": "avatar", "label": "JD" },
-                        { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
-                    ]
-                }, "position": {
-                    "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
-                    "transformOrigin": { "vertical": "top", "horizontal": "center" }
-                }, "children": [
-                    { "type": "link", "href": "", "label": "joe.doe@hbo.com" },
-                    { "type": "link", "href": "", "label": "hbo.bonafid.com" },
-                    { "type": "link", "href": "", "label": "My Settings" },
-                    { "type": "link", "href": "", "label": "Sign Out" }
+            "position": {
+                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+            },
+            "children": [
+                { "type": "link", "href": "/user/applications", "label": "End-user dashboard" }
+            ]
+        },
+        { "type": "headerMenu", "opensBy": {
+                "type": "iconButton",
+                "children": [
+                    { "type": "avatar", "label": "JD" },
+                    { "type": "icon", "icon": ["KeyboardArrowDownIcon", "KeyboardArrowUpIcon"] }
                 ]
-            }], "styles": { "alignItems": "center" }
-        }
-    ],
-    "leftCol": [
+            }, "position": {
+                "anchorOrigin": { "vertical": "bottom", "horizontal": "left" },
+                "transformOrigin": { "vertical": "top", "horizontal": "center" }
+            }, "children": [
+                { "type": "link", "href": "", "label": "joe.doe@hbo.com" },
+                { "type": "link", "href": "", "label": "hbo.bonafid.com" },
+                { "type": "link", "href": "", "label": "My Settings" },
+                { "type": "link", "href": "", "label": "Sign Out", "id": "SIGN_OUT_CTA" }
+            ]
+        }], "styles": { "alignItems": "center" }
+    },
+    [
         { "type": "accordionMenu", "label": "Overview", "expandIcon": { "type": "icon", "icon": "ExpandMoreIcon" },
             "children": [
                 { "type": "list", "children": [
@@ -113,4 +111,4 @@
             ]
         }
     ]
-}
+]

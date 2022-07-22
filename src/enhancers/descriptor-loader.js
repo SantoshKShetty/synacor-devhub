@@ -1,5 +1,4 @@
 import React from 'react';
-import mergeOptions from 'merge-options';
 import { getConfigResource } from '../utils/resource-path';
 import { fetchJsonResource } from '../utils/fetch';
 
@@ -9,10 +8,9 @@ import { fetchJsonResource } from '../utils/fetch';
  
  * @param {string} descriptor - descriptor file name
  * @param {Object} children - `Screen` component for that specific `url`.
- * @param {Object} genericInfo - An object we got already from `config/index.json` file.
  * @returns - Wrapped component for every `Screen` with downloaded `descriptor` object passed as prop to `Screen`.
  */
-export default function DescriptorLoader({ descriptor, children, genericInfo }) {
+export default function DescriptorLoader({ descriptor, children }) {
     const [desc, setDesc] = React.useState(null);
 
     React.useEffect(() => {
@@ -23,7 +21,7 @@ export default function DescriptorLoader({ descriptor, children, genericInfo }) 
 
     return desc && React.cloneElement(
         React.Children.only(children), {
-            info: mergeOptions(genericInfo, desc)
+            screenInfo: desc
         }
     );
 }

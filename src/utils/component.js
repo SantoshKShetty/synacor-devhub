@@ -1,5 +1,5 @@
 import React from 'react';
-import { isArray, exists } from "./basics";
+import { isArray, exists, isObject } from "./basics";
 import Text from '../components/text';
 import Box from '../components/containers/box';
 import Divider from '../components/divider';
@@ -32,6 +32,7 @@ import {
 	AVATAR_TYPE,
 	CONTAINER_TYPES,
 	DISPLAY_TYPES,
+	FORM_TYPE,
 	ICON_TYPE,
 	IMAGE_TYPE,
 	LINK_TYPE,
@@ -39,7 +40,9 @@ import {
 	MENU_TYPES,
 	USER_INPUT_TYPES
 } from '../constants/field-types';
-import { useForm } from '../components/form';
+import Form, { useForm } from '../components/form';
+import useEventsRegistry from '../hooks/events-registry';
+import { CALLBACK_TYPES } from '../constants/events-registry';
 
 
 /**
@@ -95,6 +98,24 @@ export function generateKey(prefix = 'component', suffix = '', randomize = false
 
 
 /**
+ * `prepareRegisteredEvents` returns formatted collection of event handlers.
+ * The custom events that are PLUGGED-IN during registration of events will be formatted to make the properly consumed.
+ *
+ * @param {Object} events - Key value pairs of event names and callbacks (with types)
+ * @param {Any} data - any data required by callback.
+ * @returns {Object} - returns formatted collection of event handlers.
+ */
+function prepareRegisteredEvents(events, data) {
+	if (!isObject(events)) return;
+
+	return Object.entries(events).reduce((acc, [eventName, [callbackType, callback]]) => {
+		acc[eventName] = callbackType === CALLBACK_TYPES.EXEC_AND_RETURN ? callback(data) : callback;
+		return acc;
+	}, {});
+}
+
+
+/**
  * Function `generateComponent` - returns single/collection of React Components based on the Config Descriptor data provided.
  * 
  * @param {Object OR Array of Objects} componentData - Config Descriptor(s)
@@ -123,6 +144,7 @@ export function generateComponent(componentData) {
 		icon,
 		name,
 		relatesToField,
+		id,
 		...props
 	} = componentData;
 
@@ -130,6 +152,8 @@ export function generateComponent(componentData) {
 
 	// Event props, later we can add custom events if required.
 	const eventProps = bindFormEvents && bindFormEvents(type, name, defaultValue, relatesToField);
+
+	const { retrieveEvents } = useEventsRegistry();
 
 	// Form validation errors etc.
 	const errorProps = formError && formError[name] && {
@@ -139,11 +163,13 @@ export function generateComponent(componentData) {
 
 	const componentProps = {
 		key,
-		name,
+		...name && { name },
+		...id && { id },
 		...props,
 		...styles,
 		...errorProps,
-		...eventProps
+		...eventProps,
+		...prepareRegisteredEvents(retrieveEvents(id || name))
 	};
 
 	switch(type) {
@@ -232,5 +258,7 @@ export function generateComponent(componentData) {
 			return <AccordionMenu {...componentProps} baseKey={key} label={label} items={children} />
 		case CONTAINER_TYPES.GRID:
 			return <Grid {...componentProps} baseKey={key} variant={variant} items={children} />
+		case FORM_TYPE:
+			return <Form {...componentProps} items={children} />
 	}
 }
