@@ -4,15 +4,15 @@ import Button from '.';
 import { makeStyles } from '../../provider/theme';
 
 const styles = makeStyles(
-    ({ palette }) => ({
+    ({ palette, spacing, typography }) => ({
         primaryBtn: {
-            backgroundColor: palette.custom.button.primaryBtn.bgColor,
-            width: '190px',
-            height: '32px',
-
-            '&:hover': {
-                backgroundColor: palette.custom.button.primaryBtn.bgColorHover
-            }
+            width: 'fit-content',
+            height: 40,
+            padding: `0 ${spacing(4)}px`,
+            fontWeight: typography.fontWeightBold,
+            color: palette.custom.button.primaryBtn.color,
+            borderColor: palette.custom.button.primaryBtn.borderColor,
+            backgroundImage: palette.custom.button.primaryBtn.bgImage,
         }
     })
 )
