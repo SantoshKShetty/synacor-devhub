@@ -12,6 +12,10 @@
 # will inherit these settings.
 [context.branch-deploy.environment]
     NODE_ENV = "testing"
+    
+    
+[context.deploy-preview.environment]
+    NODE_ENV = "testing"
 
 
 # Redirects and headers are GLOBAL for all builds – they do not
