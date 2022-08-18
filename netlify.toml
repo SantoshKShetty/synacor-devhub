@@ -10,7 +10,7 @@
 # Branch Deploy context: all deploys that are not from
 # a pull/merge request or from the Production branch
 # will inherit these settings.
-[context.branch-deploy.environment]
+[context.branch-deploy]
     environment = { NODE_ENV = "testing" }
 
 
