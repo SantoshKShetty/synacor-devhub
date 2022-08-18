@@ -1,0 +1,4 @@
+## SAVE NON-SENSITIVE INFORMATION ONLY ##
+
+# Cloud ID API settings.
+CLOUD_ID_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080'
