@@ -5,7 +5,7 @@ import useEventsRegistry from "../hooks/events-registry";
 import { useAuth } from "../provider/auth";
 import { generateComponent } from "../utils/component";
 
-const TENANT_LOGIN_API = 'http://tenant-service01.cloudid.ci.opal.synacor.com:4080/login';
+const TENANT_LOGIN_API = '{{CLOUD_ID_API}}/login';
 
 function LoginScreen({ genericInfo, screenInfo, Layout }) {
     const { logo } = genericInfo;

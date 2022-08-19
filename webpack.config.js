@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const loadEnvConfig = require('./scripts/env-loader');
+
+// Load Environment Settings.
+loadEnvConfig();
 
 module.exports = {
     // the output bundle won't be optimized for production but suitable for development
@@ -22,8 +26,9 @@ module.exports = {
                     {
                         options: {
                             multiple: [
-                                { search: /\{\{CLIENT\}\}/g, replace: process.env.CLIENT || 'cableco' },
-                                { search: /\{\{ORG\}\}/g, replace: process.env.ORG || 'cableco_rt' }
+                                { search: /\{\{CLIENT\}\}/g, replace: process.env.CLIENT },
+                                { search: /\{\{ORG\}\}/g, replace: process.env.ORG },
+                                { search: /\{\{CLOUD_ID_API\}\}/g, replace: process.env.CLOUD_ID_API }
                             ]
                         },
                         loader: require.resolve('string-replace-loader'),
@@ -62,11 +67,6 @@ module.exports = {
                     from: path.resolve(__dirname, 'public', 'client-assets'),
                     to: path.resolve(__dirname, 'build', 'client-assets')
                 },
-                {
-                    // Copy Netlify Redirects file.
-                    from: path.resolve(__dirname, 'public', '_redirects'),
-                    to: path.resolve(__dirname, 'build')
-                }
             ]
         })
     ]

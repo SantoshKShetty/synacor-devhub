@@ -206,7 +206,7 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `http://tenant-service01.cloudid.ci.opal.synacor.com:4080/tenants/${ORG}/users?${params}`;
+        const apiUrl = `{{CLOUD_ID_API}}/tenants/${ORG}/users?${params}`;
 
         params && fetch(apiUrl, {
             headers: {
