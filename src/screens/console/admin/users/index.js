@@ -196,7 +196,7 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
         const ORG = sessionStorage.getItem('ORG') || '{{ORG}}';
 
         const paginationParams = '{{CLIENT}}' !== CLIENTS.SXM.NAME ? [
-            !searchParams.username && !searchParams.contactEmail && `index=${page}`,
+            !searchParams.username && !searchParams.contactEmail && `index=${page === 1 ? 0 : page}`,
             !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
         ].filter(Boolean) : [];
 

@@ -6,7 +6,7 @@ import useEventsRegistry from "../hooks/events-registry";
 import { isArray, isObject } from "../utils/basics";
 import { generateComponent } from "../utils/component";
 
-const TENANT_REGISTER_API = '{{CLOUD_ID_API}}/tenants';
+const TENANT_REGISTER_API = '{{CLOUD_ID_API}}/nologin/tenants';
 
 function SetupAccountScreen({ genericInfo, screenInfo, Layout }) {
     const { logo } = genericInfo;
