@@ -9,11 +9,11 @@ import { useAuth } from "../../provider/auth";
 import { CALLBACK_TYPES, ELEM_REF_ATTR } from "../../constants/events-registry";
 
 const Header = ({ logo, header }) => {
-    const { signOut } = useAuth();
+    const { logout } = useAuth();
     const { registerEvents } = useEventsRegistry();
 
     const handleSignout = () => {
-        signOut()
+        logout()
     }
 
     const eventsToRegister = [

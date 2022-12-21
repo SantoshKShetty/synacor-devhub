@@ -67,13 +67,13 @@ const context = React.createContext({});
 export default function ConfigProvider(props) {
     const [config, setConfig] = React.useState();
 
-    const { hasUserLoggedIn, isAdminUser } = useAuth();
+    const { hasUserLoggedIn, hasAdminUserRoles } = useAuth();
     const isLoggedIn = hasUserLoggedIn();
 
     React.useEffect(() => {
         const configPaths = !isLoggedIn ?
             [DESCRIPTOR_FOLDERS.DEFAULT]
-                : isAdminUser() ? [DESCRIPTOR_FOLDERS.USER, DESCRIPTOR_FOLDERS.ADMIN]
+                : hasAdminUserRoles() ? [DESCRIPTOR_FOLDERS.USER, DESCRIPTOR_FOLDERS.ADMIN]
                 : [DESCRIPTOR_FOLDERS.USER];
 
         downloadConfigs(configPaths, 'index.json').then(

@@ -92,7 +92,7 @@
         ], "styles": { "mb": 5, "mt": 2 }},
         { "type": "box", "children": [
             { "type": "text", "variant": "body2", "label": "Already have an account? ", "color": "textPrimary", "children": [
-                { "type": "link", "href": "/login", "label": "Sign In" }
+                { "type": "link", "label": "Sign In", "id": "SIGN_IN_BTN" }
             ]}
         ], "styles": { "mb": 5 }}
     ], "styles": { "width": { "md": 340 } }}

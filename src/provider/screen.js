@@ -14,10 +14,6 @@ const SCREENS = {
         /* webpackChunkName: "setup-account-screen" */
         '../screens/setup-account'
     )),
-    Login: lazy(() => import(
-        /* webpackChunkName: "login-screen" */
-        '../screens/login'
-    )),
     Console: lazy(() => import(
         /* webpackChunkName: "console-screen" */
         '../screens/console'

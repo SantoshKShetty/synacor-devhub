@@ -23,11 +23,7 @@
             "screen": "AccountSetup", "layout": "SplitColumn"
         },
         {
-            "path": "/login", "descriptor": "default/login.json",
-            "screen": "Login", "layout": "SingleColumn"
-        },
-        {
-            "path": "*", "redirectTo": "/login"
+            "path": "*", "redirectTo": "/register"
         }
     ]
 }

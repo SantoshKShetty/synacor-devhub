@@ -4,7 +4,7 @@
     ], "styles": { "mb": 2, "mt": 4 }},
     { "type": "box", "children": [
         { "type": "text", "variant": "body2", "label": "Now, you can ", "children": [
-            { "type": "link", "href": "/login", "label": "Login" }
+            { "type": "link", "label": "Login", "id": "SIGN_IN_BTN" }
         ]}
     ]}
 ]}
