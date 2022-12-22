@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { generateComponent } from '../../../utils/component';
 import useEventsRegistry from '../../../hooks/events-registry';
 import { CALLBACK_TYPES, ELEM_REF_ATTR } from '../../../constants/events-registry';
-import { useAuth } from '../../../provider/auth';
+import { getCompNameFromSession, useAuth } from '../../../provider/auth';
 import { exists } from "../../../utils/basics";
 
 export default function UserSecurity({ screenInfo }) {
@@ -16,7 +16,7 @@ export default function UserSecurity({ screenInfo }) {
 
         if (exists(user)) {
             fetch(
-                `{{CLOUD_ID_API}}/tenants/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users/${user}/reset-password`,
+                `{{CLOUD_ID_API}}/tenants/${getCompNameFromSession()}/users/${user}/reset-password`,
                 {
                     method: 'PUT',
                     headers: {

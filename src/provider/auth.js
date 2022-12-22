@@ -26,7 +26,9 @@ export default function AuthProvider(props) {
 
     if (!authReady) {
         if (exists(companyNameStored)) {
-            authService.initialize(companyNameStored).then(authenticated => {
+            authService.initialize({
+                realm: companyNameStored
+            }).then(authenticated => {
                 if (!authenticated) login();
                 else setAuthReady(true);
             }).catch(e => {

@@ -15,7 +15,7 @@ import IconButton from '../../../../components/button/icon';
 import SearchIcon from '@material-ui/icons/Search';
 import PrimaryBtn from '../../../../components/button/primary';
 import CLIENTS from '../../../../constants/clients';
-import { useAuth } from '../../../../provider/auth';
+import { getCompNameFromSession, useAuth } from '../../../../provider/auth';
 
 // To render header/pick data key for sorting, keep a good sort key name etc...
 const HEADER_FIELD_DATA_MAP = [
@@ -193,8 +193,6 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
     React.useEffect(() => {
         setError(null);
 
-        const ORG = sessionStorage.getItem('ORG') || '{{ORG}}';
-
         const paginationParams = '{{CLIENT}}' !== CLIENTS.SXM.NAME ? [
             !searchParams.username && !searchParams.contactEmail && `index=${page === 1 ? 0 : page}`,
             !searchParams.username && !searchParams.contactEmail &&`numberOfRecords=${perPage}`,
@@ -206,7 +204,7 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
             searchParams.contactEmail && `contactEmail=${searchParams.contactEmail}`
         ].filter(Boolean).join('&');
 
-        const apiUrl = `{{CLOUD_ID_API}}/tenants/${ORG}/users?${params}`;
+        const apiUrl = `{{CLOUD_ID_API}}/tenants/${getCompNameFromSession()}/users?${params}`;
 
         params && fetch(apiUrl, {
             headers: {

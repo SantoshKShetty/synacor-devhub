@@ -20,7 +20,7 @@ export function LoginModal({ onClose }) {
     const [submitInProgress, setSubmitInProgress] = React.useState(false);
     const [error, setError] = React.useState(false);
 
-    const { initialize, login } = useAuth();
+    const { initialize } = useAuth();
 
     const handleCompanyName = event => {
         setCompanyName(event.target.value);
@@ -31,7 +31,7 @@ export function LoginModal({ onClose }) {
         setError(false);
         setCompNameToSession(companyName);
 
-        initialize(companyName).catch(e => {
+        initialize({ realm: companyName }).catch(e => {
             console.error(e);
             setSubmitInProgress(false);
             setError(true);

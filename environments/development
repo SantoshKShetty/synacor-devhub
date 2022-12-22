@@ -4,5 +4,4 @@
 CLOUD_ID_API = 'http://devhub-service02.cloudid.ci.opal.synacor.com:4080'
 
 # Keycloak settings.
-# KEYCLOAK_URL = 'http://keycloak-devhub-v15-01.cloudid.ci.opal.synacor.com:8080'
-KEYCLOAK_URL = 'http://localhost:9001'
+KEYCLOAK_URL = 'http://keycloak-devhub-v15-01.cloudid.ci.opal.synacor.com:8080'
