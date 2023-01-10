@@ -28,7 +28,8 @@ module.exports = {
                             multiple: [
                                 { search: /\{\{CLIENT\}\}/g, replace: process.env.CLIENT },
                                 { search: /\{\{ORG\}\}/g, replace: process.env.ORG },
-                                { search: /\{\{CLOUD_ID_API\}\}/g, replace: process.env.CLOUD_ID_API }
+                                { search: /\{\{CLOUD_ID_API\}\}/g, replace: process.env.CLOUD_ID_API },
+                                { search: /\{\{KEYCLOAK_URL\}\}/g, replace: process.env.KEYCLOAK_URL }
                             ]
                         },
                         loader: require.resolve('string-replace-loader'),

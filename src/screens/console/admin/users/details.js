@@ -10,9 +10,9 @@ import PrimaryBtn from '../../../../components/button/primary';
 import { exists, isBoolean } from '../../../../utils/basics';
 import CheckBox from '../../../../components/checkbox';
 import Heading from '../../../../components/custom/heading';
-import { useAuth } from '../../../../provider/auth';
+import { getCompNameFromSession, useAuth } from '../../../../provider/auth';
 
-const USER_DETAILS_API = `{{CLOUD_ID_API}}/tenants/${sessionStorage.getItem('ORG') || '{{ORG}}'}/users`;
+const USER_DETAILS_API = `{{CLOUD_ID_API}}/tenants/${getCompNameFromSession()}/users`;
 
 const TABS = ['Profile', 'Account Info', 'Credentials'];
 

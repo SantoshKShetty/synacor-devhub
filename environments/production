@@ -2,3 +2,6 @@
 
 # Cloud ID API settings.
 CLOUD_ID_API = 'http://devhub-service02.cloudid.ci.opal.synacor.com:4080'
+
+# Keycloak settings.
+KEYCLOAK_URL = 'http://keycloak-devhub-v15-01.cloudid.ci.opal.synacor.com:8080'

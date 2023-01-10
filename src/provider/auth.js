@@ -1,46 +1,84 @@
 import React from 'react';
+import AuthService from '../services/auth';
+import { exists } from '../utils/basics';
 
-function getLoggedUser() {
-    const user = sessionStorage.getItem('loggedUser');
-    return user ? JSON.parse(user) : user;
+const TEMP_REALM_NAME = 'companyNameTemp';
+
+export function getCompNameFromSession() {
+    return sessionStorage.getItem(TEMP_REALM_NAME);
 }
 
-function setLoggedUser(user) {
-    sessionStorage.setItem('loggedUser', JSON.stringify(user));
+export function setCompNameToSession(name) {
+    sessionStorage.setItem(TEMP_REALM_NAME, name);
 }
 
-function deleteLoggedUser() {
-    sessionStorage.removeItem('loggedUser')
+export function removeCompNameFromSession() {
+    sessionStorage.removeItem(TEMP_REALM_NAME);
 }
 
 const context = React.createContext();
 
 export default function AuthProvider(props) {
-    const [user, setUser] = React.useState(getLoggedUser);
+    const [authReady, setAuthReady] = React.useState(false);
+    const authService = new AuthService();
 
-    const signIn = userData => {
-        setLoggedUser(userData);
-        setUser(userData);
+    const companyNameStored = getCompNameFromSession();
+
+    if (!authReady) {
+        if (exists(companyNameStored)) {
+            authService.initialize({
+                realm: companyNameStored
+            }).then(authenticated => {
+                if (!authenticated) login();
+                else setAuthReady(true);
+            }).catch(e => {
+                console.error(e);
+                setAuthReady(false);
+            });
+        } else {
+            setAuthReady(true);
+        }
     }
 
-    const signOut = () => {
-        deleteLoggedUser();
-        setUser(null);
+    const initialize = realm => authService.initialize(realm)
+
+    const login = () => authService.login()
+
+    const logout = () => {
+        removeCompNameFromSession();
+        authService.logout()
     }
 
-    const hasUserLoggedIn = () => Boolean(user)
+    const getAccessToken = () => authService.getAccessToken()
 
-    const isAdminUser = () => user.isAdmin
+    const getParsedAccessToken = () => authService.getParsedAccessToken()
 
-    const isNormalUser = () => !user.isAdmin
+    const getRefreshToken = () => authService.getRefreshToken()
 
-    const getAccessToken = () => hasUserLoggedIn() && user.access_token
+    const getParsedRefreshToken = () => authService.getParsedRefreshToken()
+
+    const hasUserLoggedIn = () => Boolean(getAccessToken())
+
+    const hasRoles = roles => roles.some(role => authService.hasRealmRole(role))
+
+    const hasAdminUserRoles = () => hasRoles(['admin'])
+
+    const hasNormalUserRoles = () => hasRoles(['user']) && !hasRoles(['admin'])
 
     const contextData = React.useMemo(() => ({
-        signIn, signOut, hasUserLoggedIn, isAdminUser, isNormalUser, getAccessToken
-    }), [user]);
+        initialize,
+        login,
+        logout,
+        hasUserLoggedIn,
+        hasAdminUserRoles,
+        hasNormalUserRoles,
+        getAccessToken,
+        getParsedAccessToken,
+        getRefreshToken,
+        getParsedRefreshToken
+    }), []);
 
-    return <context.Provider {...props} value={contextData} />
+    return authReady && <context.Provider {...props} value={contextData} />
 }
 
 export function useAuth() {
