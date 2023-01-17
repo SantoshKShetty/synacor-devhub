@@ -16,31 +16,19 @@ export function removeCompNameFromSession() {
     sessionStorage.removeItem(TEMP_REALM_NAME);
 }
 
+function readCompanyNameFromUri() {
+    const path = window.location.pathname;
+    const matches = path?.match(/^\/realms\/(.+)\/loginsuccess$/);
+    return matches && matches.length >= 2 && matches[1];
+}
+
 const context = React.createContext();
 
 export default function AuthProvider(props) {
     const [authReady, setAuthReady] = React.useState(false);
     const authService = new AuthService();
 
-    const companyNameStored = getCompNameFromSession();
-
-    if (!authReady) {
-        if (exists(companyNameStored)) {
-            authService.initialize({
-                realm: companyNameStored
-            }).then(authenticated => {
-                if (!authenticated) login();
-                else setAuthReady(true);
-            }).catch(e => {
-                console.error(e);
-                setAuthReady(false);
-            });
-        } else {
-            setAuthReady(true);
-        }
-    }
-
-    const initialize = realm => authService.initialize(realm)
+    const initialize = (payload, options) => authService.initialize(payload, options)
 
     const login = () => authService.login()
 
@@ -77,6 +65,31 @@ export default function AuthProvider(props) {
         getRefreshToken,
         getParsedRefreshToken
     }), []);
+
+
+    if (!authReady) {
+        let realm = getCompNameFromSession();
+
+        if (!exists(realm)) {
+            realm = readCompanyNameFromUri();
+            if (exists(realm)) setCompNameToSession(realm);
+        }
+
+        // If companyName is found, try to initialize the Service. If successful and require login, do so.
+        // Otherwise, we render default page - (non-auth pages like `/register`).
+        if (exists(realm)) {
+            initialize({ realm })
+                .then(authenticated => {
+                    authenticated ? setAuthReady(true) : login()
+                })
+                .catch(e => {
+                    console.error(e);
+                    setAuthReady(false);
+                });
+        } else {
+            setAuthReady(true);
+        }
+    }
 
     return authReady && <context.Provider {...props} value={contextData} />
 }
