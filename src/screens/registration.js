@@ -12,7 +12,7 @@ import useEventsRegistry from "../hooks/events-registry";
 import useModal from "../hooks/modal";
 import { isArray, isObject } from "../utils/basics";
 import { generateComponent } from "../utils/component";
-import { removeCompNameFromSession, setCompNameToSession, useAuth } from "../provider/auth";
+import { useAuth } from "../provider/auth";
 import { CircularProgress } from "@material-ui/core";
 
 export function LoginModal({ onClose }) {
@@ -29,13 +29,14 @@ export function LoginModal({ onClose }) {
     const handleTryToLogin = () => {
         setSubmitInProgress(true);
         setError(false);
-        setCompNameToSession(companyName);
 
-        initialize({ realm: companyName }).catch(e => {
+        initialize({ realm: companyName }, {
+            // This is the URI where we'll read companyName and save it in session for subsequent operations until session is ended.
+            redirectUri: `${window.location.origin}/realms/${companyName}/loginsuccess`
+        }).catch(e => {
             console.error(e);
             setSubmitInProgress(false);
             setError(true);
-            removeCompNameFromSession();
         })
     }
 

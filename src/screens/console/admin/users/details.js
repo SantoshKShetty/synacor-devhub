@@ -86,7 +86,7 @@ export default function AdminUsersDetails(props) {
         passwordUpdateDate
     } = user || {};
 
-    const { getAccessToken } = useAuth();
+    const { getAccessToken, getRefreshToken } = useAuth();
 
     const [edit, setEdit] = React.useState(false);
     const [tab, setTab] = React.useState(0);
@@ -103,7 +103,8 @@ export default function AdminUsersDetails(props) {
         fetch(`${USER_DETAILS_API}/${userid}`, {
             method: 'GET',
             headers: {
-                Bearer: getAccessToken()
+                accessToken: getAccessToken(),
+                refreshToken: getRefreshToken()
             }
         }).then(res => {
             if (res.ok) {

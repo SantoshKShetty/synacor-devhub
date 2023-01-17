@@ -10,7 +10,7 @@ const CREATE_USER_API = `{{CLOUD_ID_API}}/tenants/${getCompNameFromSession()}/us
 
 export default function AdminAddUser({ screenInfo }) {
     const [error, setError] = React.useState(null);
-    const { getAccessToken } = useAuth();
+    const { getAccessToken, getRefreshToken } = useAuth();
     const history = useHistory();
     const { registerEvents } = useEventsRegistry();
 
@@ -23,7 +23,8 @@ export default function AdminAddUser({ screenInfo }) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Bearer: getAccessToken()
+                accessToken: getAccessToken(),
+                refreshToken: getRefreshToken()
             },
             body: JSON.stringify(restData)
         }).then(res => {

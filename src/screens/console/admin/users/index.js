@@ -150,7 +150,7 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
     const [searchParams, setSearchParams] = React.useState({ username: null, contactEmail: null });
     const [error, setError] = React.useState(null);
     const history = useHistory();
-    const { getAccessToken } = useAuth();
+    const { getAccessToken, getRefreshToken } = useAuth();
 
     const handleOnSort = sortByField => () => {
         setSortBy(sortByField);
@@ -209,7 +209,8 @@ export default function AdminUsersList({ screenInfo: { filter } = {} }) {
         params && fetch(apiUrl, {
             headers: {
                 'Content-Type': 'application/json',
-                Bearer: getAccessToken()
+                accessToken: getAccessToken(),
+                refreshToken: getRefreshToken()
             }
         }).then(r => r.json()).then(({ users = [], totalNumberOfRecords, message }) => {
             setTotal(exists(totalNumberOfRecords) ? totalNumberOfRecords : users.length);
