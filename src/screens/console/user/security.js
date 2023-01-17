@@ -6,7 +6,7 @@ import { getCompNameFromSession, useAuth } from '../../../provider/auth';
 import { exists } from "../../../utils/basics";
 
 export default function UserSecurity({ screenInfo }) {
-    const { getAccessToken, getParsedAccessToken } = useAuth();
+    const { getAccessToken, getRefreshToken, getParsedAccessToken } = useAuth();
     const { registerEvents } = useEventsRegistry();
 
     const handleChangePwd = ({ password }) => {
@@ -19,7 +19,8 @@ export default function UserSecurity({ screenInfo }) {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        Bearer: getAccessToken()
+                        accessToken: getAccessToken(),
+                        refreshToken: getRefreshToken()
                     },
                     body: JSON.stringify({ password })
                 }
