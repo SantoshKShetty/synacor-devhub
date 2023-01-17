@@ -3,7 +3,7 @@ import Keycloak from "keycloak-js";
 const KEYCLOAK_DEFAULT_PAYLOAD = {
     url: '{{KEYCLOAK_URL}}/auth/',
     realm: null,
-    clientId: 'account'
+    clientId: 'cloudidhub'
 };
 
 const KEYCLOAK_DEFAULT_OPTIONS = {

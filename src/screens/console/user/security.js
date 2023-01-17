@@ -1,5 +1,4 @@
 import React from 'react';
-import jwt_decode from "jwt-decode";
 import { generateComponent } from '../../../utils/component';
 import useEventsRegistry from '../../../hooks/events-registry';
 import { CALLBACK_TYPES, ELEM_REF_ATTR } from '../../../constants/events-registry';
@@ -7,12 +6,11 @@ import { getCompNameFromSession, useAuth } from '../../../provider/auth';
 import { exists } from "../../../utils/basics";
 
 export default function UserSecurity({ screenInfo }) {
-    const { getAccessToken } = useAuth();
+    const { getAccessToken, getParsedAccessToken } = useAuth();
     const { registerEvents } = useEventsRegistry();
 
     const handleChangePwd = ({ password }) => {
-        const accessToken = getAccessToken();
-        const user = jwt_decode(accessToken)?.preferred_username;
+        const user = getParsedAccessToken()?.preferred_username;
 
         if (exists(user)) {
             fetch(
@@ -21,7 +19,7 @@ export default function UserSecurity({ screenInfo }) {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        Bearer: accessToken
+                        Bearer: getAccessToken()
                     },
                     body: JSON.stringify({ password })
                 }
