@@ -10,7 +10,7 @@ import TextField from "../components/textfield";
 import { CALLBACK_TYPES, ELEM_REF_ATTR } from "../constants/events-registry";
 import useEventsRegistry from "../hooks/events-registry";
 import useModal from "../hooks/modal";
-import { isArray, isObject } from "../utils/basics";
+import { exists, isArray, isObject } from "../utils/basics";
 import { generateComponent } from "../utils/component";
 import { useAuth } from "../provider/auth";
 import { CircularProgress } from "@material-ui/core";
@@ -18,7 +18,7 @@ import { CircularProgress } from "@material-ui/core";
 export function LoginModal({ onClose }) {
     const [companyName, setCompanyName] = React.useState(null);
     const [submitInProgress, setSubmitInProgress] = React.useState(false);
-    const [error, setError] = React.useState(false);
+    const [error, setError] = React.useState(null);
 
     const { initialize } = useAuth();
 
@@ -26,18 +26,27 @@ export function LoginModal({ onClose }) {
         setCompanyName(event.target.value);
     }
 
-    const handleTryToLogin = () => {
-        setSubmitInProgress(true);
-        setError(false);
+    const submitOnEnterKey = event => {
+        // Handle Enter Key.
+        if (event.keyCode === 13) handleTryToLogin();
+    }
 
-        initialize({ realm: companyName }, {
-            // This is the URI where we'll read companyName and save it in session for subsequent operations until session is ended.
-            redirectUri: `${window.location.origin}/realms/${companyName}/loginsuccess`
-        }).catch(e => {
-            console.error(e);
-            setSubmitInProgress(false);
-            setError(true);
-        })
+    const handleTryToLogin = () => {
+        if (!exists(companyName) || !companyName.trim()) {
+            setError('Please enter a valid Company Name');
+        } else {
+            setSubmitInProgress(true);
+            setError(false);
+
+            initialize({ realm: companyName }, {
+                // This is the URI where we'll read companyName and save it in session for subsequent operations until session is ended.
+                redirectUri: `${window.location.origin}/realms/${companyName}/loginsuccess`
+            }).catch(e => {
+                console.error(e);
+                setSubmitInProgress(false);
+                setError('Company not found!');
+            })
+        }
     }
 
     return (
@@ -49,9 +58,10 @@ export function LoginModal({ onClose }) {
                     <TextField
                         label="Company Name"
                         onChange={handleCompanyName}
+                        onKeyUp={submitOnEnterKey}
                         disabled={submitInProgress}
                         {...error && {
-                            error: true, helperText: 'Company not found!'
+                            error: true, helperText: error
                         }} />
                 </Box>
                 <Box direction={HORIZONTAL} style={{ paddingBottom: 20, justifyContent: 'center'}}>
