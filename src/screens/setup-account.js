@@ -28,9 +28,14 @@ function SetupAccountScreen({ genericInfo, screenInfo, Layout }) {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(restData)
-        }).then(res => {
-            if (!res.ok) return Promise.reject({ message: res.statusText });
-            history.push('/register/success');
+        })
+        .then(res => res.ok ? res.json() : Promise.reject({ message: res.statusText }))
+        .then(res => {
+            if (res.statusCode === 'CREATED') {
+                history.push('/register/success');
+            } else {
+                return Promise.reject({ message: res.message });
+            }
         }).catch(e => {
             setError(e.message)
         })
